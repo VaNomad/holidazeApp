@@ -4,7 +4,7 @@ import { GridLoader } from "react-spinners";
 import { ErrorDisplay } from "../../components/ui/messages/ErrorDisplay";
 import { AllVenuesCard } from "../../components/cards/AllVenuesCard";
 
-const query = "?sortOrder=desc&sort=created&_owner=true&_bookings=true&limit=10;";
+const query = "?sortOrder=desc&sort=created&_owner=true&_bookings=true;";
 const isUrl = (`${API_BASE_URL}/venues/${query}`);
 
 export const VenueList = () => {

@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 
 export const AllVenuesCard = ({ venue }) => {
   // const { venues } = FetchAllVenues();
-  const { id, name, price, maxGuests, rating, location } = venue;
+  const { id, name, media, price, maxGuests, rating, location } = venue;
 
   console.log("Venues Card Data:", venue);
 
   return (
     <div>
-      <VenuesCarousel />
+      <VenuesCarousel media={ media } name={name} />
       <Link to={`/venues/${id}`}>
         <a href="#">
           <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
