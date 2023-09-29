@@ -4,11 +4,7 @@ import noImg from "../../assets/vectors/hLogoGreen.png"
 export const VenuesCarousel = ({media, name}) => {
 
   return (
-    // <Carousel>
-    //   {media.map((image, index) => (
-    //     <img key={index} src={image} alt={`Venue Image ${index}`} />
-    //   ))}
-    // </Carousel>
+    
     <div>
       {media.length > 0 ? (
           <Carousel showStatus={false} showThumbs={false}>
