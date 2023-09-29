@@ -1,15 +1,12 @@
 import { AiTwotoneStar } from "react-icons/ai";
 import { VenuesCarousel } from "../carousel/VenuesCarousel";
-// import { Link } from "react-router-dom";
 import {BsPeople, BsWifi, BsKey} from "react-icons/bs"
 import {PiBowlFood} from "react-icons/pi"
 import { GiHollowCat } from "react-icons/gi";
 import { CiParking1 } from "react-icons/ci";
 
 export const SpecificCard = ({ data }) => {
-  // const { venues } = FetchAllVenues();
   const {
-    id,
     name,
     media,
     price,
@@ -19,8 +16,6 @@ export const SpecificCard = ({ data }) => {
     meta: { wifi, parking, breakfast, pets },
     owner: { owner, email, avatar },
   } = data;
-
-  // console.log("Venues Card Data:", venue);
 
   return (
     <div>

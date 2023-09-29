@@ -3,7 +3,6 @@ import { VenuesCarousel } from "../carousel/VenuesCarousel";
 import { Link } from "react-router-dom";
 
 export const AllVenuesCard = ({ venue }) => {
-  // const { venues } = FetchAllVenues();
   const { id, name, media, price, rating, location: {country, city} } = venue;
 
   return (
