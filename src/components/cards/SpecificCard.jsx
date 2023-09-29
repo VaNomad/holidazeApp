@@ -6,9 +6,10 @@ import {PiBowlFood} from "react-icons/pi"
 import { GiHollowCat } from "react-icons/gi";
 import { CiParking1 } from "react-icons/ci";
 
-export const SpecificCard = ({ venue }) => {
+export const SpecificCard = ({ data }) => {
   // const { venues } = FetchAllVenues();
   const {
+    id,
     name,
     media,
     price,
@@ -16,8 +17,8 @@ export const SpecificCard = ({ venue }) => {
     rating,
     location: { address, city, country },
     meta: { wifi, parking, breakfast, pets },
-    owner: { name: owner, email, avatar },
-  } = venue;
+    owner: { owner, email, avatar },
+  } = data;
 
   // console.log("Venues Card Data:", venue);
 
