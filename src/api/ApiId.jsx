@@ -6,7 +6,7 @@ import { ErrorDisplay } from "../components/ui/messages/ErrorDisplay";
 import { GridLoader } from "react-spinners";
 
 export const ApiId = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [errorDisplay, setErrorDisplay] = useState(null);
@@ -39,11 +39,11 @@ export const ApiId = () => {
       }
     }
 
-    fetchData(`${API_BASE_URL}/venues/${id}`);
+    fetchData(`${API_BASE_URL}/venues/${id}?_owner=true&booking=true`);
     
   }, [id]);
 
-  if (isLoading) {
+  if (isLoading || !data) {
     return (
       <div>
         <GridLoader size={50} color="purple" />
@@ -64,4 +64,5 @@ export const ApiId = () => {
       <SpecificCard key={data.id} data={data} />
     </div>
   )
+  
 };

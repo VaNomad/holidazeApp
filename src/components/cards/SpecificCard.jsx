@@ -6,6 +6,7 @@ import { GiHollowCat } from "react-icons/gi";
 import { CiParking1 } from "react-icons/ci";
 
 export const SpecificCard = ({ data }) => {
+  console.log(data)
   const {
     name,
     media,
@@ -16,6 +17,7 @@ export const SpecificCard = ({ data }) => {
     meta: { wifi, parking, breakfast, pets },
     owner: { owner, email, avatar },
   } = data;
+  console.log("Location:", location)
 
   return (
     <div>
