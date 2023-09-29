@@ -13,14 +13,12 @@ export const Api = (url) => {
         setHasError(false);
 
         const response = await fetch(url);
-        console.log(response);
 
         if (!response) {
           throw new Error("Could not return data from the API");
         }
 
         const data = await response.json();
-        console.log(data);
 
         setData(data);
       } catch (error) {

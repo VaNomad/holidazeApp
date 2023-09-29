@@ -6,8 +6,6 @@ export const AllVenuesCard = ({ venue }) => {
   // const { venues } = FetchAllVenues();
   const { id, name, media, price, maxGuests, rating, location } = venue;
 
-  console.log("Venues Card Data:", venue);
-
   return (
     <div>
       <VenuesCarousel media={ media } name={name} />

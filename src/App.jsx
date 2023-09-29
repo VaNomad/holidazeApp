@@ -20,7 +20,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/add-venue" element={<AddVenue />} />
-          <Route path="/venue/:id" element={<VenueDetails />} />
+          <Route path="/venues/:id" element={<VenueDetails />} />
           <Route path="/venues" element={<VenueList />} />
           <Route path="*" element={<Error404 />} />
         </Route>

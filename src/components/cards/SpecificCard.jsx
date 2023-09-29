@@ -1,7 +1,7 @@
 import { AiTwotoneStar } from "react-icons/ai";
 import { VenuesCarousel } from "../carousel/VenuesCarousel";
 // import { Link } from "react-router-dom";
-import {BsPeople, BsWifi} from "react-icons/bs"
+import {BsPeople, BsWifi, BsKey} from "react-icons/bs"
 import {PiBowlFood} from "react-icons/pi"
 import { GiHollowCat } from "react-icons/gi";
 import { CiParking1 } from "react-icons/ci";
@@ -9,18 +9,17 @@ import { CiParking1 } from "react-icons/ci";
 export const SpecificCard = ({ venue }) => {
   // const { venues } = FetchAllVenues();
   const {
-    id,
     name,
     media,
     price,
-    maxGuests: {},
+    maxGuests,
     rating,
     location: { address, city, country },
     meta: { wifi, parking, breakfast, pets },
     owner: { name: owner, email, avatar },
   } = venue;
 
-  console.log("Venues Card Data:", venue);
+  // console.log("Venues Card Data:", venue);
 
   return (
     <div>
@@ -30,6 +29,9 @@ export const SpecificCard = ({ venue }) => {
           {city}, {country}
         </h5>
         <h6>{address}</h6>
+      </div>
+      <div>
+        <BsKey /> {owner}{email}{avatar}
       </div>
       <VenuesCarousel media={media} name={name} />
       <div className="mb-5 mt-2.5 flex items-center">
@@ -53,19 +55,19 @@ export const SpecificCard = ({ venue }) => {
       </div>
       <ul className="flex">
         <li className="flex justify-center gap-1">
-          <BsPeople />
+          <BsPeople /> {maxGuests}
         </li>
         <li className="flex justify-center gap-1">
-          <PiBowlFood />
+          <PiBowlFood /> {breakfast}
         </li>
         <li className="flex justify-center gap-1">
-          <BsWifi />
+          <BsWifi /> {wifi}
         </li>
         <li className="flex justify-center gap-1">
-          <GiHollowCat />
+          <GiHollowCat /> {pets}
         </li>
         <li className="flex justify-center gap-1">
-          <CiParking1 />
+          <CiParking1 /> {parking}
         </li>
       </ul>
     </div>
