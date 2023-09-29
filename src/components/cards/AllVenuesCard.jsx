@@ -4,18 +4,16 @@ import { Link } from "react-router-dom";
 
 export const AllVenuesCard = ({ venue }) => {
   // const { venues } = FetchAllVenues();
-  const { id, name, media, price, maxGuests, rating, location } = venue;
+  const { id, name, media, price, rating, location: {country, city} } = venue;
 
   return (
     <div>
-      <VenuesCarousel media={ media } name={name} />
+      <VenuesCarousel media={media} name={name} />
       <Link to={`/venues/${id}`}>
-        <a href="#">
-          <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-            <p>{name}</p>
-            <p>{location.address}</p>
-          </h5>
-        </a>
+        <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+          <p>{name}</p>
+          <p>{ country }{city}</p>
+        </h5>
         <div className="mb-5 mt-2.5 flex items-center">
           <AiTwotoneStar className="text-black" />
           <AiTwotoneStar className="text-black" />
@@ -30,12 +28,6 @@ export const AllVenuesCard = ({ venue }) => {
           <span className="text-3xl font-bold text-gray-900 dark:text-white">
             {price}
           </span>
-          <a
-            className="rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
-            href="#"
-          >
-            <p>{maxGuests}</p>
-          </a>
         </div>
       </Link>
     </div>
