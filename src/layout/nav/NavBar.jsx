@@ -33,7 +33,7 @@ export const NavBar = () => {
           >
             <div
               className={`transition-all duration-600 ease-in-out absolute ${
-                toggle ? "opacity-0 scale-0" : "opacity-100 scale-100"
+                toggle ? "opacity-100 scale-100" : "opacity-0 scale-0"
               }`}
             >
               <div className="text-center border-2 border-[#FCB5FF] rounded-full m-3 w-[35px] h-[35px] hover:scale-105">
@@ -45,7 +45,7 @@ export const NavBar = () => {
 
             <div
               className={`transition-all duration-600 ease-in-out absolute ${
-                toggle ? "opacity-100 scale-100" : "opacity-0 scale-0"
+                toggle ? "opacity-0 scale-0" : "opacity-100 scale-100"
               }`}
             >
               <div className="text-center border-2 border-[#FCB5FF] rounded-full m-3 w-[120px] hover:scale-110">
