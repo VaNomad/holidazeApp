@@ -7,7 +7,7 @@ export const AllVenuesCard = ({ venue }) => {
 
   return (
     <div>
-      <VenuesCarousel media={media} name={name} />
+      <VenuesCarousel media={media} name={name} className="z-0" />
       <Link to={`/venues/${id}`}>
         <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
           <p>{name}</p>

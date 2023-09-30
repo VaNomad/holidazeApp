@@ -8,7 +8,7 @@ export const NavBar = () => {
   const [toggle, setToggle] = useState(false);
 
   return (
-    <nav className="w-full flex items-center fixed">
+    <nav className="w-full flex items-center fixed bg-blackish z-50">
       <div className="w-full flex justify-between">
         {/* Desktop Menu */}
         <ul className="list-none hidden">
@@ -59,7 +59,7 @@ export const NavBar = () => {
           <div
             className={`${
               !toggle ? "hidden" : "flex"
-            } bg-blackish border-2 black absolute top-20 left-0 right-0 mx-2 rounded-xl z-10`}
+            } bg-blackish border-2 black absolute top-20 left-0 right-0 mx-2 rounded-xl`}
           >
             <ul className="list-none flex flex-col items-start justify-around mx-auto my-16 h-[600px]">
               {navLinks.map((link) => (

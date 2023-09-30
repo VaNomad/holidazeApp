@@ -5,7 +5,7 @@ export const VenuesCarousel = ({media, name}) => {
 
   return (
     
-    <div>
+    <div className="relative z-40">
       {media.length > 0 ? (
           <Carousel showStatus={false} showThumbs={false}>
             {media.map((imageUrl, index) => (
