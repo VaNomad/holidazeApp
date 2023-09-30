@@ -2,8 +2,8 @@ import { GridLoader } from "react-spinners";
 
 export const Loader = () => {
   return (
-    <div className="flex justify-center items-center mx-auto">
-      <GridLoader color="#FF7DF8" size={25} />
+    <div className="w-full h-screen flex justify-center items-center">
+      <GridLoader color="#FF7DF8" size={20} margin={5} speedMultiplier={2} />
     </div>
   );
 }

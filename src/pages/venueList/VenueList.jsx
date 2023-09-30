@@ -1,6 +1,7 @@
 import { Api } from "../../api/Api";
 import { API_BASE_URL } from "../../api/endpoints";
-import { GridLoader } from "react-spinners";
+// import { GridLoader } from "react-spinners";
+import { Loader } from "../../components/ui/loader/Loader";
 import { ErrorDisplay } from "../../components/ui/messages/ErrorDisplay";
 import { AllVenuesCard } from "../../components/cards/AllVenuesCard";
 
@@ -13,7 +14,7 @@ export const VenueList = () => {
   if (isLoading) {
     return (
       <div>
-        <GridLoader size={50} color="purple" />
+        <Loader />
       </div>
     );
   }
