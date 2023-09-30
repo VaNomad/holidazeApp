@@ -1,6 +1,4 @@
 import { navLinks } from "../../constants/constants";
-import { FiXCircle  } from "react-icons/fi";
-// import { vectorList } from "../../constants/constants";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import holidazeLogoPink2 from "../../assets/vectors/holidazeLogoPink2.png"
@@ -11,7 +9,7 @@ export const NavBar = () => {
 
   return (
     <nav className="w-full flex items-center fixed">
-      <div className="w-full flex justify-between items-center">
+      <div className="w-full flex justify-between">
         {/* Desktop Menu */}
         <ul className="list-none hidden">
           {navLinks.map((link) => (
@@ -19,7 +17,7 @@ export const NavBar = () => {
               key={link.id}
               className={`${
                 active === link.title ? "text-black" : "text-purple-600"
-              } hover:text-purple-600 cursor-pointer`}
+              } :text-purple-600 cursor-pointer`}
               onClick={() => setActive(link.title)}
             >
               <Link to={link.id}>{link.title}</Link>
@@ -28,21 +26,36 @@ export const NavBar = () => {
         </ul>
 
         {/* Mobile Menu */}
-        <div className="sm:hidden flex flex-1 justify-start items-center">
-          <span
-            className="cursor-pointer text-[24px]"
+        <div className="sm:hidden">
+          <div
+            className="cursor-pointer transform transition-transform ease-in-out duration-600"
             onClick={() => setToggle(!toggle)}
           >
-            {toggle ? (
-              <FiXCircle />
-            ) : (
-              <div className="border-2 border-[#FCB5FF] rounded-full m-3 w-[120px]">
-                <h1 className="text-[19px] text-center font-dm font-medium">
+            <div
+              className={`transition-all duration-600 ease-in-out absolute ${
+                toggle ? "opacity-0 scale-0" : "opacity-100 scale-100"
+              }`}
+            >
+              <div className="text-center border-2 border-[#FCB5FF] rounded-full m-3 w-[35px] h-[35px] hover:scale-105">
+                <h1 className="text-[18px] font-dm font-medium">
+                  x
+                </h1>
+              </div>
+            </div>
+
+            <div
+              className={`transition-all duration-600 ease-in-out absolute ${
+                toggle ? "opacity-100 scale-100" : "opacity-0 scale-0"
+              }`}
+            >
+              <div className="text-center border-2 border-[#FCB5FF] rounded-full m-3 w-[120px] hover:scale-110">
+                <h1 className="text-[19px] font-dm font-medium">
                   menu
                 </h1>
               </div>
-            )}
-          </span>
+            </div>
+          </div>
+
           <div
             className={`${
               !toggle ? "hidden" : "flex"
