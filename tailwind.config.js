@@ -4,10 +4,16 @@ export default {
   theme: {
     extend: {
       backgroundColor: {
-        blackish: "#0E1D26",
+        blackish: "#141414",
+      },
+      fontFamily: {
+        dm: ["Dm Sans", "sans-serif"],
+        alli: ["Allison", "cursive"],
+        ndo: ["Nothing You Could Do", "cursive"],
+        qwig: ["Qwigley", "cursive"],
+        shali: ["Shalimar", "cursive"],
       },
     },
   },
   plugins: [],
 };
-

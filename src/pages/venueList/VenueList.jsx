@@ -33,11 +33,9 @@ export const VenueList = () => {
   });
 
   return (
-    <div>
-      <h1 className="flex justify-center mb-[100px] mt-4 font-bold text-2xl">
-        Venue List
-      </h1>
-      <div className="flex justify-center items-center max-w-md p-5 mx-auto">
+    <div className="mt-10 flex flex-col items-center">
+      <h1 className="mt-6 font-alli text-[35px]">Popular Venues</h1>
+      <div className="flex justify-center items-center max-w-md p-4 mx-auto">
         {filteredVenues.length === 0 ? (
           <div>
             <h1>No venues match your search, please try again!</h1>

@@ -33,11 +33,11 @@ export const SpecificCard = ({ data }) => {
       </div>
       <VenuesCarousel media={media} name={name} />
       <div className="mb-5 mt-2.5 flex items-center">
-        <AiTwotoneStar className="text-black" />
-        <AiTwotoneStar className="text-black" />
-        <AiTwotoneStar className="text-black" />
-        <AiTwotoneStar className="text-black" />
-        <AiTwotoneStar className="text-black" />
+        <AiTwotoneStar />
+        <AiTwotoneStar />
+        <AiTwotoneStar />
+        <AiTwotoneStar />
+        <AiTwotoneStar />
         <span className="ml-3 mr-2 rounded bg-cyan-100 px-2.5 py-0.5 text-xs font-semibold text-cyan-800 dark:bg-cyan-200 dark:text-cyan-800">
           <p>{rating}</p>
         </span>
