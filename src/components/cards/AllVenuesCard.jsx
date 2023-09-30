@@ -22,8 +22,12 @@ export const AllVenuesCard = ({ venue }) => {
         <div className="flex justify-between">
           <div className="mb-2 mt-2.5 flex items-center">
             <AiTwotoneStar className="text-yellow-400" />
-            <span className="ml-3 mr-2 rounded-full px-3 py-0.5 text-xs text-white border">
-              <p>{rating}</p>
+            <span className="ml-3 mr-2 rounded-full px-2 py-0.5 text-xs text-white border border-[#FCB5FF]">
+              { rating ? (
+                <p>{rating}</p>
+              ) : (
+                  <p className="text-[8px] font-dm uppercase">No rating</p>
+              )}
             </span>
           </div>
           <div className="flex items-center justify-end text-lg font-dm tracking-wider font-semibold text-gray-900 dark:text-white">
