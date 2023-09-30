@@ -4,6 +4,7 @@ import {BsPeople, BsWifi, BsKey} from "react-icons/bs"
 import {PiBowlFood} from "react-icons/pi"
 import { GiHollowCat } from "react-icons/gi";
 import { CiParking1 } from "react-icons/ci";
+import { GiCheckMark, GiCrossMark } from "react-icons/gi";
 
 export const SpecificCard = ({ data }) => {
   console.log(data)
@@ -20,7 +21,7 @@ export const SpecificCard = ({ data }) => {
   console.log("Location:", location)
 
   return (
-    <div>
+    <div className="rounded-2xl p-2">
       <div className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
         <h1>{name}</h1>
         <h5>
@@ -29,45 +30,76 @@ export const SpecificCard = ({ data }) => {
         <h6>{address}</h6>
       </div>
       <div>
-        <BsKey /> {owner}{email}{avatar}
+        <BsKey /> {owner}
+        {email}
+        {avatar}
       </div>
       <VenuesCarousel media={media} name={name} />
-      <div className="mb-5 mt-2.5 flex items-center">
-        <AiTwotoneStar />
-        <AiTwotoneStar />
-        <AiTwotoneStar />
-        <AiTwotoneStar />
-        <AiTwotoneStar />
-        <span className="ml-3 mr-2 rounded bg-cyan-100 px-2.5 py-0.5 text-xs font-semibold text-cyan-800 dark:bg-cyan-200 dark:text-cyan-800">
-          <p>{rating}</p>
-        </span>
+      <div className="text-xl mt-1">
+        <h1 className="font-dm font-thin text-[20px] uppercase flex flex-wrap">
+          {name}
+        </h1>
+        <div className="flex font-ndo text-[20px]">
+          <p className="">{country},</p>
+          &nbsp;
+          <p>{city}</p>
+        </div>
+        <div className="flex justify-between">
+          <div className="mb-2 mt-2.5 flex items-center">
+            <AiTwotoneStar className="text-yellow-400" />
+            <span className="ml-3 mr-2 rounded-full px-2 py-0.5 text-xs text-white border border-[#FCB5FF]">
+              {rating ? (
+                <p>{rating}</p>
+              ) : (
+                <p className="text-[8px] font-dm uppercase">No rating</p>
+              )}
+            </span>
+          </div>
+          <div className="flex items-center justify-end text-lg font-dm tracking-wider font-semibold text-gray-900 dark:text-white">
+            <p>$ &nbsp; </p>
+            <p>{price}</p>
+          </div>
+        </div>
       </div>
-      <div className="flex items-center justify-between">
-        <span className="text-3xl font-bold text-gray-900 dark:text-white">
-          {price}
-        </span>
-        <a
-          className="rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
-          href="#"
-        ></a>
-      </div>
-      <ul className="flex">
-        <li className="flex justify-center gap-1">
-          <BsPeople /> {maxGuests}
+      <ul className="flex flex-col text-white uppercase text-xs gap-2 border border-[#70BAC3] m-1 px-14 py-10 rounded-xl">
+        <li className="flex  justify-between items-center">
+          <BsPeople size={15} /> {maxGuests}
         </li>
-        <li className="flex justify-center gap-1">
-          <PiBowlFood /> {breakfast}
+        <li className="flex justify-between items-center">
+          <PiBowlFood size={22} />{" "}
+          {breakfast ? (
+            <GiCheckMark color="#70C376" />
+          ) : (
+            <GiCrossMark color="#C37070" />
+          )}
         </li>
-        <li className="flex justify-center gap-1">
-          <BsWifi /> {wifi}
+        <li className="flex justify-between items-center">
+          <BsWifi size={18} />{" "}
+          {wifi ? (
+            <GiCheckMark color="#70C376" />
+          ) : (
+            <GiCrossMark color="#C37070" />
+          )}
         </li>
-        <li className="flex justify-center gap-1">
-          <GiHollowCat /> {pets}
+        <li className="flex justify-between items-center">
+          <GiHollowCat size={22} />{" "}
+          {pets ? (
+            <GiCheckMark color="#70C376" />
+          ) : (
+            <GiCrossMark color="#C37070" />
+          )}
         </li>
-        <li className="flex justify-center gap-1">
-          <CiParking1 /> {parking}
+        <li className="flex justify-between items-center">
+          <CiParking1 size={22} />{" "}
+          {parking ? (
+            <GiCheckMark color="#70C376" />
+          ) : (
+            <GiCrossMark color="#C37070" />
+          )}
         </li>
       </ul>
     </div>
   );
 };
+
+
