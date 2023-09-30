@@ -36,13 +36,13 @@ export const VenueList = () => {
   return (
     <div className="mt-10 flex flex-col items-center">
       <h1 className="mt-6 font-alli text-[35px]">Popular Venues</h1>
-      <div className="flex justify-center items-center max-w-md p-4 mx-auto">
+      <div className="flex justify-center items-center max-w-md p-2 mx-auto">
         {filteredVenues.length === 0 ? (
           <div>
             <h1>No venues match your search, please try again!</h1>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-10 mx-auto">
+          <div className="grid grid-cols-1 gap-3 mx-auto">
             {filteredVenues.map((venue) => {
               return <AllVenuesCard key={venue.id} venue={venue} />;
             })}
