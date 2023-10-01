@@ -5,7 +5,8 @@ import {PiBowlFood} from "react-icons/pi"
 import { GiHollowCat } from "react-icons/gi";
 import { CiParking1 } from "react-icons/ci";
 import { GiCheckMark, GiCrossMark } from "react-icons/gi";
-import {TbArrowRight} from "react-icons/tb"
+import noAvatar from "../../assets/vectors/hLogoGreen.png"
+import { BtnFull } from "../ui/buttons/BtnFull";
 
 export const SpecificCard = ({ data }) => {
   console.log(data)
@@ -23,30 +24,38 @@ export const SpecificCard = ({ data }) => {
   console.log("Location:", location)
 
   return (
-    <div className="rounded-2xl p-2">
+    <div className="rounded-2xl p-5 mt-12">
       <div className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-        <h1>{name}</h1>
-        <h5>
-          {city}, {country}
-        </h5>
-        <h6>{address}</h6>
-      </div>
-      <div>
-        <BsKey /> {owner}
-        {email}
-        {avatar}
-      </div>
-      <VenuesCarousel media={media} name={name} />
-      <div className="text-xl mt-1">
         <h1 className="font-dm font-thin text-[20px] uppercase flex flex-wrap p-1">
           {name}
         </h1>
-        <div className="flex justify-between font-ndo text-[20px] p-1">
-          <div className="flex">
-            <p className="">{country},</p>
-            &nbsp;
-            <p>{city}</p>
+      </div>
+
+      <VenuesCarousel media={media} name={name} />
+      <div className="flex justify-between rounded-full my-2 p-1 text-black">
+        <div className="grid grid-cols-2 m-1.5 w-[80%] border border-holiblue rounded-full text-white">
+          <div className="flex items-center">
+            <BsKey className="mx-2" size={25} /> {owner}
+            <h2 className="font-dm uppercase font-medium text-sm">owner</h2>
           </div>
+          <p className="flex justify-center">{email}</p>
+        </div>
+        <div className="rounded-full border border-holipink w-[40px] h-[40px] p-2">
+          <img
+            className="w-full h-full"
+            src={avatar ? <img src={avatar} /> : <img src={noAvatar} />}
+            alt=""
+          />
+        </div>
+      </div>
+      <div className="text-xl mt-1 p-2 bg-zinc-800 rounded-xl">
+        <div className="flex">
+          <p className="font-dm font-thin">{country},</p>
+          &nbsp;
+          <p className="font-dm font-thin">{city}</p>
+        </div>
+        <div className="flex justify-between p-1">
+          <h6 className="font-ndo text-[20px]">{address}</h6>
           <div className="flex">
             <div className="flex items-center justify-end text-lg font-dm tracking-wider font-semibold text-gray-900 dark:text-white">
               <p>$ &nbsp; </p>
@@ -63,6 +72,21 @@ export const SpecificCard = ({ data }) => {
               ) : (
                 <p className="text-[8px] font-dm uppercase">No rating</p>
               )}
+            </span>
+            <span>
+              {
+                rating > 0 && rating < 1 ? (
+                  <p>Not so good</p>
+                ) : rating >= 1 && rating < 2 ? (
+                  <p>Ok</p>
+                ) : rating >= 2 && rating < 3 ? (
+                  <p>Good</p>
+                ) : rating >= 3 && rating < 4 ? (
+                  <p>Very good</p>
+                ) : rating >= 4 && rating <= 5 ? (
+                  <p>Excellent!</p>
+                ) : null 
+              }
             </span>
           </div>
         </div>
@@ -125,10 +149,7 @@ export const SpecificCard = ({ data }) => {
         {description}
       </div>
       <div className="flex justify-end">
-        <button className="flex items-center rounded-full bg-holipink py-2 px-6 text-black tracking-widest font-dm text-[18px]">
-          Check Availability
-          <TbArrowRight size={22} className="ms-4" />
-        </button>
+        <BtnFull size={22} />
       </div>
     </div>
   );
