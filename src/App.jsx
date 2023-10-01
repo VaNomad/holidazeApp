@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./pages/home/Home";
 import { Login } from "./pages/login/Login";
-import { SignUp } from "./components/forms/signUp/SignUp";
+import { SignUp } from "./components/forms/SignUp";
 import { VenueDetails } from "./pages/venueDetails/VenueDetails";
 import { VenueList } from "./pages/venueList/VenueList";
 import { Error404 } from "./pages/404/Error404";
 import { Layout } from "./layout/Layout";
-import { AddVenue } from "./components/forms/addVenue/AddVenue";
+import { AddVenue } from "./components/forms/AddVenue";
 import { Profile } from "./pages/profile/Profile";
 
 function App() {
