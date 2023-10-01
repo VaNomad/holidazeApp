@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { API_BASE_URL } from "./endpoints";
 import { SpecificCard } from "../components/cards/SpecificCard";
 import { ErrorDisplay } from "../components/ui/messages/ErrorDisplay";
-import { GridLoader } from "react-spinners";
+import { Loader } from "../components/ui/loader/Loader";
 
 export const ApiId = () => {
   const [data, setData] = useState();
@@ -46,7 +46,7 @@ export const ApiId = () => {
   if (isLoading || !data) {
     return (
       <div>
-        <GridLoader size={50} color="purple" />
+        <Loader />
       </div>
     );
   }
