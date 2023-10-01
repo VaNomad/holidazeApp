@@ -4,13 +4,13 @@ export const LoginForm = () => {
   const { register, handleSubmit } = useForm();
 
   return (
-    <div className="border border-holiblue p-5 m-5 rounded-xl">
+    <div className="mx-auto border border-holiblue p-5 rounded-xl max-w-xl w-[80%]">
       <form onSubmit={ handleSubmit((data) => {
         console.log(data)
-      })} className="flex flex-col gap-4">
-        <input className="h-10 rounded-md p-3 bg-zinc-700" {...register("email")} placeholder="E-mail" />
-        <input className="h-10 rounded-md p-3 bg-zinc-700" {...register("password")} placeholder="Password" />
-        <input className="h-10 rounded-full bg-holipink text-black uppercase font-medium tracking-widest font-dm" type="submit" value="login" />
+      })} className="flex flex-col gap-10 w-full p-5">
+        <input className="h-14 rounded-md p-3 bg-zinc-700" {...register("email")} placeholder="E-mail" />
+        <input className="h-14 rounded-md p-3 bg-zinc-700" {...register("password")} placeholder="Password" />
+        <input className="h-16 rounded-full bg-zinc-800 border border-holipink hover:bg-holipink hover:text-black hover:scale-105 uppercase font-medium tracking-widest font-dm text-xl transition-all duration-800 cursor-pointer" type="submit" value="login" />
       </form>
     </div>
   );
