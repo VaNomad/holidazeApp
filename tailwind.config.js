@@ -5,6 +5,10 @@ export default {
     extend: {
       backgroundColor: {
         blackish: "#141414",
+        holigreen: "#70C376",
+        holired: "#C37070",
+        holiblue: "#70BAC3",
+        holipink: "#FCB5FD",
       },
       fontFamily: {
         dm: ["Dm Sans", "sans-serif"],
