@@ -34,15 +34,19 @@ export const VenueList = () => {
   });
 
   return (
-    <div className="mt-10 flex flex-col items-center">
-      <h1 className="mt-6 font-alli text-[35px]">Popular Venues</h1>
-      <div className="flex justify-center items-center max-w-md p-2 mx-auto">
+    <div className="mt-10 flex flex-col items-center bg-black">
+      <div className="fixed bg-blackish text-center z-50 w-screen mt-1">
+        <h1 className="font-alli text-[40px] decoration-holipink underline-offset-8">
+          Popular Venues
+        </h1>
+      </div>
+      <div className="flex justify-center items-center max-w-md p-2 mx-auto mt-16">
         {filteredVenues.length === 0 ? (
           <div>
             <h1>No venues match your search, please try again!</h1>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-3 mx-auto">
+          <div className="grid grid-cols-1 gap-3 mx-auto bg-black">
             {filteredVenues.map((venue) => {
               return <AllVenuesCard key={venue.id} venue={venue} />;
             })}
