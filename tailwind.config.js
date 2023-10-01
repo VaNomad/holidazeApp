@@ -3,7 +3,7 @@ export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      backgroundColor: {
+      colors: {
         blackish: "#141414",
         holigreen: "#70C376",
         holired: "#C37070",
