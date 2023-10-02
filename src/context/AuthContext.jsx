@@ -1,21 +1,26 @@
 import { useState, useContext, createContext } from "react";
+// import { LoginUser } from "../api/LoginUser";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("authToken"));
+  const [token, setToken] = useState(localStorage.getItem("accessToken"));
 
-  const login = (userData, authToken) => {
+  const login = (userData, accessToken) => {
     setUser(userData);
-    setToken(authToken);
-    localStorage.setItem("authToken", authToken)
+    setToken(accessToken);
+    localStorage.setItem("username", userData.name);
+    localStorage.setItem("accessToken", userData.accessToken);
+    localStorage.setItem("avatar", userData.avatar);
+    localStorage.setItem("email", userData.email);
+    localStorage.setItem("venueManager", userData.venueManager);
   }
 
   const logout = () => {
     setUser(null);
     setToken(null);
-    localStorage.removeItem("authToken")
+    localStorage.removeItem("accessToken");
   }
 
   const isAuthenticated = () => {
