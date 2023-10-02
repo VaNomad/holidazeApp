@@ -4,8 +4,10 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { SignUpForm } from "./SignUpForm"; // Import your SignUpForm component
 import { LoginUser } from "../../api/LoginUser";
+import { useNavigate } from "react-router-dom";
 
 export const LoginForm = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -22,10 +24,23 @@ export const LoginForm = () => {
 
   const handleLogin = async (data) => {
     try {
-      const response = await LoginUser(data)
+      const response = await LoginUser(data);
+      // const { userData, accessToken } = response;
+
+      // if (response.ok) {
+      //   window.location.pathname = "/";
+      // }
+
+      
+
+      navigate("/")
+
+      // console.log(userData)
+      // console.log(accessToken)
       console.log(response)
       console.log(data)
       console.log(LoginUser)
+
     } catch (error) {
       setLoginError("Login failed. Check email & password")
     }
