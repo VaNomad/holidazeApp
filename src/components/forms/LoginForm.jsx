@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { SignUpForm } from "./SignUpForm"; // Import your SignUpForm component
+import { LoginUser } from "../../api/LoginUser";
 
 export const LoginForm = () => {
   const {
@@ -17,6 +18,16 @@ export const LoginForm = () => {
     setActiveTab(index);
   };
 
+  const [loginError, setLoginError] = useState(null);
+
+  const handleLogin = async (data) => {
+    try {
+      const response = await LoginUser(data)
+    } catch (error) {
+      setLoginError("Login failed. Check email & password")
+    }
+  }
+
   return (
     <div className="mx-auto border border-holiblue p-5 rounded-xl max-w-xl w-[80%]">
       <Tabs selectedIndex={activeTab} onSelect={handleTabChange}>
@@ -26,9 +37,7 @@ export const LoginForm = () => {
         </TabList>
         <TabPanel>
           <form
-            onSubmit={handleSubmit((data) => {
-              console.log(data);
-            })}
+            onSubmit={handleSubmit(handleLogin)}
             className="flex flex-col gap-10 w-full p-5"
           >
             <input
@@ -74,6 +83,7 @@ export const LoginForm = () => {
               type="submit"
               value="login"
             />
+            { loginError && <p className="text-red-500">{loginError}</p>}
           </form>
         </TabPanel>
         <TabPanel>

@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form"
 import { useState } from "react";
+import { SignUpUser } from "../../api/SignUpUser";
 
 export const SignUpForm = () => {
   const {
@@ -15,11 +16,19 @@ export const SignUpForm = () => {
     setIsChecked(!isChecked);
   };
 
+  const [signUpError, setSignUpError] = useState(null);
+
+  const handleSignup = async (data) => {
+    try {
+      const response = await SignUpUser(data)
+    } catch (error) {
+      setSignUpError("SignUp failed. Check added credentials");
+    }
+  }
+
   return (
     <form
-      onSubmit={handleSubmit((data) => {
-        console.log(data);
-      })}
+      onSubmit={handleSubmit(handleSignup)}
       className="flex flex-col gap-10 w-full p-5"
     >
       <input
@@ -27,7 +36,7 @@ export const SignUpForm = () => {
         {...register("name", {
           required: "Your name is required",
           pattern: {
-            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            value: /^([A-Z][A-Za-z ,.'`-]{3,30})$/,
             message:
               "Must contain a first and a last name of at least 2 characters each",
           },
@@ -73,6 +82,26 @@ export const SignUpForm = () => {
         <p className="text-red-500">{errors.password.message}</p>
       )}
 
+      <input
+        className="h-14 rounded-md p-3 bg-zinc-700"
+        {...register("avatar", {
+          required: "An avatar image is required",
+          pattern: {
+            value:
+              /^(http(s):\/\/.)[-a-zA-Z0-9@:%._~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_.~#?&//=]*)$/,
+            message:
+              "Avatar link must be a valid url",
+          },
+        })}
+        placeholder="Avatar"
+        onBlur={() => {
+          trigger("avatar");
+        }}
+      />
+      {errors.avatar && (
+        <p className="text-red-500">{errors.avatar.message}</p>
+      )}
+
       <label className="flex items-center space-x-5 justify-center">
         <input
           type="checkbox"
@@ -88,6 +117,7 @@ export const SignUpForm = () => {
         type="submit"
         value="Create Account"
       />
+      {signUpError && <p className="text-red-500">{signUpError}</p>}
     </form>
   );
 };
