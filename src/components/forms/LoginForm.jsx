@@ -23,6 +23,9 @@ export const LoginForm = () => {
   const handleLogin = async (data) => {
     try {
       const response = await LoginUser(data)
+      console.log(response)
+      console.log(data)
+      console.log(LoginUser)
     } catch (error) {
       setLoginError("Login failed. Check email & password")
     }

@@ -21,10 +21,16 @@ export const SignUpForm = () => {
   const handleSignup = async (data) => {
     try {
       const response = await SignUpUser(data)
+      console.log(response);
+      console.log(data)
+      console.log(SignUpUser)
     } catch (error) {
       setSignUpError("SignUp failed. Check added credentials");
     }
+    
   }
+
+  
 
   return (
     <form
@@ -36,7 +42,6 @@ export const SignUpForm = () => {
         {...register("name", {
           required: "Your name is required",
           pattern: {
-            value: /^([A-Z][A-Za-z ,.'`-]{3,30})$/,
             message:
               "Must contain a first and a last name of at least 2 characters each",
           },
@@ -109,7 +114,7 @@ export const SignUpForm = () => {
           onChange={toggleCheckbox}
           className="h-5 w-5 text-holiblue border-holiblue rounded focus:ring-2 focus:ring-holiblue"
         />
-        <span className="font-ndo text-md">I want to be a Venue Manager</span>
+        <span className="font-ndo text-md">I have a venue for rent</span>
       </label>
 
       <input
