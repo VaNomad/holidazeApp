@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./pages/home/Home";
 import { Login } from "./pages/login/Login";
-import { SignUp } from "./components/forms/SignUp";
+import { SignUpForm } from "./components/forms/SignUpForm";
 import { VenueDetails } from "./pages/venueDetails/VenueDetails";
 import { VenueList } from "./pages/venueList/VenueList";
 import { Error404 } from "./pages/404/Error404";
@@ -17,7 +17,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Home />} />
-          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-up" element={<SignUpForm />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/add-venue" element={<AddVenue />} />
           <Route path="/venues/:id" element={<VenueDetails />} />
