@@ -77,10 +77,10 @@ export const navLinks = [
     id: "login",
     title: "Login",
   },
-  {
-    id: "sign-up",
-    title: "Sign Up",
-  },
+  // {
+  //   id: "sign-up",
+  //   title: "Sign Up",
+  // },
   {
     id: "profile",
     title: "Profile",
