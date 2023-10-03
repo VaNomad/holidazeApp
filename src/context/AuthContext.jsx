@@ -1,11 +1,43 @@
-import { useState, useContext, createContext } from "react";
-// import { LoginUser } from "../api/LoginUser";
+import { useState, useContext, createContext, useReducer } from "react";
 
+// Defines initial state for Authentication
+const initialState = {user: null, isAuthenticated: false,}
+
+// Creates the Authentication Context
 const AuthContext = createContext();
 
+// Defines the useReducer function
+const authReducer = (state, action) => {
+  switch (action.type) {
+    case "LOGIN":
+      return {
+        ...state,
+        user: action.payload,
+        isAuthenticated: true,
+      };
+    case "LOGOUT":
+      return {
+        ...state,
+        user: null,
+        isAuthenticated: false,
+      };
+    default:
+      return state;
+  }
+}
+
 export const AuthProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(authReducer, initialState)
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("accessToken"));
+
+  const logIn = (user) => {
+    dispatch({ type: "LOGIN", payload: user });
+  };
+
+  const logOut = () => {
+    dispatch({ type: "LOGOUT"})
+  }
 
   const login = (userData, accessToken) => {
     setUser(userData);
@@ -28,7 +60,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-  <AuthContext.Provider value={ { user, token, login, logout, isAuthenticated } }>
+  <AuthContext.Provider value={ { ...state, user, token, logIn, logOut, login, logout, isAuthenticated } }>
     {children}
   </AuthContext.Provider>
   )

@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form"
+import { FiUpload } from "react-icons/fi";
+import { UpdateAvatar } from "../../../api/UpdateAvatar";
 
-export const AvatarModal = ({ isOpen, closeModal, children }) => {
+export const AvatarModal = ({ isOpen, closeModal }) => {
   const [urlError, setUrlError] = useState(null);
+  const modalRef = useRef(null);
 
   const {
     register,
@@ -25,14 +28,26 @@ export const AvatarModal = ({ isOpen, closeModal, children }) => {
       setUrlError("SignUp failed. Check added credentials");
     }
   };
+  
+  // useEffect(() => { 
+  //   const handleOutsideClick = (e) => {
+  //     if (modalRef.current && !modalRef.current.contains(e.target)) {
+  //       closeModal();
+  //     }
+  //   }
+
+  //   document.addEventListener("mousedown", handleOutsideClick)
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleOutsideClick)
+  //   }
+  // }, [closeModal])
 
   return (
     <div>
       <div>
         <form onSubmit={handleSubmit(handleUpdateAvatar)}>
-          {children}
           <input
-            className="h-14 rounded-md p-3 bg-zinc-700"
+            className="relative h-14 rounded-full p-3 bg-zinc-700 pe-[40px]" 
             {...register("avatar", {
               required: "An avatar image is required",
               pattern: {
@@ -41,7 +56,7 @@ export const AvatarModal = ({ isOpen, closeModal, children }) => {
                 message: "Avatar must be a valid url",
               },
             })}
-            placeholder="Avatar"
+            placeholder="Enter your Avatar Url"
             onBlur={() => {
               trigger("avatar");
             }}
@@ -50,9 +65,9 @@ export const AvatarModal = ({ isOpen, closeModal, children }) => {
             <p className="text-red-500">{errors.avatar.message}</p>
           )}
           <input
-            className="h-16 rounded-full bg-zinc-800 border border-holiblue hover:bg-holiblue hover:text-black hover:scale-105 uppercase font-medium tracking-widest font-dm text-xl transition-all duration-800 cursor-pointer"
+            className="absolute top-0 right-0 bottom-0 flex justify-center items-center h-10 rounded-full bg-zinc-800 border border-holiblue hover:bg-holiblue hover:text-black hover:scale-105 uppercase font-medium tracking-widest font-dm text-sm transition-all duration-800 cursor-pointer"
             type="submit"
-            value="Update Avatar"
+            value={<FiUpload />}
             onClick={closeModal}
           />
           {urlError && <p className="text-red-500">{urlError}</p>}
