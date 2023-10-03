@@ -1,11 +1,10 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form"
 import { FiUpload } from "react-icons/fi";
 import { UpdateAvatar } from "../../../api/UpdateAvatar";
 
 export const AvatarModal = ({ isOpen, closeModal }) => {
   const [urlError, setUrlError] = useState(null);
-  const modalRef = useRef(null);
 
   const {
     register,
@@ -29,23 +28,16 @@ export const AvatarModal = ({ isOpen, closeModal }) => {
     }
   };
   
-  // useEffect(() => { 
-  //   const handleOutsideClick = (e) => {
-  //     if (modalRef.current && !modalRef.current.contains(e.target)) {
-  //       closeModal();
-  //     }
-  //   }
-
-  //   document.addEventListener("mousedown", handleOutsideClick)
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleOutsideClick)
-  //   }
-  // }, [closeModal])
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
+  };
 
   return (
     <div>
       <div>
-        <form onSubmit={handleSubmit(handleUpdateAvatar)}>
+        <form onSubmit={handleSubmit(handleUpdateAvatar, handleOverlayClick)}>
           <input
             className="relative h-14 rounded-full p-3 bg-zinc-700 pe-[40px]" 
             {...register("avatar", {

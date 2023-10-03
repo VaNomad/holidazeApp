@@ -25,18 +25,13 @@ export const LoginForm = () => {
   const handleLogin = async (data) => {
     try {
       const response = await LoginUser(data);
-      // const { userData, accessToken } = response;
+      const { userData, accessToken } = response;
 
-      // if (response.ok) {
-      //   window.location.pathname = "/";
-      // }
-
+      if (response.ok) {
+        LoginUser(userData, accessToken);
+        navigate("/")
+      }
       
-
-      navigate("/")
-
-      // console.log(userData)
-      // console.log(accessToken)
       console.log(response)
       console.log(data)
       console.log(LoginUser)

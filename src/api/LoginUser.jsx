@@ -14,9 +14,14 @@ export async function LoginUser(data) {
       throw new Error("Login failed");
     }
 
-    const responseData = await response.json();
+    const userLogin = await response.json();
+      localStorage.setItem('userName', userLogin.name);
+      localStorage.setItem('accessToken', userLogin.accessToken);
+      localStorage.setItem('avatar', userLogin.avatar);
+      localStorage.setItem('email', userLogin.email);
+      localStorage.setItem('venueManager', userLogin.venueManager);
 
-    return responseData;
+    return (userLogin);
   } catch (error) {
     throw new Error("Login failed");
   }

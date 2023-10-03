@@ -20,11 +20,19 @@ export const SignUpForm = () => {
 
   const handleSignup = async (data) => {
     try {
+      console.log("SignUp Data:", data)
       const response = await SignUpUser(data)
+      console.log("SignUp Response:", response)
+      // const { userData, accessToken } = response;
+      // SignUpUser(userData, accessToken);
+
       console.log(response);
       console.log(data)
       console.log(SignUpUser)
+
+      setSignUpError(null)
     } catch (error) {
+      console.log("SignUp Error:", error)
       setSignUpError("SignUp failed. Check added credentials");
     }
     

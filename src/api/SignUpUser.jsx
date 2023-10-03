@@ -14,9 +14,20 @@ export async function SignUpUser(data) {
       throw new Error("Signup failed");
     }
 
-    const responseData = await response.json();
-    return responseData;
+    const signUpData = await response.json();
+    console.log(signUpData)
+    const accessToken = signUpData.accessToken;
+
+    const userData = {
+      name: signUpData.name,
+      email: signUpData.email,
+      password: signUpData.password,
+      avatar: signUpData.avatar,
+      venueManager: signUpData.venueManager,
+    }
+
+    return { userData, accessToken };
   } catch (error) {
-    throw new Error("Signup failed");
+    throw new Error("Signup failed ${error.message}");
   }
 }

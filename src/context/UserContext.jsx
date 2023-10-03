@@ -60,12 +60,12 @@ export const UserProvider = ({ children }) => {
     localStorage.setItem("venueManager", userData.venueManager);
     dispatch({ type: "LOGIN_REQUEST" });
 
-    // try {
-    //   const user = await LoginUser(userData);
-    //   dispatch({ type: "LOGIN_SUCCESS", payload: user });
-    // } catch (error) {
-    //   dispatch({ type: "LOGIN_FAILURE", payload: error.message });
-    // }
+    try {
+      const user = await LoginUser(userData);
+      dispatch({ type: "LOGIN_SUCCESS", payload: user });
+    } catch (error) {
+      dispatch({ type: "LOGIN_FAILURE", payload: error.message });
+    }
   };
 
   const logout = () => {
