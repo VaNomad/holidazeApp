@@ -16,13 +16,13 @@ export async function UpdateProfile(data) {
 
     if (!response.ok) {
       console.log("UpdateProfile Response: ", response)
-      throw new Error("Could not fetch Avatar media");
+      throw new Error("Could not fetch Profile data");
     }
 
     const responseData = await response.json();
 
     return responseData;
   } catch (error) {
-    throw new Error("Getting Avatar failed");
+    throw new Error("Getting Profile failed");
   }
 }
