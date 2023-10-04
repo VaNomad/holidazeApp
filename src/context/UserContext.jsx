@@ -1,4 +1,4 @@
-import { useState, useContext, createContext, useReducer } from "react";
+import { useContext, createContext, useReducer } from "react";
 import { LoginUser } from "../api/LoginUser";
 import { SignUpUser } from "../api/SignUpUser";
 import { UpdateAvatar } from "../api/UpdateAvatar";
@@ -7,6 +7,7 @@ const UserContext = createContext();
 
 const initialState = {
   user: null,
+  accessToken: localStorage.getItem("accessToken"),
   isAuthenticated: false,
   isLoading: false,
   hasError: false,
@@ -18,20 +19,19 @@ const userReducer = (state, action) => {
     case "LOGIN_REQUEST":
       return {
         ...state,
-        user: action.payload,
         isAuthenticated: true,
       }
     case "LOGIN_SUCCESS":
       return {
         ...state,
-        accessToken: true,
+        accessToken: action.payload,
         isAuthenticated: true,
       }
     case "LOGIN_FAILURE":
     case "LOGOUT":
       return {
         ...state,
-        user: null,
+        accessToken: null,
         isAuthenticated: false,
       };
     case "SIGNUP_REQUEST":
@@ -47,12 +47,15 @@ const userReducer = (state, action) => {
 
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, initialState);
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("accessToken"));
+  // const [user, setUser] = useState(null);
+  // const [token, setToken] = useState(localStorage.getItem("accessToken"));
 
   const loginUser = async (userData, accessToken) => {
-    setUser(userData);
-    setToken(accessToken);
+    console.log("LoginUser function started")
+    console.log("userData:", userData)
+    console.log("accessToken in loginUser:", accessToken )
+    // setUser(userData);
+    // setToken(accessToken);
     localStorage.setItem("username", userData.name);
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("avatar", userData.avatar);
@@ -62,21 +65,23 @@ export const UserProvider = ({ children }) => {
 
     try {
       const user = await LoginUser(userData);
+      console.log("User returned from LoginUser", user)
       dispatch({ type: "LOGIN_SUCCESS", payload: user });
     } catch (error) {
+      console.log("LoginUser error: ", error)
       dispatch({ type: "LOGIN_FAILURE", payload: error.message });
     }
   };
 
   const logout = () => {
-    setUser(null);
-    setToken(null);
+    // setUser(null);
+    // setToken(null);
     localStorage.removeItem("accessToken");
     localStorage.removeItem("username")
   };
 
   const isAuthenticated = () => {
-    return !!token;
+    return !!state.accessToken;
   };
 
   const signUpUser = async (userData) => {

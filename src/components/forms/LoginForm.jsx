@@ -5,8 +5,12 @@ import "react-tabs/style/react-tabs.css";
 import { SignUpForm } from "./SignUpForm"; // Import your SignUpForm component
 import { LoginUser } from "../../api/LoginUser";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
 
 export const LoginForm = () => {
+  const [loginError, setLoginError] = useState(null);
+  const {loginUser} = useUser()
+
   const navigate = useNavigate();
   const {
     register,
@@ -20,18 +24,16 @@ export const LoginForm = () => {
     setActiveTab(index);
   };
 
-  const [loginError, setLoginError] = useState(null);
-
   const handleLogin = async (data) => {
     try {
       const response = await LoginUser(data);
       const { userData, accessToken } = response;
 
       if (response.ok) {
-        LoginUser(userData, accessToken);
+        loginUser(userData, accessToken);
         navigate("/")
       }
-      
+
       console.log(response)
       console.log(data)
       console.log(LoginUser)

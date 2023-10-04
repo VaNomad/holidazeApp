@@ -19,9 +19,9 @@ export async function LoginUser(data) {
       localStorage.setItem('accessToken', userLogin.accessToken);
       localStorage.setItem('avatar', userLogin.avatar);
       localStorage.setItem('email', userLogin.email);
-      localStorage.setItem('venueManager', userLogin.venueManager);
+      localStorage.setItem('venueManager', userLogin.venueManager.toString());
 
-    return (userLogin);
+    return {userData: userLogin, accessToken: userLogin.accessToken};
   } catch (error) {
     throw new Error("Login failed");
   }

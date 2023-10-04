@@ -11,22 +11,21 @@ export async function SignUpUser(data) {
     });
 
     if (!response.ok) {
-      throw new Error("Signup failed");
+      const errorResponse = await response.json();
+      throw new Error(errorResponse.errors[0].message);
     }
 
-    const signUpData = await response.json();
-    console.log(signUpData)
-    const accessToken = signUpData.accessToken;
+    const userSignUp = await response.json();
+    localStorage.setItem("userName", userSignUp.name);
+    localStorage.setItem("accessToken", userSignUp.name);
+    localStorage.setItem("email", userSignUp.email);
+    localStorage.setItem("avatar", userSignUp.avatar);
+    localStorage.setItem("venueManager", userSignUp.venueManager);
+    // localStorage.setItem("password", userSignUp.password);
+        
+    console.log(userSignUp)
 
-    const userData = {
-      name: signUpData.name,
-      email: signUpData.email,
-      password: signUpData.password,
-      avatar: signUpData.avatar,
-      venueManager: signUpData.venueManager,
-    }
-
-    return { userData, accessToken };
+    return userSignUp;
   } catch (error) {
     throw new Error("Signup failed ${error.message}");
   }

@@ -1,8 +1,13 @@
 import { useForm } from "react-hook-form"
 import { useState } from "react";
 import { SignUpUser } from "../../api/SignUpUser";
+import { useNavigate } from "react-router-dom";
 
 export const SignUpForm = () => {
+  const [isChecked, setIsChecked] = useState(false);
+  const [signUpError, setSignUpError] = useState(null);
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -10,13 +15,9 @@ export const SignUpForm = () => {
     formState: { errors },
   } = useForm();
 
-  const [isChecked, setIsChecked] = useState(false);
-
   const toggleCheckbox = () => {
     setIsChecked(!isChecked);
   };
-
-  const [signUpError, setSignUpError] = useState(null);
 
   const handleSignup = async (data) => {
     try {
@@ -29,6 +30,13 @@ export const SignUpForm = () => {
       console.log(response);
       console.log(data)
       console.log(SignUpUser)
+
+      const isVenueManager = isChecked;
+      localStorage.setItem("venueManager", isVenueManager.toString())
+      
+      if (response.userData && response.accessToken) {
+        navigate("/")
+      }
 
       setSignUpError(null)
     } catch (error) {
