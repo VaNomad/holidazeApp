@@ -2,7 +2,7 @@ import { CurrentStorage } from "../../utils/CurrentStorage";
 import header from "../../assets/images/maldives1.jpg"
 // import dummyProfile from "../../assets/vectors/hLogoGreen.png"
 import { useState } from "react";
-import { AiOutlineUser, AiOutlineMail, AiOutlineCamera, AiOutlineEye } from "react-icons/ai";
+import { AiOutlineUser, AiOutlineMail, AiOutlineCamera } from "react-icons/ai";
 import { BsKey } from "react-icons/bs"
 import {GiCheckMark, GiCrossMark} from "react-icons/gi"
 import noAvatar from "../../assets/vectors/hLogoGreen.png"
@@ -25,17 +25,11 @@ export const Profile = () => {
           />
         </div>
         <div className="absolute top-[25%] md:top-[18%] right-[25%] md:right-[30%] flex flex-col">
-          <div className=" h-[150px] md:h-[200px] w-[150px] md:w-[200px] border-4 border-zinc-700 bg-black rounded-full px-2">
+          <div className="h-[150px] md:h-[200px] w-[150px] md:w-[200px] border-4 border-zinc-700 bg-black rounded-full">
             <img
-              src={
-                userData.avatar ? (
-                  <img src={userData.avatar} />
-                ) : (
-                  <img src={noAvatar} />
-                )
-              }
+              src={userData.avatar ? userData.avatar : noAvatar}
               alt=""
-              className="w-full h-full"
+              className="w-full h-full object-cover rounded-full"
             />
           </div>
           <button
