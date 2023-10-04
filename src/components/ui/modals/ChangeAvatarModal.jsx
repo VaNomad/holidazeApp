@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { FiUpload } from "react-icons/fi";
 import { UpdateAvatar } from "../../../api/UpdateAvatar";
 
-export const AvatarModal = ({ isOpen, closeModal }) => {
+export const ChangeAvatarModal = ({ isOpen, closeModal }) => {
   const [urlError, setUrlError] = useState(null);
 
   const {
