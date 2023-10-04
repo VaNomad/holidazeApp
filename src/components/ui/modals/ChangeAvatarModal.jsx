@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useForm } from "react-hook-form"
 import { FiUpload } from "react-icons/fi";
 import { UpdateProfile } from "../../../api/UpdateProfile";
+import { useUser } from "../../../context/UserContext";
 
 export const ChangeAvatarModal = ({ isOpen, closeModal }) => {
   const [urlError, setUrlError] = useState(null);
+  const { updateAvatar, state: { user } } = useUser();
 
   const {
     register,
@@ -19,7 +21,7 @@ export const ChangeAvatarModal = ({ isOpen, closeModal }) => {
 
   const handleUpdateProfile = async (data) => {
     try {
-      const response = await UpdateProfile(data);
+      const response = await UpdateProfile(user.name, data.avatar);
       console.log(response);
       console.log(data);
       console.log(UpdateProfile);
