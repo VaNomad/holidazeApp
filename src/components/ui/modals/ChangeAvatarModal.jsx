@@ -56,12 +56,11 @@ export const ChangeAvatarModal = ({ isOpen, closeModal }) => {
           {errors.avatar && (
             <p className="text-red-500">{errors.avatar.message}</p>
           )}
-          <input
-            className="absolute top-0 right-0 bottom-0 flex justify-center items-center h-10 rounded-full bg-zinc-800 border border-holiblue hover:bg-holiblue hover:text-black hover:scale-105 uppercase font-medium tracking-widest font-dm text-sm transition-all duration-800 cursor-pointer"
+          <button
+            className="absolute right-0 bottom-[6rem] flex justify-center items-center h-[4rem] w-[4rem] rounded-full  border bg-holiblue text-black hover:scale-105 uppercase font-medium tracking-widest font-dm text-sm transition-all duration-800 cursor-pointer"
             type="submit"
-            value={<FiUpload />}
             onClick={closeModal}
-          />
+          ><FiUpload size={10} className="rounded-full w-full h-full p-3" /></button>
           {urlError && <p className="text-red-500">{urlError}</p>}
         </form>
       </div>
