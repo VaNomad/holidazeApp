@@ -12,6 +12,7 @@ export const SignUpForm = () => {
     register,
     handleSubmit,
     trigger,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -37,6 +38,12 @@ export const SignUpForm = () => {
       if (response.userData && response.accessToken) {
         navigate("/login")
       }
+
+      setTimeout(() => {
+        // loginUser(userData, accessToken);
+        navigate("/login");
+        reset();
+      }, 1000);
 
       setSignUpError(null)
     } catch (error) {
