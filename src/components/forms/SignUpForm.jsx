@@ -35,7 +35,7 @@ export const SignUpForm = () => {
       localStorage.setItem("venueManager", isVenueManager.toString())
       
       if (response.userData && response.accessToken) {
-        navigate("/")
+        navigate("/login")
       }
 
       setSignUpError(null)
