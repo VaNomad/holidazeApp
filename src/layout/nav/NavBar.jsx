@@ -26,7 +26,7 @@ export const NavBar = () => {
         </ul>
 
         {/* Mobile Menu */}
-        <div className="sm:hidden">
+        <div>
           <div
             className="cursor-pointer transform transition-transform ease-in-out duration-600"
             onClick={() => setToggle(!toggle)}
