@@ -1,7 +1,7 @@
 import { useContext, createContext, useReducer } from "react";
 import { LoginUser } from "../api/LoginUser";
 import { SignUpUser } from "../api/SignUpUser";
-import { UpdateAvatar } from "../api/UpdateAvatar";
+import { UpdateProfile } from "../api/UpdateProfile";
 
 const UserContext = createContext();
 
@@ -95,11 +95,11 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  const updateAvatar = async (userData) => {
+  const updateProfile = async (userData) => {
     dispatch({ type: "UPDATE_AVATAR_REQUEST" });
 
     try {
-      const updatedUser = await UpdateAvatar(userData);
+      const updatedUser = await UpdateProfile(userData);
       dispatch({ type: "UPDATE_AVATAR_SUCCESS", payload: updatedUser });
     } catch (error) {
       dispatch({ type: "UPDATE_AVATAR_FAILURE", payload: error.message });
@@ -108,7 +108,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ state, loginUser, signUpUser, updateAvatar, logout, isAuthenticated }}
+      value={{ state, loginUser, signUpUser, updateProfile, logout, isAuthenticated }}
     >
       {children}
     </UserContext.Provider>

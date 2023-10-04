@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form"
 import { FiUpload } from "react-icons/fi";
-import { UpdateAvatar } from "../../../api/UpdateAvatar";
+import { UpdateProfile } from "../../../api/UpdateProfile";
 
 export const ChangeAvatarModal = ({ isOpen, closeModal }) => {
   const [urlError, setUrlError] = useState(null);
@@ -17,12 +17,12 @@ export const ChangeAvatarModal = ({ isOpen, closeModal }) => {
     return null
   }  
 
-  const handleUpdateAvatar = async (data) => {
+  const handleUpdateProfile = async (data) => {
     try {
-      const response = await UpdateAvatar(data);
+      const response = await UpdateProfile(data);
       console.log(response);
       console.log(data);
-      console.log(UpdateAvatar);
+      console.log(UpdateProfile);
     } catch (error) {
       setUrlError("SignUp failed. Check added credentials");
     }
@@ -37,7 +37,7 @@ export const ChangeAvatarModal = ({ isOpen, closeModal }) => {
   return (
     <div>
       <div>
-        <form onSubmit={handleSubmit(handleUpdateAvatar, handleOverlayClick)}>
+        <form onSubmit={handleSubmit(handleUpdateProfile, handleOverlayClick)}>
           <input
             className="relative h-14 rounded-full p-3 bg-zinc-700 pe-[40px]" 
             {...register("avatar", {

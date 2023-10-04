@@ -1,6 +1,6 @@
 import { API_BASE_URL } from "./endpoints";
 
-export async function UpdateAvatar(data) {
+export async function UpdateProfile(data) {
   const accessToken = localStorage.getItem("accessToken");
   const userName = localStorage.getItem("userName");
 
@@ -15,7 +15,7 @@ export async function UpdateAvatar(data) {
     });
 
     if (!response.ok) {
-      console.log("UpdateAvatar Response: ", response)
+      console.log("UpdateProfile Response: ", response)
       throw new Error("Could not fetch Avatar media");
     }
 
