@@ -2,6 +2,7 @@ import { useContext, createContext, useReducer } from "react";
 import { LoginUser } from "../api/LoginUser";
 import { SignUpUser } from "../api/SignUpUser";
 import { UpdateProfile } from "../api/UpdateProfile";
+import { UpdateAvatarUrl } from "../api/UpdateAvatarUrl";
 
 const UserContext = createContext();
 
@@ -20,13 +21,13 @@ const userReducer = (state, action) => {
       return {
         ...state,
         isAuthenticated: true,
-      }
+      };
     case "LOGIN_SUCCESS":
       return {
         ...state,
         accessToken: action.payload,
         isAuthenticated: true,
-      }
+      };
     case "LOGIN_FAILURE":
     case "LOGOUT":
       return {
@@ -35,11 +36,59 @@ const userReducer = (state, action) => {
         isAuthenticated: false,
       };
     case "SIGNUP_REQUEST":
+      return {
+        ...state,
+        isLoading: true,
+        hasError: false,
+      };
     case "SIGNUP_SUCCESS":
+      return {
+        ...state,
+        isLoading: false,
+        hasError: false,
+        user: action.payload,
+      };
     case "SIGNUP_FAILURE":
+      return {
+        ...state,
+        isLoading: false,
+        hasError: true,
+        errorDisplay: action.payload,
+      };
     case "UPDATE_AVATAR_REQUEST":
+      return {
+        ...state,
+        isLoading: true,
+        hasError: false,
+      };
+    case "UPDATE_PROFILE_REQUEST":
+      return {
+        ...state,
+        isLoading: true,
+        hasError: false,
+      };
+    case "UPDATE_PROFILE_SUCCESS":
+      return {
+        ...state,
+        isLoading: false,
+        hasError: false,
+        user: action.payload,
+      };
+    case "UPDATE_PROFILE_FAILURE":
     case "UPDATE_AVATAR_SUCCESS":
+      return {
+        ...state,
+        isLoading: false,
+        hasError: false,
+        user: action.payload,
+      };
     case "UPDATE_AVATAR_FAILURE":
+      return {
+        ...state,
+        isLoading: false,
+        hasError: true,
+        errorDisplay: action.payload,
+      };
     default:
       return state;
   }
@@ -51,9 +100,9 @@ export const UserProvider = ({ children }) => {
   // const [token, setToken] = useState(localStorage.getItem("accessToken"));
 
   const loginUser = async (userData, accessToken) => {
-    console.log("LoginUser function started")
-    console.log("userData:", userData)
-    console.log("accessToken in loginUser:", accessToken )
+    console.log("LoginUser function started");
+    console.log("userData:", userData);
+    console.log("accessToken in loginUser:", accessToken);
     // setUser(userData);
     // setToken(accessToken);
     localStorage.setItem("username", userData.name);
@@ -65,10 +114,10 @@ export const UserProvider = ({ children }) => {
 
     try {
       const user = await LoginUser(userData);
-      console.log("User returned from LoginUser", user)
+      console.log("User returned from LoginUser", user);
       dispatch({ type: "LOGIN_SUCCESS", payload: user });
     } catch (error) {
-      console.log("LoginUser error: ", error)
+      console.log("LoginUser error: ", error);
       dispatch({ type: "LOGIN_FAILURE", payload: error.message });
     }
   };
@@ -77,7 +126,7 @@ export const UserProvider = ({ children }) => {
     // setUser(null);
     // setToken(null);
     localStorage.removeItem("accessToken");
-    localStorage.removeItem("username")
+    localStorage.removeItem("username");
   };
 
   const isAuthenticated = () => {
@@ -96,11 +145,22 @@ export const UserProvider = ({ children }) => {
   };
 
   const updateProfile = async (userData) => {
+    dispatch({ type: "UPDATE_PROFILE_REQUEST" });
+
+    try {
+      const updatedUserData = await UpdateProfile(userData);
+      dispatch({ type: "UPDATE_PROFILE_SUCCESS", payload: updatedUserData });
+    } catch (error) {
+      dispatch({ type: "UPDATE_PROFILE_FAILURE", payload: error.message });
+    }
+  };
+
+  const updateAvatar = async (userName, newAvatarUrl) => {
     dispatch({ type: "UPDATE_AVATAR_REQUEST" });
 
     try {
-      const updatedUser = await UpdateProfile(userData);
-      dispatch({ type: "UPDATE_AVATAR_SUCCESS", payload: updatedUser });
+      const updatedAvatarData = await UpdateAvatarUrl(userName, newAvatarUrl);
+      dispatch({ type: "UPDATE_AVATAR_SUCCESS", payload: updatedAvatarData });
     } catch (error) {
       dispatch({ type: "UPDATE_AVATAR_FAILURE", payload: error.message });
     }
@@ -108,7 +168,15 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ state, loginUser, signUpUser, updateProfile, logout, isAuthenticated }}
+      value={{
+        state,
+        loginUser,
+        signUpUser,
+        updateProfile,
+        updateAvatar,
+        logout,
+        isAuthenticated,
+      }}
     >
       {children}
     </UserContext.Provider>
