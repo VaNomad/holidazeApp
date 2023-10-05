@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { SignUpForm } from "./SignUpForm"; // Import your SignUpForm component
-import { LoginUser } from "../../api/LoginUser";
+// import { LoginUser } from "../../api/LoginUser";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import { GridLoader } from "react-spinners";
@@ -30,7 +30,7 @@ export const LoginForm = () => {
   const handleLogin = async (data) => {
     try {
       setIsLoading(true);
-      const response = await LoginUser(data);
+      const response = await loginUser(data);
       const { userData, accessToken } = response;
 
       if (response.ok) {
@@ -45,17 +45,9 @@ export const LoginForm = () => {
         reset();
       }, 1000);
 
-      // useEffect(() => {
-      //   setTimeout(() => {
-      //     loginUser(userData, accessToken);
-      //     navigate("/profile");
-      //     reset();
-      //   }, 3000);
-      // },[])
-
       console.log(response);
       console.log(data);
-      console.log(LoginUser);
+      console.log(loginUser);
 
       setIsLoading(false);
     } catch (error) {
