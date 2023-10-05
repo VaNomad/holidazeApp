@@ -27,6 +27,7 @@ const userReducer = (state, action) => {
         ...state,
         accessToken: action.payload,
         isAuthenticated: true,
+        user: action.payload,
       };
     case "LOGIN_FAILURE":
     case "LOGOUT":
