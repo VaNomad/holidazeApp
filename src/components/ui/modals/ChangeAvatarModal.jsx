@@ -1,12 +1,20 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form"
-import { FiUpload } from "react-icons/fi";
+import { useForm } from "react-hook-form";
+import { BsCloudUpload } from "react-icons/bs";
+import { HiOutlineArrowsRightLeft } from "react-icons/hi2";
 import { UpdateProfile } from "../../../api/UpdateProfile";
 import { useUser } from "../../../context/UserContext";
+import { GridLoader } from "react-spinners";
 
 export const ChangeAvatarModal = ({ isOpen, closeModal }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [urlError, setUrlError] = useState(null);
-  const { updateAvatar, state: { user } } = useUser();
+  const [newAvatarUrl, setNewAvatarUrl] = useState("");
+
+  const {
+    updateAvatar,
+    state: { user },
+  } = useUser();
 
   const {
     register,
@@ -16,12 +24,12 @@ export const ChangeAvatarModal = ({ isOpen, closeModal }) => {
   } = useForm();
 
   if (!isOpen) {
-    return null
-  }  
+    return null;
+  }
 
   const handleUpdateProfile = async (data) => {
     try {
-      const response = await UpdateProfile(user.name, data.avatar);
+      const response = await UpdateProfile(data);
       console.log(response);
       console.log(data);
       console.log(UpdateProfile);
@@ -29,19 +37,45 @@ export const ChangeAvatarModal = ({ isOpen, closeModal }) => {
       setUrlError("SignUp failed. Check added credentials");
     }
   };
-  
+
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
       closeModal();
     }
   };
 
+  const handleSwapAvatar = (data) => {
+    setNewAvatarUrl(data.avatar)
+  }
+
+  const handleUpdateAvatar = async (data) => {
+    try {
+      setIsLoading(true);
+      // Call the updateAvatar function with the user's name and the new avatar URL
+      const response = await updateAvatar(user.name, newAvatarUrl);
+      console.log(response);
+      console.log(data);
+      console.log(newAvatarUrl);
+
+      setIsLoading(false);
+      closeModal();
+    } catch (error) {
+      setIsLoading(false);
+      setUrlError("Update avatar failed. Check the provided credentials");
+    }
+
+  };
+
   return (
     <div>
       <div>
-        <form onSubmit={handleSubmit(handleUpdateProfile, handleOverlayClick)}>
+        <form
+          onSubmit={handleSubmit(handleUpdateProfile, handleOverlayClick)}
+          className="relative"
+        >
           <input
-            className="relative h-14 rounded-full p-3 bg-zinc-700 pe-[40px]" 
+            id="url-input"
+            className="absolute rounded-full py-1 px-2 bg-zinc-700 overflow-hidden"
             {...register("avatar", {
               required: "An avatar image is required",
               pattern: {
@@ -59,13 +93,30 @@ export const ChangeAvatarModal = ({ isOpen, closeModal }) => {
             <p className="text-red-500">{errors.avatar.message}</p>
           )}
           <button
-            className="absolute right-0 bottom-[6rem] flex justify-center items-center h-[4rem] w-[4rem] rounded-full  border bg-holiblue text-black hover:scale-105 uppercase font-medium tracking-widest font-dm text-sm transition-all duration-800 cursor-pointer"
+            id="save"
+            className="absolute right-[-4rem] bottom-[3rem] flex justify-center items-center gap-2 py-1 px-2 rounded-full text-black border border-black bg-holigreen font-ndo hover:scale-105 font-medium transition-all duration-800 cursor-pointer"
             type="submit"
-            onClick={closeModal}
-          ><FiUpload size={10} className="rounded-full w-full h-full p-3" /></button>
+            onClick={handleUpdateAvatar}
+          >
+            <BsCloudUpload size={20} className="rounded-full w-full h-full" />
+            {isLoading ? <GridLoader className="h-1 w-1" /> : "Save"}
+          </button>
           {urlError && <p className="text-red-500">{urlError}</p>}
+        </form>
+        <form onSubmit={handleSwapAvatar}>
+          <button
+            id="swap"
+            className="absolute right-[-3rem] bottom-0 flex justify-center items-center gap-2 py-1 px-2 rounded-full text-black border border-black bg-holiblue font-ndo hover:scale-105 font-medium transition-all duration-800 cursor-pointer"
+            type="submit"
+          >
+            <HiOutlineArrowsRightLeft
+              size={20}
+              className="rounded-full w-full h-full"
+            />
+            <p>Swap</p>
+          </button>
         </form>
       </div>
     </div>
   );
-}
+};
