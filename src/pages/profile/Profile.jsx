@@ -28,11 +28,10 @@ export const Profile = () => {
         setIsLoading(true);
         await updateAvatar();
         console.log("Avatar image swapped!");
-        // Avatar updated successfully
-        // You can add any additional logic or feedback here
+        
         setIsLoading(false);
       } catch (error) {
-        // Handle error, display an error message, or retry
+        
         console.error("Error updating avatar:", error);
         setIsLoading(false);
       }
