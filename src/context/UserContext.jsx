@@ -105,22 +105,36 @@ export const UserProvider = ({ children }) => {
   // const [user, setUser] = useState(null);
   // const [token, setToken] = useState(localStorage.getItem("accessToken"));
 
+  // const loginUser = async (userData, accessToken) => {
+  //   console.log("LoginUser function started");
+  //   console.log("userData:", userData);
+  //   console.log("accessToken in loginUser:", accessToken);
+  //   // setUser(userData);
+  //   // setToken(accessToken);
+  //   localStorage.setItem("username", userData.name);
+  //   localStorage.setItem("accessToken", accessToken);
+  //   localStorage.setItem("avatar", userData.avatar);
+  //   localStorage.setItem("email", userData.email);
+  //   localStorage.setItem("venueManager", userData.venueManager);
+  //   dispatch({ type: "LOGIN_REQUEST" });
+
+  //   try {
+  //     const user = await LoginUser(userData);
+  //     console.log("User returned from LoginUser", user);
+  //     dispatch({ type: "LOGIN_SUCCESS", payload: user });
+  //   } catch (error) {
+  //     console.log("LoginUser error: ", error);
+  //     dispatch({ type: "LOGIN_FAILURE", payload: error.message });
+  //   }
+  // };
+
   const loginUser = async (userData, accessToken) => {
-    console.log("LoginUser function started");
-    console.log("userData:", userData);
-    console.log("accessToken in loginUser:", accessToken);
-    // setUser(userData);
-    // setToken(accessToken);
-    localStorage.setItem("username", userData.name);
-    localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("avatar", userData.avatar);
-    localStorage.setItem("email", userData.email);
-    localStorage.setItem("venueManager", userData.venueManager);
     dispatch({ type: "LOGIN_REQUEST" });
 
     try {
-      const user = await LoginUser(userData);
-      console.log("User returned from LoginUser", user);
+      const user = await LoginUser(userData, accessToken);
+
+      // Assuming LoginUser returns the user data as an object
       dispatch({ type: "LOGIN_SUCCESS", payload: user });
     } catch (error) {
       console.log("LoginUser error: ", error);
