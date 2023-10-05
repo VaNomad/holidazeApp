@@ -55,12 +55,6 @@ const userReducer = (state, action) => {
         hasError: true,
         errorDisplay: action.payload,
       };
-    case "UPDATE_AVATAR_REQUEST":
-      return {
-        ...state,
-        isLoading: true,
-        hasError: false,
-      };
     case "UPDATE_PROFILE_REQUEST":
       return {
         ...state,
@@ -75,6 +69,18 @@ const userReducer = (state, action) => {
         user: action.payload,
       };
     case "UPDATE_PROFILE_FAILURE":
+      return {
+        ...state,
+        isLoading: false,
+        hasError: true,
+        errorDisplay: action.payload,
+      };
+    case "UPDATE_AVATAR_REQUEST":
+      return {
+        ...state,
+        isLoading: true,
+        hasError: false,
+      };
     case "UPDATE_AVATAR_SUCCESS":
       return {
         ...state,
