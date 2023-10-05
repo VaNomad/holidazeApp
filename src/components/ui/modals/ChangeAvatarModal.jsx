@@ -27,9 +27,9 @@ export const ChangeAvatarModal = ({ isOpen, closeModal }) => {
     return null;
   }
 
-  if (!user) {
-    return <GridLoader size={40} color="white" />
-  }
+  // if (!user) {
+  //   return <GridLoader size={40} color="white" />
+  // }
 
   const handleUpdateProfile = async (data) => {
     try {
