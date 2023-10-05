@@ -2,7 +2,7 @@ import { API_BASE_URL } from "./endpoints";
 
 export async function UpdateProfile(data) {
   const accessToken = localStorage.getItem("accessToken");
-  const userName = localStorage.getItem("userName");
+  const userName = localStorage.getItem("username");
 
   try {
     const response = await fetch(`${API_BASE_URL}/profiles/${userName}`, {
