@@ -98,12 +98,6 @@ export const LoginForm = () => {
               className="h-14 rounded-md p-3 bg-zinc-700"
               {...register("password", {
                 required: "A password is required",
-                pattern: {
-                  value:
-                    /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/,
-                  message:
-                    "Password must be 8 - 16 characters, have 1 lowercase & 1 uppercase letter, one number and 1 special character",
-                },
               })}
               placeholder="Password"
               onBlur={() => {
