@@ -2,11 +2,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import { SignUpForm } from "./SignUpForm"; // Import your SignUpForm component
-// import { LoginUser } from "../../api/LoginUser";
+import { SignUpForm } from "./SignUpForm";
+import { LoginUserCall } from "../../api/LoginUserCall";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import { GridLoader } from "react-spinners";
+
 
 export const LoginForm = () => {
   const [loginError, setLoginError] = useState(null);
@@ -18,7 +19,6 @@ export const LoginForm = () => {
     register,
     handleSubmit,
     trigger,
-    reset,
     formState: { errors },
   } = useForm();
   const [activeTab, setActiveTab] = useState(0);
@@ -30,28 +30,12 @@ export const LoginForm = () => {
   const handleLogin = async (data) => {
     try {
       setIsLoading(true);
-      const response = await loginUser(data);
-      const { userData, accessToken } = response;
-
-      if (response.ok) {
-        loginUser(userData, accessToken);
-        // navigate("/profile");
-        // reset();
-      }
-
-      setTimeout(() => {
-        // loginUser(userData, accessToken);
-        navigate("/profile");
-        reset();
-      }, 1000);
-
-      console.log(response);
-      console.log(data);
-      console.log(loginUser);
-
-      setIsLoading(false);
+      const response = await LoginUserCall(data);
+      loginUser(response);
+      navigate("/profile");
     } catch (error) {
       setLoginError("Login failed. Check email & password");
+    } finally {
       setIsLoading(false);
     }
   };
@@ -117,3 +101,18 @@ export const LoginForm = () => {
     </div>
   );
 };
+
+
+// const { userData, accessToken } = response;
+
+      // if (response.ok) {
+      //   loginUser(userData, accessToken);
+      //   navigate("/profile");
+      //   reset();
+      // }
+
+      // setTimeout(() => {
+      //   loginUser(userData, accessToken);
+      //   navigate("/profile");
+      //   reset();
+      // }, 1000);

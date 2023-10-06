@@ -1,5 +1,6 @@
 import { useContext, createContext, useReducer } from "react";
-import { LoginUser } from "../api/LoginUser";
+// import { LoginUser } from "../api/LoginUser";
+// import { makeLoginUserCall } from "../api/LoginUserCall";
 import { SignUpUser } from "../api/SignUpUser";
 import { UpdateProfile } from "../api/UpdateProfile";
 import { UpdateAvatarUrl } from "../api/UpdateAvatarUrl";
@@ -25,9 +26,9 @@ const userReducer = (state, action) => {
     case "LOGIN_SUCCESS":
       return {
         ...state,
-        accessToken: action.payload,
+        accessToken: action.payload.accessToken,
         isAuthenticated: true,
-        user: action.payload,
+        user: action.payload.user,
       };
     case "LOGIN_FAILURE":
     case "LOGOUT":
@@ -129,23 +130,26 @@ export const UserProvider = ({ children }) => {
   //   }
   // };
 
-  const loginUser = async (userData, accessToken) => {
-    dispatch({ type: "LOGIN_REQUEST" });
+  // const loginUser = async (userData, accessToken) => {
+  //   dispatch({ type: "LOGIN_REQUEST" });
 
-    try {
-      const user = await LoginUser(userData, accessToken);
+  //   try {
+  //     const user = await LoginUser(userData, accessToken);
 
-      // Assuming LoginUser returns the user data as an object
-      dispatch({ type: "LOGIN_SUCCESS", payload: user });
-    } catch (error) {
-      console.log("LoginUser error: ", error);
-      dispatch({ type: "LOGIN_FAILURE", payload: error.message });
-    }
-  };
+  //     // Assuming LoginUser returns the user data as an object
+  //     dispatch({ type: "LOGIN_SUCCESS", payload: user });
+  //   } catch (error) {
+  //     console.log("LoginUser error: ", error);
+  //     dispatch({ type: "LOGIN_FAILURE", payload: error.message });
+  //   }
+  // };
+
+  const loginUser = async (data) => {
+    const { accessToken, ...user } = data;
+    dispatch({type: "LOGIN_SUCCESS", payload: {accessToken, user}})
+  }
 
   const logout = () => {
-    // setUser(null);
-    // setToken(null);
     localStorage.removeItem("accessToken");
     localStorage.removeItem("username");
   };
