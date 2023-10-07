@@ -27,6 +27,6 @@ export async function SignUpUser(data) {
 
     return userSignUp;
   } catch (error) {
-    throw new Error("Signup failed ${error.message}");
+    throw new Error(`Signup failed ${error.message}`);
   }
 }
