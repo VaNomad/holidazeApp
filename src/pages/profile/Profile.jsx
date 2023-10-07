@@ -1,6 +1,5 @@
 import { CurrentStorage } from "../../utils/CurrentStorage";
 import header from "../../assets/images/maldives1.jpg";
-// import dummyProfile from "../../assets/vectors/hLogoGreen.png"
 import { useState } from "react";
 import { AiOutlineUser, AiOutlineMail, AiOutlineCamera } from "react-icons/ai";
 import { BsKey } from "react-icons/bs";
@@ -16,8 +15,7 @@ import { GridLoader } from "react-spinners";
 export const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
-  const { newAvatarUrl, updateAvatar } = useUser();
-  // const notify = () => toast("Avatar image swapped!");
+  const { newAvatarUrl, setNewAvatarUrl } = useUser();
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
   const userData = CurrentStorage();
@@ -26,13 +24,13 @@ export const Profile = () => {
     if (newAvatarUrl) {
       try {
         setIsLoading(true);
-        await updateAvatar();
+        await setNewAvatarUrl(newAvatarUrl);
         console.log("Avatar image swapped!");
         
-        setIsLoading(false);
       } catch (error) {
-        
         console.error("Error updating avatar:", error);
+        setIsLoading(false);
+      } finally {
         setIsLoading(false);
       }
     }
@@ -64,10 +62,10 @@ export const Profile = () => {
           >
             +
           </button>
-          <ChangeAvatarModal isOpen={isModalOpen} closeModal={closeModal} />
+          <ChangeAvatarModal isOpen={isModalOpen} closeModal={closeModal} setNewAvatarUrl={setNewAvatarUrl}/>
         </div>
       </div>
-      <div className="relative">
+      {/* <div className="relative">
         <div className="p-5 absolute bottom-0 lg:left-[10%]">
           <h1 className="font-alli text-5xl md:text-[5rem]">Profile</h1>
         </div>
@@ -80,7 +78,12 @@ export const Profile = () => {
           <BsCloudUpload size={15} className="rounded-full w-full h-full" />
           {isLoading ? <GridLoader className="h-1 w-1" /> : "Save changes"}
         </button>
-      </div>
+        <ChangeAvatarModal
+          isOpen={ isModalOpen }
+          closeModal={ closeModal }
+          setNewAvatarUrl={setNewAvatarUrl}
+        />
+      </div> */}
       <div className="flex flex-col items-center justify-evenly h-[45vh]">
         <div className="relative ps-24 pe-20 py-2 border-[2px] border-holipink rounded-full w-[60%] h- md:max-w-[30rem]">
           <div className="absolute top-0 left-0">

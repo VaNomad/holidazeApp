@@ -6,10 +6,9 @@ import { UpdateProfile } from "../../../api/UpdateProfile";
 import { useUser } from "../../../context/UserContext";
 import { GridLoader } from "react-spinners";
 
-export const ChangeAvatarModal = ({ isOpen, closeModal }) => {
+export const ChangeAvatarModal = ({ isOpen, closeModal, setNewAvatarUrl }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [urlError, setUrlError] = useState(null);
-  const [newAvatarUrl, setNewAvatarUrl] = useState("");
 
   const {
     updateAvatar,
@@ -58,10 +57,10 @@ export const ChangeAvatarModal = ({ isOpen, closeModal }) => {
     try {
       setIsLoading(true);
       // Call the updateAvatar function with the user's name and the new avatar URL
-      const response = await updateAvatar(user.name, newAvatarUrl);
+      const response = await updateAvatar(user.name);
       console.log(response);
       console.log(data);
-      console.log(newAvatarUrl);
+      console.log(user.name);
 
       setIsLoading(false);
       closeModal();
