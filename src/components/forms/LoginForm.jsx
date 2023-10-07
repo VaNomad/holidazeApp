@@ -31,9 +31,12 @@ export const LoginForm = () => {
     try {
       setIsLoading(true);
       const response = await LoginUserCall(data);
+      console.log("Response from server:", response);
+      localStorage.setItem("accessToken", response.accessToken);
       loginUser(response);
       navigate("/profile");
     } catch (error) {
+      console.log("login failed. Check email & password", error)
       setLoginError("Login failed. Check email & password");
     } finally {
       setIsLoading(false);
@@ -101,18 +104,3 @@ export const LoginForm = () => {
     </div>
   );
 };
-
-
-// const { userData, accessToken } = response;
-
-      // if (response.ok) {
-      //   loginUser(userData, accessToken);
-      //   navigate("/profile");
-      //   reset();
-      // }
-
-      // setTimeout(() => {
-      //   loginUser(userData, accessToken);
-      //   navigate("/profile");
-      //   reset();
-      // }, 1000);

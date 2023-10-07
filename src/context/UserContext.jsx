@@ -4,13 +4,30 @@ import { useContext, createContext, useReducer } from "react";
 import { SignUpUser } from "../api/SignUpUser";
 import { UpdateProfile } from "../api/UpdateProfile";
 import { UpdateAvatarUrl } from "../api/UpdateAvatarUrl";
+import { CurrentStorage } from "../utils/CurrentStorage";
 
 const UserContext = createContext();
 
+const userData = CurrentStorage();
+
+// const initialState = {
+//   user: null,
+//   accessToken: localStorage.getItem("accessToken"),
+//   isAuthenticated: false,
+//   isLoading: false,
+//   hasError: false,
+//   errorDisplay: null,
+// };
+
 const initialState = {
-  user: null,
-  accessToken: localStorage.getItem("accessToken"),
-  isAuthenticated: false,
+  user: {
+    username: userData.username,
+    accessToken: userData.accesstoken,
+    avatar: userData.avatar,
+    email: userData.email,
+    manager: userData.manager,
+  },
+  isAuthenticated: !!userData.accesstoken,
   isLoading: false,
   hasError: false,
   errorDisplay: null,
@@ -104,54 +121,24 @@ const userReducer = (state, action) => {
 
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, initialState);
-  // const [user, setUser] = useState(null);
-  // const [token, setToken] = useState(localStorage.getItem("accessToken"));
-
-  // const loginUser = async (userData, accessToken) => {
-  //   console.log("LoginUser function started");
-  //   console.log("userData:", userData);
-  //   console.log("accessToken in loginUser:", accessToken);
-  //   // setUser(userData);
-  //   // setToken(accessToken);
-  //   localStorage.setItem("username", userData.name);
-  //   localStorage.setItem("accessToken", accessToken);
-  //   localStorage.setItem("avatar", userData.avatar);
-  //   localStorage.setItem("email", userData.email);
-  //   localStorage.setItem("venueManager", userData.venueManager);
-  //   dispatch({ type: "LOGIN_REQUEST" });
-
-  //   try {
-  //     const user = await LoginUser(userData);
-  //     console.log("User returned from LoginUser", user);
-  //     dispatch({ type: "LOGIN_SUCCESS", payload: user });
-  //   } catch (error) {
-  //     console.log("LoginUser error: ", error);
-  //     dispatch({ type: "LOGIN_FAILURE", payload: error.message });
-  //   }
-  // };
-
-  // const loginUser = async (userData, accessToken) => {
-  //   dispatch({ type: "LOGIN_REQUEST" });
-
-  //   try {
-  //     const user = await LoginUser(userData, accessToken);
-
-  //     // Assuming LoginUser returns the user data as an object
-  //     dispatch({ type: "LOGIN_SUCCESS", payload: user });
-  //   } catch (error) {
-  //     console.log("LoginUser error: ", error);
-  //     dispatch({ type: "LOGIN_FAILURE", payload: error.message });
-  //   }
-  // };
 
   const loginUser = async (data) => {
+    console.log("Received data in loginUser:", data)
     const { accessToken, ...user } = data;
+    localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("username", user.name);
+    localStorage.setItem("email", user.email);
+    localStorage.setItem("avatar", user.avatar);
+    localStorage.setItem("venueManager", user.venueManager);
     dispatch({type: "LOGIN_SUCCESS", payload: {accessToken, user}})
   }
 
   const logout = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("username");
+    localStorage.removeItem("email");
+    localStorage.removeItem("avatar");
+    localStorage.removeItem("venueManager");
   };
 
   const isAuthenticated = () => {
