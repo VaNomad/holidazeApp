@@ -48,7 +48,7 @@ export const NavBar = () => {
                 toggle ? "opacity-0 scale-0" : "opacity-100 scale-100"
               }`}
             >
-              <div className="text-center border-2 border-[#FCB5FF] rounded-full m-3 w-[120px] hover:scale-110">
+              <div className="text-center border-2 border-[#FCB5FF] hover:border-none hover:bg-[#FCB5FF] hover:text-black rounded-full m-3 w-[120px] hover:scale-105 transition-scale duration-200 ease-in">
                 <h1 className="text-[19px] font-dm font-medium">
                   menu
                 </h1>
