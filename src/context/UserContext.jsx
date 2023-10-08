@@ -20,18 +20,26 @@ const userData = CurrentStorage();
 // };
 
 const initialState = {
-  user: {
-    username: userData.username,
-    accessToken: userData.accesstoken,
-    avatar: userData.avatar,
-    email: userData.email,
-    manager: userData.manager,
-  },
+  user: null,
   isAuthenticated: !!userData.accesstoken,
   isLoading: false,
   hasError: false,
   errorDisplay: null,
 };
+
+// const initialState = {
+//   user: {
+//     username: userData.username || "",
+//     accessToken: userData.accesstoken || "",
+//     avatar: userData.avatar || "",
+//     email: userData.email || "",
+//     manager: userData.manager || false,
+//   },
+//   isAuthenticated: !!userData.accesstoken,
+//   isLoading: false,
+//   hasError: false,
+//   errorDisplay: null,
+// };
 
 const userReducer = (state, action) => {
   switch (action.type) {
@@ -126,7 +134,7 @@ export const UserProvider = ({ children }) => {
     console.log("Received data in loginUser:", data)
     const { accessToken, ...user } = data;
     localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("username", user.name);
+    localStorage.setItem("username", user.username);
     localStorage.setItem("email", user.email);
     localStorage.setItem("avatar", user.avatar);
     localStorage.setItem("venueManager", user.venueManager);

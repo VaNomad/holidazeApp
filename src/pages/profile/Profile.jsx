@@ -1,45 +1,41 @@
-import { CurrentStorage } from "../../utils/CurrentStorage";
+// import { CurrentStorage } from "../../utils/CurrentStorage";
 import header from "../../assets/images/maldives1.jpg";
 import { useState } from "react";
 import { AiOutlineUser, AiOutlineMail, AiOutlineCamera } from "react-icons/ai";
 import { BsKey } from "react-icons/bs";
 import { GiCheckMark, GiCrossMark } from "react-icons/gi";
-import { BsCloudUpload } from "react-icons/bs";
 import noAvatar from "../../assets/vectors/hLogoGreen.png";
 import { ChangeAvatarModal } from "../../components/ui/modals/ChangeAvatarModal";
 import { useUser } from "../../context/UserContext";
-import { GridLoader } from "react-spinners";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/react-toastify.css";
 
 export const Profile = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
-  const { newAvatarUrl, setNewAvatarUrl } = useUser();
+  const { user } = useUser();
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
-  const userData = CurrentStorage();
+  // const userData = CurrentStorage();
+  console.log("User:", user)
 
-  const handleSaveProfile = async () => {
-    if (newAvatarUrl) {
-      try {
-        setIsLoading(true);
-        await setNewAvatarUrl(newAvatarUrl);
-        console.log("Avatar image swapped!");
-        
-      } catch (error) {
-        console.error("Error updating avatar:", error);
-        setIsLoading(false);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-  };
+  // const handleSaveProfile = async () => {
+  //   if (user && user.name) {
+  //     try {
+  //       setIsLoading(true);
+  //       // Assuming newAvatarUrl is managed within the context
+  //       const response = await updateAvatar(user.name, user.newAvatarUrl);
+  //       console.log("Avatar image swapped!");
+  //     } catch (error) {
+  //       console.error("Error updating avatar:", error);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   }
+  // };
 
   return (
     <div className="bg-black">
       <div>
-        <div className="">
+        <div>
           <img
             src={header}
             alt="profile header"
@@ -50,8 +46,8 @@ export const Profile = () => {
           <div className="h-[150px] md:h-[200px] w-[150px] md:w-[200px] border-4 border-zinc-700 bg-black rounded-full">
             <img
               id="avatar-image"
-              src={newAvatarUrl || userData.avatar || noAvatar}
-              alt=""
+              src={user.avatar || noAvatar}
+              alt="avatar"
               className="w-full h-full object-cover rounded-full"
             />
           </div>
@@ -62,28 +58,12 @@ export const Profile = () => {
           >
             +
           </button>
-          <ChangeAvatarModal isOpen={isModalOpen} closeModal={closeModal} setNewAvatarUrl={setNewAvatarUrl}/>
+          <ChangeAvatarModal
+            isOpen={isModalOpen}
+            closeModal={closeModal}
+          />
         </div>
       </div>
-      {/* <div className="relative">
-        <div className="p-5 absolute bottom-0 lg:left-[10%]">
-          <h1 className="font-alli text-5xl md:text-[5rem]">Profile</h1>
-        </div>
-        <button
-          id="save"
-          className="absolute whitespace-nowrap left-4 top-1 lg:left-[10%] flex justify-center items-center gap-2 py-[5px] px-[10px] rounded-full text-holiblue text-[10px] border-[1.8px] border-holiblue font-ndo hover:scale-105 transition-all duration-800 cursor-pointer"
-          type="submit"
-          onClick={handleSaveProfile}
-        >
-          <BsCloudUpload size={15} className="rounded-full w-full h-full" />
-          {isLoading ? <GridLoader className="h-1 w-1" /> : "Save changes"}
-        </button>
-        <ChangeAvatarModal
-          isOpen={ isModalOpen }
-          closeModal={ closeModal }
-          setNewAvatarUrl={setNewAvatarUrl}
-        />
-      </div> */}
       <div className="flex flex-col items-center justify-evenly h-[45vh]">
         <div className="relative ps-24 pe-20 py-2 border-[2px] border-holipink rounded-full w-[60%] h- md:max-w-[30rem]">
           <div className="absolute top-0 left-0">
@@ -92,7 +72,7 @@ export const Profile = () => {
               className="text-black bg-holipink rounded-full p-1"
             />
           </div>
-          <p className="whitespace-nowrap">{userData.username}</p>
+          <p className="whitespace-nowrap">{user.username}</p>
         </div>
         <div className="relative ps-24 pe-20 py-2 border-[2px] border-holipink rounded-full w-[60%] md:max-w-[30rem]">
           <div className="absolute top-0 left-0">
@@ -101,7 +81,7 @@ export const Profile = () => {
               className="text-black bg-holipink rounded-full p-1"
             />
           </div>
-          <p className="whitespace-nowrap">{userData.email}</p>
+          <p className="whitespace-nowrap">{user.email}</p>
         </div>
         <div className="relative ps-24 pe-20 py-2 border-[2px] border-holipink rounded-full w-[60%] md:max-w-[30rem]">
           <div className="absolute top-0 left-0">
@@ -110,7 +90,7 @@ export const Profile = () => {
               className="text-black bg-holipink rounded-full p-1"
             />
           </div>
-          <p className="whitespace-nowrap overflow-hidden">{userData.avatar}</p>
+          <p className="whitespace-nowrap overflow-hidden">{user.avatar}</p>
         </div>
         <div className="relative ps-24 pe-20 py-2 border-[2px] border-holipink rounded-full w-[60%] md:max-w-[30rem]">
           <div className="absolute top-0 left-0">
@@ -121,7 +101,7 @@ export const Profile = () => {
           </div>
           <p className="whitespace-nowrap flex items-center justify-between">
             Venue Manager:{" "}
-            {userData.manager ? (
+            {user.manager ? (
               <GiCheckMark color="#70C376" />
             ) : (
               <GiCrossMark color="#C37070" size={20} />
