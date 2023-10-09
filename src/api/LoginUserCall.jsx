@@ -1,21 +1,24 @@
 import { LOGIN_USER } from "./endpoints";
-import { CurrentStorage } from "../utils/CurrentStorage";
+// import { setStorage } from "../utils/SetStorage";
 
 export async function LoginUserCall(data) {
   try {
-    const accessToken = CurrentStorage().accesstoken
+    // const accessToken = localStorage.getItem("accessToken")
     const response = await fetch(`${LOGIN_USER}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
+        // Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify(data),
     });
 
     const json = await response.json();
 
+    console.log(json)
+
     if (response.ok) {
+      // localStorage.setItem("accessToken", json.accessToken)
       return json;
     }
 

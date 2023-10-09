@@ -9,28 +9,14 @@ import { ChangeAvatarModal } from "../../components/ui/modals/ChangeAvatarModal"
 import { useUser } from "../../context/UserContext";
 
 export const Profile = () => {
-  // const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const { user } = useUser();
+  console.log("User in Profile:", user);
+  
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
-  // const userData = CurrentStorage();
   console.log("User:", user)
-
-  // const handleSaveProfile = async () => {
-  //   if (user && user.name) {
-  //     try {
-  //       setIsLoading(true);
-  //       // Assuming newAvatarUrl is managed within the context
-  //       const response = await updateAvatar(user.name, user.newAvatarUrl);
-  //       console.log("Avatar image swapped!");
-  //     } catch (error) {
-  //       console.error("Error updating avatar:", error);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   }
-  // };
+  console.log(useUser())
 
   return (
     <div className="bg-black">
@@ -44,12 +30,14 @@ export const Profile = () => {
         </div>
         <div className="absolute top-[25%] md:top-[18%] right-[25%] md:right-[30%] flex flex-col">
           <div className="h-[150px] md:h-[200px] w-[150px] md:w-[200px] border-4 border-zinc-700 bg-black rounded-full">
-            <img
-              id="avatar-image"
-              src={user.avatar || noAvatar}
-              alt="avatar"
-              className="w-full h-full object-cover rounded-full"
-            />
+            {user && (
+              <img
+                id="avatar-image"
+                src={user.avatar || noAvatar}
+                alt="avatar"
+                className="w-full h-full object-cover rounded-full"
+              />
+            )}
           </div>
           <button
             id="plus-button"
@@ -58,10 +46,7 @@ export const Profile = () => {
           >
             +
           </button>
-          <ChangeAvatarModal
-            isOpen={isModalOpen}
-            closeModal={closeModal}
-          />
+          <ChangeAvatarModal isOpen={isModalOpen} closeModal={closeModal} />
         </div>
       </div>
       <div className="flex flex-col items-center justify-evenly h-[45vh]">
@@ -72,7 +57,7 @@ export const Profile = () => {
               className="text-black bg-holipink rounded-full p-1"
             />
           </div>
-          <p className="whitespace-nowrap">{user.username}</p>
+          {user && <p>{user.name}</p>}
         </div>
         <div className="relative ps-24 pe-20 py-2 border-[2px] border-holipink rounded-full w-[60%] md:max-w-[30rem]">
           <div className="absolute top-0 left-0">
@@ -101,7 +86,7 @@ export const Profile = () => {
           </div>
           <p className="whitespace-nowrap flex items-center justify-between">
             Venue Manager:{" "}
-            {user.manager ? (
+            {user.venueManager ? (
               <GiCheckMark color="#70C376" />
             ) : (
               <GiCrossMark color="#C37070" size={20} />

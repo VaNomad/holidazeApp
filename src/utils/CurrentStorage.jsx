@@ -1,5 +1,5 @@
 export const CurrentStorage = () => {
- const username = localStorage.getItem("userName");
+ const username = localStorage.getItem("userName")
  const accesstoken = localStorage.getItem("accessToken");
  const avatar = localStorage.getItem("avatar");
  const email = localStorage.getItem("email");

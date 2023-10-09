@@ -36,10 +36,8 @@ export const NavBar = () => {
                 toggle ? "opacity-100 scale-100" : "opacity-0 scale-0"
               }`}
             >
-              <div className="text-center border-2 border-[#FCB5FF] rounded-full m-3 w-[35px] h-[35px] hover:scale-105">
-                <h1 className="text-[18px] font-dm font-medium">
-                  x
-                </h1>
+              <div className="text-center border-2 border-[#FCB5FF] rounded-full hover:text-black hover:border-none hover:bg-[#FCB5FF] m-3 w-[35px] h-[35px] hover:scale-105">
+                <h1 className="text-[18px] font-dm font-medium">x</h1>
               </div>
             </div>
 
@@ -49,9 +47,7 @@ export const NavBar = () => {
               }`}
             >
               <div className="text-center border-2 border-[#FCB5FF] hover:border-none hover:bg-[#FCB5FF] hover:text-black rounded-full m-3 w-[120px] hover:scale-105 transition-scale duration-200 ease-in">
-                <h1 className="text-[19px] font-dm font-medium">
-                  menu
-                </h1>
+                <h1 className="text-[19px] font-dm font-medium">menu</h1>
               </div>
             </div>
           </div>

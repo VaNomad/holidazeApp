@@ -32,7 +32,7 @@ export const LoginForm = () => {
       setIsLoading(true);
       const response = await LoginUserCall(data);
       console.log("Response from server:", response);
-      localStorage.setItem("accessToken", response.accessToken);
+      // localStorage.setItem("accessToken", response.accessToken);
       loginUser(response);
       navigate("/profile");
     } catch (error) {

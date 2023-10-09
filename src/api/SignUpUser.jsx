@@ -16,12 +16,6 @@ export async function SignUpUser(data) {
     }
 
     const userSignUp = await response.json();
-    localStorage.setItem("username", userSignUp.name);
-    localStorage.setItem("accessToken", userSignUp.name);
-    localStorage.setItem("email", userSignUp.email);
-    localStorage.setItem("avatar", userSignUp.avatar);
-    localStorage.setItem("venueManager", userSignUp.venueManager);
-    // localStorage.setItem("password", userSignUp.password);
         
     console.log(userSignUp)
 

@@ -1,14 +1,9 @@
 import { useContext, createContext, useReducer } from "react";
-// import { LoginUser } from "../api/LoginUser";
-// import { makeLoginUserCall } from "../api/LoginUserCall";
 import { SignUpUser } from "../api/SignUpUser";
 import { UpdateProfile } from "../api/UpdateProfile";
 import { UpdateAvatarUrl } from "../api/UpdateAvatarUrl";
-// import { CurrentStorage } from "../utils/CurrentStorage";
 
 const UserContext = createContext();
-
-// const userData = CurrentStorage();
 
 const initialState = {
   user: null,
@@ -18,28 +13,6 @@ const initialState = {
   hasError: false,
   errorDisplay: null,
 };
-
-// const initialState = {
-//   user: null,
-//   isAuthenticated: !!userData.accesstoken,
-//   isLoading: false,
-//   hasError: false,
-//   errorDisplay: null,
-// };
-
-// const initialState = {
-//   user: {
-//     username: userData.username || "",
-//     accessToken: userData.accesstoken || "",
-//     avatar: userData.avatar || "",
-//     email: userData.email || "",
-//     manager: userData.manager || false,
-//   },
-//   isAuthenticated: !!userData.accesstoken,
-//   isLoading: false,
-//   hasError: false,
-//   errorDisplay: null,
-// };
 
 const userReducer = (state, action) => {
   switch (action.type) {
@@ -73,7 +46,7 @@ const userReducer = (state, action) => {
         ...state,
         isLoading: false,
         hasError: false,
-        user: action.payload,
+        user: action.payload.user,
       };
     case "SIGNUP_FAILURE":
       return {
@@ -130,23 +103,21 @@ const userReducer = (state, action) => {
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, initialState);
 
+  console.log("Initial User Data:", state.user)
+
   const loginUser = async (data) => {
-    console.log("Received data in loginUser:", data)
+    console.log("Received data in loginUser:", data);
     const { accessToken, ...user } = data;
     localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("username", user.username);
-    localStorage.setItem("email", user.email);
+    localStorage.setItem("username", user.name);
+    localStorage.setItem("email", user.eemail);
     localStorage.setItem("avatar", user.avatar);
     localStorage.setItem("venueManager", user.venueManager);
-    dispatch({type: "LOGIN_SUCCESS", payload: {accessToken, user}})
+    dispatch({ type: "LOGIN_SUCCESS", payload: { accessToken, user } });
   }
 
   const logout = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("username");
-    localStorage.removeItem("email");
-    localStorage.removeItem("avatar");
-    localStorage.removeItem("venueManager");
+    window.localStorage.clear()
   };
 
   const isAuthenticated = () => {
@@ -188,8 +159,8 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{
-        state,
+      value={ {
+        user: state.user,
         loginUser,
         signUpUser,
         updateProfile,

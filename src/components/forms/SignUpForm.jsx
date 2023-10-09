@@ -16,8 +16,8 @@ export const SignUpForm = () => {
     formState: { errors },
   } = useForm();
 
-  const toggleCheckbox = () => {
-    setIsChecked(!isChecked);
+  const toggleCheckbox = (e) => {
+    setIsChecked(e.target.checked);
   };
 
   const handleSignup = async (data) => {
