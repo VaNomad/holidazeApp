@@ -110,7 +110,7 @@ export const UserProvider = ({ children }) => {
     const { accessToken, ...user } = data;
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("username", user.name);
-    localStorage.setItem("email", user.eemail);
+    localStorage.setItem("email", user.email);
     localStorage.setItem("avatar", user.avatar);
     localStorage.setItem("venueManager", user.venueManager);
     dispatch({ type: "LOGIN_SUCCESS", payload: { accessToken, user } });

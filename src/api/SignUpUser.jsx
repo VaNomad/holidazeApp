@@ -17,7 +17,7 @@ export async function SignUpUser(data) {
 
     const userSignUp = await response.json();
         
-    console.log(userSignUp)
+    console.log("From SignUpUser API Call:", userSignUp)
 
     return userSignUp;
   } catch (error) {

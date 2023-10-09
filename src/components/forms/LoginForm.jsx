@@ -33,6 +33,8 @@ export const LoginForm = () => {
       const response = await LoginUserCall(data);
       console.log("Response from server:", response);
       // localStorage.setItem("accessToken", response.accessToken);
+      const venueManagerValue = localStorage.getItem("venueManager")
+      console.log("venueManager value after login:", venueManagerValue);
       loginUser(response);
       navigate("/profile");
     } catch (error) {
