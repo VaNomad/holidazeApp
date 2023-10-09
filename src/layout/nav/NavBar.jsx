@@ -2,10 +2,20 @@ import { navLinks } from "../../constants/constants";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import holidazeLogoPink2 from "../../assets/vectors/holidazeLogoPink2.png"
+import { useUser } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
+import {FiLogOut} from "react-icons/fi"
 
 export const NavBar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
+  const { logout } = useUser()
+  const navigate = useNavigate();
+  
+  const handleLogout = () => {
+    logout();
+    navigate("/")
+  }
 
   return (
     <nav className="w-full flex items-center fixed bg-blackish z-50">
@@ -74,6 +84,12 @@ export const NavBar = () => {
                   <Link to={link.id}>{link.title}</Link>
                 </li>
               ))}
+              <li
+                className="bg-holiblue text-black rounded-full flex items-center gap-3 w-full ms-[-1rem] px-4 py-2 whitespace-nowrap"
+                onClick={handleLogout}
+              >
+                Log Out{" "}{<FiLogOut />}
+              </li>
             </ul>
           </div>
         </div>
