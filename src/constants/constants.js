@@ -85,20 +85,20 @@ export const navLinks = [
     id: "profile",
     title: "Profile",
   },
-  {
-    id: "venue-admin",
-    title: "Venue Admin",
-  },
-  {
-    id: "add-venue",
-    title: "Add Venue",
-  },
+  // {
+  //   id: "venue-admin",
+  //   title: "Venue Admin",
+  // },
+  // {
+  //   id: "add-venue",
+  //   title: "Add Venue",
+  // },
   {
     id: "contact",
     title: "Contact",
   },
-  {
-    id: "logout",
-    title: "Log Out",
-  },
+  // {
+  //   id: "logout",
+  //   title: "Log Out",
+  // },
 ];

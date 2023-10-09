@@ -65,9 +65,9 @@ export const NavBar = () => {
           <div
             className={`${
               !toggle ? "hidden" : "flex"
-            } bg-blackish border-2 black absolute top-20 left-0 right-0 mx-2 rounded-xl`}
+            } bg-blackish border-2 black absolute top-32 left-5 right-5 mx-2 rounded-xl`}
           >
-            <ul className="list-none flex flex-col items-start justify-around mx-auto my-16 h-[600px]">
+            <ul className="list-none flex flex-col items-start justify-around mx-auto my-16 h-[500px]">
               {navLinks.map((link) => (
                 <li
                   key={link.id}
