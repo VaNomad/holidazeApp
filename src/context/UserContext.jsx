@@ -4,28 +4,28 @@ import { useContext, createContext, useReducer } from "react";
 import { SignUpUser } from "../api/SignUpUser";
 import { UpdateProfile } from "../api/UpdateProfile";
 import { UpdateAvatarUrl } from "../api/UpdateAvatarUrl";
-import { CurrentStorage } from "../utils/CurrentStorage";
+// import { CurrentStorage } from "../utils/CurrentStorage";
 
 const UserContext = createContext();
 
-const userData = CurrentStorage();
-
-// const initialState = {
-//   user: null,
-//   accessToken: localStorage.getItem("accessToken"),
-//   isAuthenticated: false,
-//   isLoading: false,
-//   hasError: false,
-//   errorDisplay: null,
-// };
+// const userData = CurrentStorage();
 
 const initialState = {
   user: null,
-  isAuthenticated: !!userData.accesstoken,
+  accessToken: localStorage.getItem("accessToken"),
+  isAuthenticated: false,
   isLoading: false,
   hasError: false,
   errorDisplay: null,
 };
+
+// const initialState = {
+//   user: null,
+//   isAuthenticated: !!userData.accesstoken,
+//   isLoading: false,
+//   hasError: false,
+//   errorDisplay: null,
+// };
 
 // const initialState = {
 //   user: {
