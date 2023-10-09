@@ -85,7 +85,7 @@ export const NavBar = () => {
                 </li>
               ))}
               <li
-                className="bg-holiblue text-black rounded-full flex items-center gap-3 w-full ms-[-1rem] px-4 py-2 whitespace-nowrap"
+                className="bg-holiblue text-black rounded-full flex items-center gap-3 w-full ms-[-1rem] px-4 py-2 whitespace-nowrap cursor-pointer"
                 onClick={handleLogout}
               >
                 Log Out{" "}{<FiLogOut />}

@@ -16,13 +16,15 @@ export const SignUpForm = () => {
     formState: { errors },
   } = useForm();
 
-  const toggleCheckbox = (e) => {
-    setIsChecked(e.target.checked);
+  const toggleCheckbox = (event) => {
+    setIsChecked(event.target.checked);
+    console.log("isChecked:", event.target.checked)
   };
 
   const handleSignup = async (data) => {
     try {
       console.log("SignUp Data:", data)
+      data.venueManager = isChecked;
       const response = await SignUpUser(data)
       console.log("SignUp Response:", response)
       // const { userData, accessToken } = response;
@@ -32,8 +34,8 @@ export const SignUpForm = () => {
       console.log(data)
       console.log(SignUpUser)
 
-      const isVenueManager = isChecked;
-      localStorage.setItem("venueManager", isVenueManager.toString())
+      
+      // localStorage.setItem("venueManager", data.venueManager.toString())
       
       if (response.userData && response.accessToken) {
         navigate("/login")
