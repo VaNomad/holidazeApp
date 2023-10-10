@@ -1,23 +1,23 @@
 import { navLinks } from "../../constants/constants";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import holidazeLogoPink2 from "../../assets/vectors/holidazeLogoPink2.png"
+import holidazeLogoPink2 from "../../assets/vectors/holidazeLogoPink2.png";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
-import {FiLogOut} from "react-icons/fi"
-import {GiCrossMark} from "react-icons/gi"
+import { FiLogOut } from "react-icons/fi";
+import { GiCrossMark } from "react-icons/gi";
 
 export const NavBar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
-  const { logout } = useUser()
+  const { logout, isAuthenticated } = useUser();
   const navigate = useNavigate();
-  
+
   const handleLogout = () => {
     logout();
-    navigate("/")
-    setToggle(!toggle)
-  }
+    navigate("/");
+    setToggle(!toggle);
+  };
 
   return (
     <nav className="w-full flex items-center fixed bg-blackish z-50">
@@ -29,6 +29,8 @@ export const NavBar = () => {
               key={link.id}
               className={`${
                 active === link.title ? "text-black" : "text-purple-600"
+              } ${
+                !isAuthenticated && link.id === "profile" ? "hidden" : "flex"
               } :text-purple-600 cursor-pointer`}
               onClick={() => setActive(link.title)}
             >
@@ -79,7 +81,7 @@ export const NavBar = () => {
                     active === link.title
                       ? "text-white font-semibold px-5 py-2"
                       : "text-pink-300 px-5 py-2 hover:text-black hover:bg-holipink hover:rounded-full transition-all duration-300"
-                  } text-[16px] cursor-pointer font-medium `}
+                  } ${ !isAuthenticated && "profile" === link.id ? "hidden" : "" } text-[16px] cursor-pointer font-medium `}
                   onClick={() => {
                     setActive(link.title);
                     setToggle(!toggle);
@@ -110,4 +112,4 @@ export const NavBar = () => {
       </div>
     </nav>
   );
-}
+};
