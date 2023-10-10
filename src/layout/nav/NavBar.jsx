@@ -16,6 +16,7 @@ export const NavBar = () => {
   const handleLogout = () => {
     logout();
     navigate("/")
+    setToggle(!toggle)
   }
 
   return (
