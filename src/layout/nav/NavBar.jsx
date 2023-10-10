@@ -10,34 +10,35 @@ import { GiCrossMark } from "react-icons/gi";
 export const NavBar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
-  const { logout, isAuthenticated } = useUser();
+  const { logout } = useUser();
+  const { isAuthenticated } = useUser();
   const navigate = useNavigate();
+  console.log("isAuthenticated:", isAuthenticated);
 
   const handleLogout = () => {
     logout();
     navigate("/");
     setToggle(!toggle);
+    console.log(logout())
   };
 
   return (
     <nav className="w-full flex items-center fixed bg-blackish z-50">
       <div className="w-full flex justify-between">
         {/* Desktop Menu */}
-        <ul className="list-none hidden">
+        {/* <ul className="list-none hidden">
           {navLinks.map((link) => (
             <li
               key={link.id}
               className={`${
                 active === link.title ? "text-black" : "text-purple-600"
-              } ${
-                !isAuthenticated && link.id === "profile" ? "hidden" : "flex"
-              } :text-purple-600 cursor-pointer`}
+              } text-purple-600 cursor-pointer`}
               onClick={() => setActive(link.title)}
             >
               <Link to={link.id}>{link.title}</Link>
             </li>
           ))}
-        </ul>
+        </ul> */}
 
         {/* Mobile Menu */}
         <div>
@@ -74,22 +75,26 @@ export const NavBar = () => {
             } bg-blackish border-2 black absolute top-32 left-5 right-5 mx-2 rounded-xl`}
           >
             <ul className="list-none flex flex-col items-start justify-around mx-auto my-16 h-[500px]">
-              {navLinks.map((link) => (
-                <li
-                  key={link.id}
-                  className={`${
-                    active === link.title
-                      ? "text-white font-semibold px-5 py-2"
-                      : "text-pink-300 px-5 py-2 hover:text-black hover:bg-holipink hover:rounded-full transition-all duration-300"
-                  } ${ !isAuthenticated && "profile" === link.id ? "hidden" : "" } text-[16px] cursor-pointer font-medium `}
-                  onClick={() => {
-                    setActive(link.title);
-                    setToggle(!toggle);
-                  }}
-                >
-                  <Link to={link.id}>{link.title}</Link>
-                </li>
-              ))}
+              {navLinks.map((link) =>
+                (link.id === "profile" && !isAuthenticated()) ||
+                (link.id === "my-venues" && !isAuthenticated()) ||
+                (link.id === "add-venue" && !isAuthenticated()) ? null : (
+                  <li
+                    key={link.id}
+                    className={`${
+                      active === link.title
+                        ? "text-white font-semibold px-5 py-2"
+                        : "text-pink-300 px-5 py-2 hover:text-black hover:bg-holipink hover:rounded-full transition-all duration-300"
+                    } text-[16px] cursor-pointer font-medium `}
+                    onClick={() => {
+                      setActive(link.title);
+                      setToggle(!toggle);
+                    }}
+                  >
+                    <Link to={link.id}>{link.title}</Link>
+                  </li>
+                )
+              )}
               <li
                 className="bg-holiblue text-black rounded-full flex items-center gap-3 w-full px-4 py-2 whitespace-nowrap cursor-pointer hover:scale-105 hover:bg-gradient-to-br from-holigreen to-holired transition-all duration-300 ease-in"
                 onClick={handleLogout}
@@ -104,7 +109,7 @@ export const NavBar = () => {
           to="/"
           className="flex flex-col justify-end"
           onClick={() => {
-            setActive("");
+            setActive("Home");
           }}
         >
           <img src={holidazeLogoPink2} alt="logo" className="w-[180px] p-3" />

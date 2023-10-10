@@ -119,10 +119,13 @@ export const UserProvider = ({ children }) => {
     localStorage.setItem("avatar", user.avatar);
     localStorage.setItem("venueManager", user.venueManager);
     dispatch({ type: "LOGIN_SUCCESS", payload: { accessToken, user } });
+    console.log("User logged in(clg from loginUser). isAuthenticated:", true)
   };
 
   const logout = () => {
+    dispatch({ type: "LOGOUT" });
     window.localStorage.clear();
+    console.log("User logged out(clg from logout). isAuthenticated:", false)
   };
 
   const isAuthenticated = () => {
