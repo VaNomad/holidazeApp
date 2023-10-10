@@ -85,14 +85,14 @@ export const navLinks = [
     id: "profile",
     title: "Profile",
   },
-  // {
-  //   id: "venue-admin",
-  //   title: "Venue Admin",
-  // },
-  // {
-  //   id: "add-venue",
-  //   title: "Add Venue",
-  // },
+  {
+    id: "my-venues",
+    title: "My Venues",
+  },
+  {
+    id: "add-venue",
+    title: "Add Venue",
+  },
   {
     id: "contact",
     title: "Contact",
