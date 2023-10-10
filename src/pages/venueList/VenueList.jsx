@@ -35,7 +35,7 @@ export const VenueList = () => {
 
   return (
     <div className="mt-10 flex flex-col items-center bg-black">
-      <div className="fixed bg-blackish text-center z-50 w-screen mt-1">
+      <div className="fixed bg-blackish text-center z-50 w-screen mt-3">
         <h1 className="font-alli text-[40px] decoration-holipink underline-offset-8">
           Popular Venues
         </h1>

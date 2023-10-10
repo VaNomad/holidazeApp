@@ -5,6 +5,7 @@ import holidazeLogoPink2 from "../../assets/vectors/holidazeLogoPink2.png"
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import {FiLogOut} from "react-icons/fi"
+import {GiCrossMark} from "react-icons/gi"
 
 export const NavBar = () => {
   const [active, setActive] = useState("");
@@ -38,7 +39,7 @@ export const NavBar = () => {
         {/* Mobile Menu */}
         <div>
           <div
-            className="cursor-pointer transform transition-transform ease-in-out duration-600"
+            className="cursor-pointer transition-transform ease-in-out duration-600"
             onClick={() => setToggle(!toggle)}
           >
             <div
@@ -46,8 +47,10 @@ export const NavBar = () => {
                 toggle ? "opacity-100 scale-100" : "opacity-0 scale-0"
               }`}
             >
-              <div className="text-center border-2 border-[#FCB5FF] rounded-full hover:text-black hover:border-none hover:bg-[#FCB5FF] m-3 w-[35px] h-[35px] hover:scale-105">
-                <h1 className="text-[18px] font-dm font-medium">x</h1>
+              <div className="border-2 border-[#FCB5FF] rounded-full hover:text-black hover:border-none hover:bg-[#FCB5FF] m-3 p-2 hover:scale-105 transition-scale duration-200 ease-in">
+                <h1 className="text-[18px] font-dm font-medium">
+                  <GiCrossMark />
+                </h1>
               </div>
             </div>
 
@@ -73,9 +76,9 @@ export const NavBar = () => {
                   key={link.id}
                   className={`${
                     active === link.title
-                      ? "text-white font-semibold"
-                      : "text-pink-300"
-                  } text-[16px] cursor-pointer font-medium`}
+                      ? "text-white font-semibold px-5 py-2"
+                      : "text-pink-300 px-5 py-2 hover:text-black hover:bg-holipink hover:rounded-full transition-all duration-300"
+                  } text-[16px] cursor-pointer font-medium `}
                   onClick={() => {
                     setActive(link.title);
                     setToggle(!toggle);
@@ -85,10 +88,10 @@ export const NavBar = () => {
                 </li>
               ))}
               <li
-                className="bg-holiblue text-black rounded-full flex items-center gap-3 w-full ms-[-1rem] px-4 py-2 whitespace-nowrap cursor-pointer"
+                className="bg-holiblue text-black rounded-full flex items-center gap-3 w-full px-4 py-2 whitespace-nowrap cursor-pointer hover:scale-105 hover:bg-gradient-to-br from-holigreen to-holired transition-all duration-300 ease-in"
                 onClick={handleLogout}
               >
-                Log Out{" "}{<FiLogOut />}
+                Log Out {<FiLogOut size={20} />}
               </li>
             </ul>
           </div>
