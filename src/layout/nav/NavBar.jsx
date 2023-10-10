@@ -12,6 +12,8 @@ export const NavBar = () => {
   const [toggle, setToggle] = useState(false);
   const { logout } = useUser();
   const { isAuthenticated } = useUser();
+  const { user } = useUser();
+  console.log(user)
   const navigate = useNavigate();
   console.log("isAuthenticated:", isAuthenticated);
 
@@ -104,6 +106,30 @@ export const NavBar = () => {
             </ul>
           </div>
         </div>
+
+        {/* {!isAuthenticated ? null : (
+          <Link to="/profile" className="flex">
+            {user && (
+              <img
+                id="avatar-image"
+                src={user.avatar}
+                alt="avatar"
+                className="w-[40px] h-[40px] object-cover rounded-full"
+              />
+            )}
+          </Link>
+        )} */}
+
+        {isAuthenticated && user && (
+          <Link to="/profile" className="flex items-center">
+            <img
+              id="avatar-image"
+              src={user.avatar}
+              alt="avatar"
+              className="w-[30px] h-[30px] object-cover rounded-full"
+            />
+          </Link>
+        )}
 
         <Link
           to="/"
