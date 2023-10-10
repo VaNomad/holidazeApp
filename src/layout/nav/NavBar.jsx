@@ -26,7 +26,7 @@ export const NavBar = () => {
 
   return (
     <nav className="w-full flex items-center fixed bg-blackish z-50">
-      <div className="w-full flex justify-between">
+      <div className="w-full grid grid-cols-3">
         {/* Desktop Menu */}
         {/* <ul className="list-none hidden">
           {navLinks.map((link) => (
@@ -43,7 +43,7 @@ export const NavBar = () => {
         </ul> */}
 
         {/* Mobile Menu */}
-        <div>
+        <div className="justify-self-start">
           <div
             className="cursor-pointer transition-transform ease-in-out duration-600"
             onClick={() => setToggle(!toggle)}
@@ -120,16 +120,18 @@ export const NavBar = () => {
           </Link>
         )} */}
 
-        {isAuthenticated && user && (
-          <Link to="/profile" className="flex items-center">
-            <img
-              id="avatar-image"
-              src={user.avatar}
-              alt="avatar"
-              className="w-[30px] h-[30px] object-cover rounded-full"
-            />
-          </Link>
-        )}
+        <div className="justify-items-center">
+          {isAuthenticated && user && (
+            <Link to="/profile" className="flex justify-center items-center">
+              <img
+                id="avatar-image"
+                src={user.avatar}
+                alt="avatar"
+                className="w-[30px] h-[30px] object-cover rounded-full"
+              />
+            </Link>
+          )}
+        </div>
 
         <Link
           to="/"
