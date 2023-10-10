@@ -22,7 +22,6 @@ export const Header = () => {
 
   return (
     <header>
-      {/* Other header content */}
       {renderNav()}
     </header>
   );

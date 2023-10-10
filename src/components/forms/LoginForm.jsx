@@ -2,11 +2,18 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import { SignUpForm } from "./SignUpForm"; // Import your SignUpForm component
-import { LoginUser } from "../../api/LoginUser";
+import { SignUpForm } from "./SignUpForm";
+import { LoginUserCall } from "../../api/LoginUserCall";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
+import { GridLoader } from "react-spinners";
+
 
 export const LoginForm = () => {
+  const [loginError, setLoginError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const { loginUser } = useUser();
+
   const navigate = useNavigate();
   const {
     register,
@@ -20,31 +27,23 @@ export const LoginForm = () => {
     setActiveTab(index);
   };
 
-  const [loginError, setLoginError] = useState(null);
-
   const handleLogin = async (data) => {
     try {
-      const response = await LoginUser(data);
-      // const { userData, accessToken } = response;
-
-      // if (response.ok) {
-      //   window.location.pathname = "/";
-      // }
-
-      
-
-      navigate("/")
-
-      // console.log(userData)
-      // console.log(accessToken)
-      console.log(response)
-      console.log(data)
-      console.log(LoginUser)
-
+      setIsLoading(true);
+      const response = await LoginUserCall(data);
+      console.log("Response from server:", response);
+      // localStorage.setItem("accessToken", response.accessToken);
+      const venueManagerValue = localStorage.getItem("venueManager")
+      console.log("venueManager value after login:", venueManagerValue);
+      loginUser(response);
+      navigate("/profile");
     } catch (error) {
-      setLoginError("Login failed. Check email & password")
+      console.log("login failed. Check email & password", error)
+      setLoginError("Login failed. Check email & password");
+    } finally {
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className="mx-auto border border-holiblue p-5 rounded-xl max-w-xl w-[80%]">
@@ -80,12 +79,6 @@ export const LoginForm = () => {
               className="h-14 rounded-md p-3 bg-zinc-700"
               {...register("password", {
                 required: "A password is required",
-                pattern: {
-                  value:
-                    /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/,
-                  message:
-                    "Password must be 8 - 16 characters, have 1 lowercase & 1 uppercase letter, one number and 1 special character",
-                },
               })}
               placeholder="Password"
               onBlur={() => {
@@ -96,12 +89,14 @@ export const LoginForm = () => {
               <p className="text-red-500">{errors.password.message}</p>
             )}
 
-            <input
+            <button
               className="h-16 rounded-full bg-zinc-800 border border-holipink hover:bg-holipink hover:text-black hover:scale-105 uppercase font-medium tracking-widest font-dm text-xl transition-all duration-800 cursor-pointer"
               type="submit"
-              value="login"
-            />
-            { loginError && <p className="text-red-500">{loginError}</p>}
+              disabled={isLoading}
+            >
+              {isLoading ? <GridLoader className="h-1 w-1" /> : "login"}
+            </button>
+            {loginError && <p className="text-red-500">{loginError}</p>}
           </form>
         </TabPanel>
         <TabPanel>

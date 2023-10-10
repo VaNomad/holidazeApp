@@ -11,12 +11,16 @@ export async function SignUpUser(data) {
     });
 
     if (!response.ok) {
-      throw new Error("Signup failed");
+      const errorResponse = await response.json();
+      throw new Error(errorResponse.errors[0].message);
     }
 
-    const responseData = await response.json();
-    return responseData;
+    const userSignUp = await response.json();
+        
+    console.log("From SignUpUser API Call:", userSignUp)
+
+    return userSignUp;
   } catch (error) {
-    throw new Error("Signup failed");
+    throw new Error(`Signup failed ${error.message}`);
   }
 }

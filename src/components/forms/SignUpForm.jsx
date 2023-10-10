@@ -1,30 +1,55 @@
 import { useForm } from "react-hook-form"
 import { useState } from "react";
 import { SignUpUser } from "../../api/SignUpUser";
+import { useNavigate } from "react-router-dom";
 
 export const SignUpForm = () => {
+  const [isChecked, setIsChecked] = useState(false);
+  const [signUpError, setSignUpError] = useState(null);
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     trigger,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const [isChecked, setIsChecked] = useState(false);
-
-  const toggleCheckbox = () => {
-    setIsChecked(!isChecked);
+  const toggleCheckbox = (event) => {
+    setIsChecked(event.target.checked);
+    console.log("isChecked:", event.target.checked)
   };
-
-  const [signUpError, setSignUpError] = useState(null);
 
   const handleSignup = async (data) => {
     try {
+      console.log("SignUp Data:", data)
+      data.venueManager = isChecked;
       const response = await SignUpUser(data)
+      console.log("SignUp Response:", response)
+      // const { userData, accessToken } = response;
+      // SignUpUser(userData, accessToken);
+
       console.log(response);
       console.log(data)
       console.log(SignUpUser)
+
+      
+      // localStorage.setItem("venueManager", data.venueManager.toString())
+      
+      if (response.userData && response.accessToken) {
+        navigate("/login")
+      }
+
+      setTimeout(() => {
+        // loginUser(userData, accessToken);
+        navigate("/login");
+        reset();
+      }, 1000);
+
+      setSignUpError(null)
     } catch (error) {
+      console.log("SignUp Error:", error)
       setSignUpError("SignUp failed. Check added credentials");
     }
     

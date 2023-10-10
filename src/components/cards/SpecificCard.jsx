@@ -5,7 +5,7 @@ import {PiBowlFood} from "react-icons/pi"
 import { GiHollowCat } from "react-icons/gi";
 import { CiParking1 } from "react-icons/ci";
 import { GiCheckMark, GiCrossMark } from "react-icons/gi";
-import noAvatar from "../../assets/vectors/hLogoGreen.png"
+// import noAvatar from "../../assets/vectors/hLogoGreen.png"
 import { BtnFull } from "../ui/buttons/BtnFull";
 
 export const SpecificCard = ({ data }) => {
@@ -43,7 +43,7 @@ export const SpecificCard = ({ data }) => {
         <div className="rounded-full border border-holipink w-[40px] h-[40px] p-2">
           <img
             className="w-full h-full"
-            src={avatar ? <img src={avatar} /> : <img src={noAvatar} />}
+            src={avatar}
             alt=""
           />
         </div>
