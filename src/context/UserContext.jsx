@@ -29,6 +29,11 @@ const userReducer = (state, action) => {
         user: action.payload.user,
       };
     case "LOGIN_FAILURE":
+      return {
+        ...state,
+        isAuthenticated: false,
+        logout: true,
+      };
     case "LOGOUT":
       return {
         ...state,
@@ -103,7 +108,7 @@ const userReducer = (state, action) => {
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, initialState);
 
-  console.log("Initial User Data:", state.user)
+  console.log("Initial User Data:", state.user);
 
   const loginUser = async (data) => {
     console.log("Received data in loginUser:", data);
@@ -114,10 +119,10 @@ export const UserProvider = ({ children }) => {
     localStorage.setItem("avatar", user.avatar);
     localStorage.setItem("venueManager", user.venueManager);
     dispatch({ type: "LOGIN_SUCCESS", payload: { accessToken, user } });
-  }
+  };
 
   const logout = () => {
-    window.localStorage.clear()
+    window.localStorage.clear();
   };
 
   const isAuthenticated = () => {
@@ -159,7 +164,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={ {
+      value={{
         user: state.user,
         loginUser,
         signUpUser,
