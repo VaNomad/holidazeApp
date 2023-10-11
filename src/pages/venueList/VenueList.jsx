@@ -35,12 +35,12 @@ export const VenueList = () => {
 
   return (
     <div className="mt-10 flex flex-col items-center bg-black">
-      <div className="fixed bg-blackish text-center z-50 w-screen mt-3">
+      <div className="fixed text-center bg-black z-30 w-screen mt-3">
         <h1 className="font-alli text-[40px] decoration-holipink underline-offset-8">
           Popular Venues
         </h1>
       </div>
-      <div className="flex justify-center items-center max-w-md p-2 mx-auto mt-16">
+      <div className="flex justify-center items-center max-w-md p-2 mx-auto mt-16 z-40">
         {filteredVenues.length === 0 ? (
           <div>
             <h1>No venues match your search, please try again!</h1>
