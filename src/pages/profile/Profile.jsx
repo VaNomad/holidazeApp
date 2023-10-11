@@ -11,6 +11,7 @@ import { useUser } from "../../context/UserContext";
 export const Profile = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const { user } = useUser();
+  // const { imageUrl } = useUser();
   console.log("User in Profile:", user);
   
   const openModal = () => setModalOpen(true);
