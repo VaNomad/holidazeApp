@@ -1,11 +1,11 @@
 import { API_BASE_URL } from "./endpoints";
 
-export async function UpdateAvatarUrl(userName, newAvatarUrl) {
+export async function UpdateAvatarUrl(username, newAvatarUrl) {
   const accessToken = localStorage.getItem("accessToken");
 
   try {
     const response = await fetch(
-      `${API_BASE_URL}/profiles/${userName}/media`,
+      `${API_BASE_URL}/profiles/${username}/media`,
       {
         method: "PUT",
         headers: {
