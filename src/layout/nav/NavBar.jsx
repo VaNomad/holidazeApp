@@ -74,11 +74,12 @@ export const NavBar = () => {
           <div
             className={`${
               !toggle ? "hidden" : "flex"
-            } bg-blackish border-2 black absolute top-32 left-5 right-5 mx-2 rounded-xl`}
+            } bg-blackish border-2 black absolute top-20 left-5 right-5 mx-2 rounded-xl`}
           >
-            <ul className="list-none flex flex-col items-start justify-around mx-auto my-16 h-[500px]">
+            <ul className="list-none flex flex-col items-start mx-auto my-16 gap-5">
               {navLinks.map((link) =>
                 (link.id === "profile" && !isAuthenticated()) ||
+                (link.id === "login" && isAuthenticated()) ||
                 (link.id === "my-venues" && !isAuthenticated()) ||
                 (link.id === "add-venue" && !isAuthenticated()) ? null : (
                   <li
@@ -97,12 +98,20 @@ export const NavBar = () => {
                   </li>
                 )
               )}
-              <li
+              {isAuthenticated && user ? (
+                <li
+                  className="bg-holiblue text-black rounded-full flex items-center gap-3 w-full px-4 py-2 whitespace-nowrap cursor-pointer hover:scale-105 hover:bg-gradient-to-br from-holigreen to-holired transition-all duration-300 ease-in"
+                  onClick={handleLogout}
+                >
+                  Log Out {<FiLogOut size={20} />}
+                </li>
+              ) : null }
+              {/* <li
                 className="bg-holiblue text-black rounded-full flex items-center gap-3 w-full px-4 py-2 whitespace-nowrap cursor-pointer hover:scale-105 hover:bg-gradient-to-br from-holigreen to-holired transition-all duration-300 ease-in"
                 onClick={handleLogout}
               >
                 Log Out {<FiLogOut size={20} />}
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
@@ -122,7 +131,10 @@ export const NavBar = () => {
 
         <div className="col-span-1">
           {isAuthenticated && user && (
-            <Link to="/profile" className="grid justify-self-center items-center h-full w-8">
+            <Link
+              to="/profile"
+              className="grid justify-self-center items-center h-full w-8"
+            >
               <img
                 id="avatar-image"
                 src={user.avatar}
@@ -140,7 +152,11 @@ export const NavBar = () => {
             setActive("Home");
           }}
         >
-          <img src={holidazeLogoPink2} alt="logo" className="p-3 min-w-[180px] max-w-[180px]" />
+          <img
+            src={holidazeLogoPink2}
+            alt="logo"
+            className="p-3 min-w-[180px] max-w-[180px]"
+          />
         </Link>
       </div>
     </nav>
