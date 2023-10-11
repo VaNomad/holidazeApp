@@ -49,38 +49,38 @@ export const Profile = () => {
           <ChangeAvatarModal isOpen={isModalOpen} closeModal={closeModal} />
         </div>
       </div>
-      <div className="flex flex-col items-center justify-evenly h-[45vh]">
-        <div className="relative ps-24 pe-20 py-2 border-[2px] border-holipink rounded-full w-[60%] h- md:max-w-[30rem]">
-          <div className="absolute top-0 left-0">
+      <div className="flex flex-col items-center justify-evenly h-[40vh]">
+        <div className="relative ps-14 pe-5 py-1 border-[2px] border-holipink rounded-full w-[80%] h- md:max-w-[30rem]">
+          <div className="absolute top-0 left-[-1px]">
             <AiOutlineUser
-              size={40}
+              size={32}
               className="text-black bg-holipink rounded-full p-1"
             />
           </div>
           {user && <p>{user.name}</p>}
         </div>
-        <div className="relative ps-24 pe-20 py-2 border-[2px] border-holipink rounded-full w-[60%] md:max-w-[30rem]">
+        <div className="relative ps-14 pe-5 py-1 border-[2px] border-holipink rounded-full w-[80%] md:max-w-[30rem]">
           <div className="absolute top-0 left-0">
             <AiOutlineMail
-              size={40}
+              size={32}
               className="text-black bg-holipink rounded-full p-1"
             />
           </div>
           <p className="whitespace-nowrap">{user.email}</p>
         </div>
-        <div className="relative ps-24 pe-20 py-2 border-[2px] border-holipink rounded-full w-[60%] md:max-w-[30rem]">
+        <div className="relative ps-14 pe-5 py-1 border-[2px] border-holipink rounded-full w-[80%] md:max-w-[30rem]">
           <div className="absolute top-0 left-0">
             <AiOutlineCamera
-              size={40}
+              size={32}
               className="text-black bg-holipink rounded-full p-1"
             />
           </div>
           <p className="whitespace-nowrap overflow-hidden">{user.avatar}</p>
         </div>
-        <div className="relative ps-24 pe-20 py-2 border-[2px] border-holipink rounded-full w-[60%] md:max-w-[30rem]">
+        <div className="relative ps-14 pe-5 py-1 border-[2px] border-holipink rounded-full w-[80%] md:max-w-[30rem]">
           <div className="absolute top-0 left-0">
             <BsKey
-              size={40}
+              size={32}
               className="text-black bg-holipink rounded-full p-1"
             />
           </div>

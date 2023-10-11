@@ -26,7 +26,7 @@ export const NavBar = () => {
 
   return (
     <nav className="w-full flex items-center fixed bg-blackish z-50">
-      <div className="w-full grid grid-cols-3">
+      <div className="w-full grid grid-cols-5">
         {/* Desktop Menu */}
         {/* <ul className="list-none hidden">
           {navLinks.map((link) => (
@@ -43,7 +43,7 @@ export const NavBar = () => {
         </ul> */}
 
         {/* Mobile Menu */}
-        <div className="justify-self-start">
+        <div className="col-span-2">
           <div
             className="cursor-pointer transition-transform ease-in-out duration-600"
             onClick={() => setToggle(!toggle)}
@@ -53,7 +53,7 @@ export const NavBar = () => {
                 toggle ? "opacity-100 scale-100" : "opacity-0 scale-0"
               }`}
             >
-              <div className="border-2 border-[#FCB5FF] rounded-full hover:text-black hover:border-none hover:bg-[#FCB5FF] m-3 p-2 hover:scale-105 transition-scale duration-200 ease-in">
+              <div className="border-2 border-[#FCB5FF] rounded-full hover:text-black hover:border-none hover:bg-[#FCB5FF] hover:scale-105 transition-scale duration-200 ease-in">
                 <h1 className="text-[18px] font-dm font-medium">
                   <GiCrossMark />
                 </h1>
@@ -120,9 +120,9 @@ export const NavBar = () => {
           </Link>
         )} */}
 
-        <div className="justify-items-center">
+        <div className="col-span-1">
           {isAuthenticated && user && (
-            <Link to="/profile" className="flex justify-center items-center">
+            <Link to="/profile" className="grid justify-self-center items-center h-full w-8">
               <img
                 id="avatar-image"
                 src={user.avatar}
@@ -135,12 +135,12 @@ export const NavBar = () => {
 
         <Link
           to="/"
-          className="flex flex-col justify-end"
+          className="col-span-2 justify-self-end"
           onClick={() => {
             setActive("Home");
           }}
         >
-          <img src={holidazeLogoPink2} alt="logo" className="w-[180px] p-3" />
+          <img src={holidazeLogoPink2} alt="logo" className="p-3 min-w-[180px] max-w-[180px]" />
         </Link>
       </div>
     </nav>
