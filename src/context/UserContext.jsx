@@ -37,6 +37,7 @@ const userReducer = (state, action) => {
     case "LOGOUT":
       return {
         ...state,
+        user: null,
         accessToken: null,
         isAuthenticated: false,
       };
