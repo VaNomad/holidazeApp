@@ -77,6 +77,10 @@ export const navLinks = [
     id: "login",
     title: "Login",
   },
+  {
+    id: "search",
+    title: "Search",
+  },
   // {
   //   id: "sign-up",
   //   title: "Sign Up",
@@ -93,10 +97,10 @@ export const navLinks = [
     id: "add-venue",
     title: "Add Venue",
   },
-  {
-    id: "contact",
-    title: "Contact",
-  },
+  // {
+  //   id: "contact",
+  //   title: "Contact",
+  // },
   // {
   //   id: "logout",
   //   title: "Log Out",
