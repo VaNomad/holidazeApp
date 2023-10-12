@@ -1,27 +1,27 @@
 // import { CurrentStorage } from "../../utils/CurrentStorage";
-import header from "../../assets/images/maldives1.jpg";
-import { useState } from "react";
+// import header from "../../assets/images/maldives1.jpg";
+// import { useState } from "react";
 import { AiOutlineUser, AiOutlineMail, AiOutlineCamera } from "react-icons/ai";
 import { BsKey } from "react-icons/bs";
 import { GiCheckMark, GiCrossMark } from "react-icons/gi";
-import noAvatar from "../../assets/vectors/hLogoGreen.png";
-import { ChangeAvatarModal } from "../../components/ui/modals/ChangeAvatarModal";
+// import noAvatar from "../../assets/vectors/hLogoGreen.png";
+// import { ChangeAvatarModal } from "../../components/ui/modals/ChangeAvatarModal";
 import { useUser } from "../../context/UserContext";
 
 export const Profile = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
+  // const [isModalOpen, setModalOpen] = useState(false);
   const { user } = useUser();
   // const { imageUrl } = useUser();
-  console.log("User in Profile:", user);
+  // console.log("User in Profile:", user);
   
-  const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
-  console.log("User:", user)
-  console.log(useUser())
+  // const openModal = () => setModalOpen(true);
+  // const closeModal = () => setModalOpen(false);
+  // console.log("User:", user)
+  // console.log(useUser())
 
   return (
     <div className="bg-black">
-      <div>
+      {/* <div>
         <div>
           <img
             src={header}
@@ -49,7 +49,7 @@ export const Profile = () => {
           </button>
           <ChangeAvatarModal isOpen={isModalOpen} closeModal={closeModal} />
         </div>
-      </div>
+      </div> */}
       <div className="flex flex-col items-center justify-evenly h-[40vh]">
         <div className="relative ps-14 pe-5 py-1 border-[2px] border-holipink rounded-full w-[80%] sm:max-w-[30rem]">
           <div className="absolute top-0 left-[-1px]">

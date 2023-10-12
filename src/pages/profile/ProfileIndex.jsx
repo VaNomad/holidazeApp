@@ -8,6 +8,7 @@ import noAvatar from "../../assets/vectors/hLogoGreen.png";
 import { ChangeAvatarModal } from "../../components/ui/modals/ChangeAvatarModal";
 import { useUser } from "../../context/UserContext";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 import { Profile } from "./Profile";
 
 export const ProfileIndex = () => {
@@ -28,7 +29,7 @@ export const ProfileIndex = () => {
           <img
             src={header}
             alt="profile header"
-            className="h-[400px] w-full object-cover object-bottom"
+            className="h-[300px] w-full object-cover object-bottom"
           />
         </div>
         <div className="absolute top-[25%] md:top-[18%] right-[25%] md:right-[30%] flex flex-col">

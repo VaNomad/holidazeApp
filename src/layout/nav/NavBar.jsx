@@ -62,12 +62,14 @@ export const NavBar = () => {
               </div>
 
               <div
-                className={`transition-all duration-600 ease-in-out absolute ${
+                className={`transition-all duration-600 ease-in-out absolute p-2.5 ${
                   toggle ? "opacity-0 scale-0" : "opacity-100 scale-100"
                 }`}
               >
-                <div className="text-center border-2 border-[#FCB5FF] hover:border-none hover:bg-[#FCB5FF] hover:text-black rounded-full m-3 w-[120px] hover:scale-105 transition-scale duration-200 ease-in">
-                  <h1 className="text-[19px] font-dm font-medium">menu</h1>
+                <div className="text-center border-2 border-[#FCB5FF] hover:border-none hover:bg-[#FCB5FF] hover:text-black rounded-full w-[80px] sm:w-[120px] hover:scale-105 transition-scale duration-200 ease-in">
+                  <h1 className=" font-dm text-[14px] font-medium sm:text-[19px] ">
+                    menu
+                  </h1>
                 </div>
               </div>
             </div>
@@ -140,7 +142,7 @@ export const NavBar = () => {
                   id="avatar-image"
                   src={user.avatar}
                   alt="avatar"
-                  className="w-[30px] h-[30px] object-cover rounded-full"
+                  className="w-[25px] sm:w-[35px] h-[25px] sm:h-[35px] object-cover rounded-full"
                 />
               </Link>
             )}
@@ -156,7 +158,7 @@ export const NavBar = () => {
             <img
               src={holidazeLogoPink2}
               alt="logo"
-              className="p-3 min-w-[180px] max-w-[180px]"
+              className="p-3 w-[150px] sm:w-[180px]"
             />
           </Link>
         </div>

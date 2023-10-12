@@ -7,7 +7,8 @@ import { VenueList } from "./pages/venueList/VenueList";
 import { Error404 } from "./pages/404/Error404";
 import { Layout } from "./layout/Layout";
 import { AddVenue } from "./components/forms/AddVenue";
-import { Profile } from "./pages/profile/Profile";
+// import { Profile } from "./pages/profile/Profile";
+import { ProfileIndex } from "./pages/profile/ProfileIndex";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Home />} />
           {/* <Route path="/sign-up" element={<SignUpForm />} /> */}
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<ProfileIndex />} />
           <Route path="/add-venue" element={<AddVenue />} />
           <Route path="/venues/:id" element={<VenueDetails />} />
           <Route path="/venues" element={<VenueList />} />
