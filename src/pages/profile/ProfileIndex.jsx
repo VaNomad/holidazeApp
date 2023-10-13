@@ -4,11 +4,12 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { Profile } from "./Profile";
 import { MyBookings } from "../../api/MyBookings";
+import { MyVenues } from "../../api/MyVenues";
 import { ProfileHeader } from "./ProfileHeader";
 
 export const ProfileIndex = () => {
   const { user } = useUser();
-  
+
   console.log("User in Profile:", user);
   console.log("User:", user);
   console.log(useUser());
@@ -21,8 +22,8 @@ export const ProfileIndex = () => {
           <TabList>
             <Tab>Profile</Tab>
             <Tab>Bookings</Tab>
-            <Tab>+</Tab>
             <Tab>Venues</Tab>
+            <Tab>+</Tab>
           </TabList>
           <TabPanel>
             <Profile />
@@ -32,9 +33,12 @@ export const ProfileIndex = () => {
             <MyBookings />
           </TabPanel>
           <TabPanel>
-            <p>Add Venue</p>
+            <p>Your Venues</p>
           </TabPanel>
-          <TabPanel>Your Venues</TabPanel>
+          <TabPanel>
+            <p>Add a new Venue</p>
+            <MyVenues />
+          </TabPanel>
         </Tabs>
       </div>
     </div>
