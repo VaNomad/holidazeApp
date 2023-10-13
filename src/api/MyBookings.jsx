@@ -1,18 +1,10 @@
 import { useEffect, useState } from "react";
 import { API_BASE_URL } from "./endpoints";
-// import { useUser } from "../context/UserContext";
 import { ErrorDisplay } from "../components/ui/messages/ErrorDisplay";
 import { Loader } from "../components/ui/loader/Loader";
 import { BookingsCard } from "../components/cards/BookingsCard";
 
 export function MyBookings() {
-  // const { user } = useUser();
-  // const accessToken = user.accessToken;
-
-  // const accessToken = localStorage.getItem("accessToken", accessToken);
-  // console.log(accessToken)
-  // const user = localStorage.getItem("username", user.name);
-  // console.log(user)
   const [bookingData, setBookingData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
@@ -24,7 +16,7 @@ export function MyBookings() {
       console.log(accessToken);
       const user = localStorage.getItem("username");
       console.log(user);
-      const isUrl = `${API_BASE_URL}/profiles/${user}/bookings?_bookings=true&_venues=true;`;
+      const isUrl = `${API_BASE_URL}/profiles/${user}?_bookings=true&_venues=true;`;
 
       try {
         setIsLoading(true);
@@ -82,7 +74,7 @@ export function MyBookings() {
   return (
     <div>
       {
-        bookingData.map((data) => {
+        bookingData.bookings.map((data) => {
           console.log(data);
           return <BookingsCard data={data} key={data.id} />;
         })

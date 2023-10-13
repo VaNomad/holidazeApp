@@ -1,5 +1,5 @@
 // import { MyBookings } from "../../api/MyBookings";
-import { VenuesCarousel } from "../carousel/VenuesCarousel";
+// import { VenuesCarousel } from "../carousel/VenuesCarousel";
 import { BtnFull } from "../ui/buttons/BtnFull";
 
 export const BookingsCard = ({ data }) => {
@@ -7,7 +7,6 @@ export const BookingsCard = ({ data }) => {
     dateFrom,
     dateTo,
     guests,
-    venue,
   } = data;
 
   console.log("Location:", location);
@@ -26,12 +25,12 @@ export const BookingsCard = ({ data }) => {
       </div>
       <div>
         <img
-          src={venue.media}
+          src={media}
           alt="venue image"
           className="object-cover border-2 mx-auto rounded-2xl h-52"
         />
       </div>
-      <VenuesCarousel media={venue.media} name={name} />
+      {/* <VenuesCarousel media={media} name={name} /> */}
 
       <div className="text-xl mt-1 p-2 bg-zinc-800 rounded-xl">
         <div>
@@ -61,7 +60,7 @@ export const BookingsCard = ({ data }) => {
         </div>
         <div>
           <h5>Price</h5>
-          <p>{venue.price}</p>
+          <p>{price}</p>
         </div>
         <div>
           <BtnFull size={10} />
