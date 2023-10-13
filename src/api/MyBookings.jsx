@@ -14,7 +14,7 @@ export function MyBookings() {
     const fetchData = async () => {
       const accessToken = localStorage.getItem("accessToken");
       console.log(accessToken);
-      const user = localStorage.getItem("username");
+      const user = localStorage.getItem("user");
       console.log(user);
       const isUrl = `${API_BASE_URL}/profiles/${user}?_bookings=true&_venues=true;`;
 
@@ -34,7 +34,7 @@ export function MyBookings() {
           );
         }
 
-        console.log(response);
+        console.log("RESPONSE FROM MYBOOKINGS",response);
 
         const data = await response.json();
         console.log(data);
