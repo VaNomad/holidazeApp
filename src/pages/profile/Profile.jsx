@@ -6,9 +6,11 @@ import { BsKey } from "react-icons/bs";
 import { GiCheckMark, GiCrossMark } from "react-icons/gi";
 // import noAvatar from "../../assets/vectors/hLogoGreen.png";
 // import { ChangeAvatarModal } from "../../components/ui/modals/ChangeAvatarModal";
-import { useUser } from "../../context/UserContext";
+import { useUser } from "../../context/UserContext"; 
+// import { CurrentStorage } from "../../utils/CurrentStorage";
 
 export const Profile = () => {
+  // const userData = CurrentStorage();
   // const [isModalOpen, setModalOpen] = useState(false);
   const { user } = useUser();
   // const { imageUrl } = useUser();

@@ -3,17 +3,22 @@ import { VenuesCarousel } from "../carousel/VenuesCarousel";
 import { BtnFull } from "../ui/buttons/BtnFull";
 
 export const BookingsCard = ({ data }) => {
-  console.log(data);
   const {
     dateFrom,
     dateTo,
     guests,
-    venue: { name, media, price, location },
+    venue,
   } = data;
+
   console.log("Location:", location);
+  console.log("dateFrom:", dateFrom);
+  console.log("dateTo:", dateTo);
+  console.log("dateTo:", dateTo);
+  console.log("guests:", guests);
+  console.log(data);
 
   return (
-    <div className="rounded-2xl p-5 mt-12">
+    <div className="rounded-2xl p-2">
       <div className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
         <h1 className="font-dm font-thin text-[20px] uppercase flex flex-wrap p-1">
           {name}
@@ -21,12 +26,12 @@ export const BookingsCard = ({ data }) => {
       </div>
       <div>
         <img
-          src={media[0]}
+          src={venue.media}
           alt="venue image"
           className="object-cover border-2 mx-auto rounded-2xl h-52"
         />
       </div>
-      <VenuesCarousel media={media} name={name} />
+      <VenuesCarousel media={venue.media} name={name} />
 
       <div className="text-xl mt-1 p-2 bg-zinc-800 rounded-xl">
         <div>
@@ -56,7 +61,7 @@ export const BookingsCard = ({ data }) => {
         </div>
         <div>
           <h5>Price</h5>
-          <p>{price}</p>
+          <p>{venue.price}</p>
         </div>
         <div>
           <BtnFull size={10} />

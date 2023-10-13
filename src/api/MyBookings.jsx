@@ -24,8 +24,7 @@ export function MyBookings() {
       console.log(accessToken);
       const user = localStorage.getItem("username");
       console.log(user);
-      const query = "?_bookings=true&_venues=true;";
-      const isUrl = `${API_BASE_URL}/profiles/${user}${query}`;
+      const isUrl = `${API_BASE_URL}/profiles/${user}/bookings?_bookings=true&_venues=true;`;
 
       try {
         setIsLoading(true);
@@ -47,6 +46,8 @@ export function MyBookings() {
 
         const data = await response.json();
         console.log(data);
+        // console.log("bookingData:", bookingData);
+
         setBookingData(data);
         setIsLoading(false);
       } catch (error) {
@@ -77,12 +78,15 @@ export function MyBookings() {
     );
   }
 
+  console.log("LAST LOG BEFORE MOUNT:", bookingData)
   return (
     <div>
-      {bookingData.map((data) => {
-        console.log(data);
-        return <BookingsCard data={data} key={data.id} />;
-      })}
+      {
+        bookingData.map((data) => {
+          console.log(data);
+          return <BookingsCard data={data} key={data.id} />;
+        })
+      }
     </div>
   );
 }
