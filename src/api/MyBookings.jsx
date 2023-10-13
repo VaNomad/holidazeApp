@@ -65,7 +65,7 @@ export function MyBookings() {
   if (hasError) {
     return (
       <div>
-        <ErrorDisplay message={errorDisplay.errorMessage} />
+        <ErrorDisplay message={errorDisplay} />
       </div>
     );
   }
