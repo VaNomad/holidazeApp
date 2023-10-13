@@ -6,9 +6,9 @@ import { UpdateAvatarUrl } from "../api/UpdateAvatarUrl";
 const UserContext = createContext();
 
 const initialState = {
-  user: null,
+  user: localStorage.getItem("user"),
   accessToken: localStorage.getItem("accessToken"),
-  isAuthenticated: false,
+  isAuthenticated: !!localStorage.getItem("accessToken"),
   isLoading: false,
   hasError: false,
   errorDisplay: null,
@@ -114,11 +114,13 @@ export const UserProvider = ({ children }) => {
   const loginUser = async (data) => {
     console.log("Received data in loginUser:", data);
     const { accessToken, ...user } = data;
+    const currentUser = JSON.stringify(user)
+    localStorage.setItem("user", currentUser);
     localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("username", user.name);
-    localStorage.setItem("email", user.email);
-    localStorage.setItem("avatar", user.avatar);
-    localStorage.setItem("venueManager", user.venueManager);
+    // localStorage.setItem("username", user.name);
+    // localStorage.setItem("email", user.email);
+    // localStorage.setItem("avatar", user.avatar);
+    // localStorage.setItem("venueManager", user.venueManager);
     dispatch({ type: "LOGIN_SUCCESS", payload: { accessToken, user } });
     console.log("User logged in(clg from loginUser). isAuthenticated:", true)
   };
