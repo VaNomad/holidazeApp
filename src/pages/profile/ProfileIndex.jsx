@@ -10,6 +10,8 @@ import { useUser } from "../../context/UserContext";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { Profile } from "./Profile";
+// import { BookingsCard } from "../../components/cards/BookingsCard";
+import { MyBookings } from "../../api/MyBookings";
 
 export const ProfileIndex = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -65,7 +67,8 @@ export const ProfileIndex = () => {
             <Profile />
           </TabPanel>
           <TabPanel>
-            <p>All your bookings</p>
+            <p>Your bookings</p>
+            <MyBookings />
           </TabPanel>
           <TabPanel>
             <p>Add Venue</p>

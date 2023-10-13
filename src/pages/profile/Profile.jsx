@@ -58,7 +58,8 @@ export const Profile = () => {
               className="text-black bg-holipink rounded-full p-1"
             />
           </div>
-          {user && <p>{user.name}</p>}
+          {/* {user && <p>{user.name}</p>} */}
+          <p className="whitespace-nowrap">{user.name}</p>
         </div>
         <div className="relative ps-14 pe-5 py-1 border-[2px] border-holipink rounded-full w-[80%] sm:max-w-[30rem]">
           <div className="absolute top-0 left-0">
