@@ -1,34 +1,41 @@
 import { useEffect, useState } from "react";
 import { API_BASE_URL } from "./endpoints";
-import { useUser } from "../context/UserContext";
+// import { useUser } from "../context/UserContext";
+import { ErrorDisplay } from "../components/ui/messages/ErrorDisplay";
+import { Loader } from "../components/ui/loader/Loader";
+import { BookingsCard } from "../components/cards/BookingsCard";
 
 export function MyBookings() {
-  const { user } = useUser();
-  const accessToken = user.accessToken;
+  // const { user } = useUser();
+  // const accessToken = user.accessToken;
+
+  // const accessToken = localStorage.getItem("accessToken", accessToken);
+  // console.log(accessToken)
+  // const user = localStorage.getItem("username", user.name);
+  // console.log(user)
   const [bookingData, setBookingData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [errorDisplay, setErrorDisplay] = useState(null);
-  console.log(user);
 
   useEffect(() => {
     const fetchData = async () => {
-      const query = "?sortOrder=desc&sort=created&_owner=true&_bookings=true;";
-      const isUrl = `${API_BASE_URL}/profiles/${user.name}${query}`;
-      const headers = {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      };
-
-      const requestOptions = {
-        method: "GET",
-        headers: headers,
-      };
+      const accessToken = localStorage.getItem("accessToken");
+      console.log(accessToken);
+      const user = localStorage.getItem("username");
+      console.log(user);
+      const query = "?_bookings=true&_venues=true;";
+      const isUrl = `${API_BASE_URL}/profiles/${user}${query}`;
 
       try {
         setIsLoading(true);
         setHasError(false);
-        const response = await fetch(isUrl, requestOptions);
+        const response = await fetch(isUrl, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
 
         if (!response.ok) {
           throw new Error(
@@ -39,6 +46,7 @@ export function MyBookings() {
         console.log(response);
 
         const data = await response.json();
+        console.log(data);
         setBookingData(data);
         setIsLoading(false);
       } catch (error) {
@@ -51,7 +59,30 @@ export function MyBookings() {
     };
 
     fetchData();
-  }, [user.name, accessToken]);
+  }, []);
 
-  return { bookingData, isLoading, hasError, errorDisplay };
+  if (isLoading || !bookingData) {
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+  }
+
+  if (hasError) {
+    return (
+      <div>
+        <ErrorDisplay message={errorDisplay.errorMessage} />
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      {bookingData.map((data) => {
+        console.log(data);
+        return <BookingsCard data={data} key={data.id} />;
+      })}
+    </div>
+  );
 }
