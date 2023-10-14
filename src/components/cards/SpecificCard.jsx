@@ -24,74 +24,41 @@ export const SpecificCard = ({ data }) => {
   console.log("Location:", location)
 
   return (
-    <div className="rounded-2xl p-5 mt-12">
+    <div className="rounded-2xl p-5 mt-12 flex flex-col gap-2">
       <div className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-        <h1 className="font-dm font-thin text-[20px] uppercase flex flex-wrap p-1">
+        <h1 className="font-alli font-thin text-[40px] flex flex-wrap">
           {name}
         </h1>
       </div>
-
-      <VenuesCarousel media={media} name={name} />
-      <div className="flex justify-between rounded-full my-2 p-1 text-black">
-        <div className="grid grid-cols-2 m-1.5 w-[80%] border border-holiblue rounded-full text-white">
-          <div className="flex items-center">
+      <div className="flex justify-between rounded-full text-black gap-4">
+        <div className="flex justify-between items-center underline-2 text-white h-[30px] my-auto w-[70%]">
+          <div className="flex items-center me-2">
             <BsKey className="mx-2" size={25} /> {owner}
             <h2 className="font-dm uppercase font-medium text-sm">owner</h2>
           </div>
-          <p className="flex justify-center">{email}</p>
+          <p className="flex font-dm font-thin text-xs justify-center">
+            {email}
+          </p>
         </div>
-        <div className="rounded-full border border-holipink w-[40px] h-[40px] p-2">
+        <div className="rounded-full border border-holipink w-[40px] h-[40px] ">
           <img
-            className="w-full h-full"
+            className="w-full h-full rounded-full object-cover"
             src={avatar}
             alt=""
           />
         </div>
       </div>
-      <div className="text-xl mt-1 p-2 bg-zinc-800 rounded-xl">
-        <div className="flex">
-          <p className="font-dm font-thin">{country},</p>
-          &nbsp;
-          <p className="font-dm font-thin">{city}</p>
-        </div>
-        <div className="flex justify-between p-1">
-          <h6 className="font-ndo text-[20px]">{address}</h6>
-          <div className="flex">
-            <div className="flex items-center justify-end text-lg font-dm tracking-wider font-semibold text-gray-900 dark:text-white">
-              <p>$ &nbsp; </p>
-              <p>{price}</p>
-            </div>
-          </div>
-        </div>
-        <div className="flex justify-between p-1">
-          <div className="mb-2 mt-2.5 flex items-center">
-            <h2 className="uppercase text-sm">Rating: </h2>
-            <span className="ml-3 mr-2 rounded-full py-0.5 px-3 text-black text-sm bg-[#FCB5FF]">
-              {rating ? (
-                <p>{rating} / 5</p>
-              ) : (
-                <p className="text-[8px] font-dm uppercase">No rating</p>
-              )}
-            </span>
-            <span>
-              {
-                rating > 0 && rating < 1 ? (
-                  <p>Not so good</p>
-                ) : rating >= 1 && rating < 2 ? (
-                  <p>Ok</p>
-                ) : rating >= 2 && rating < 3 ? (
-                  <p>Good</p>
-                ) : rating >= 3 && rating < 4 ? (
-                  <p>Very good</p>
-                ) : rating >= 4 && rating <= 5 ? (
-                  <p>Excellent!</p>
-                ) : null 
-              }
-            </span>
-          </div>
-        </div>
+
+      <VenuesCarousel media={media} name={name} />
+
+      <div className="p-2 bg-zinc-900 rounded-xl mt-3">
+        <h2 className="text-sm font-semibold text-zinc-300 mb-2">
+          Description:{" "}
+        </h2>
+        <p className="font-dm font-thin text-xs text-zinc-400">{description}</p>
       </div>
-      <ul className="flex flex-col text-white uppercase text-xs gap-2 border border-[#70BAC3] m-1 px-14 py-10 rounded-xl">
+
+      <ul className="flex flex-col text-white uppercase text-xs font-thin divide-y-[1px] divide-zinc-600 border border-zinc-600 rounded-xl p-2 gap-1">
         <li className="grid grid-cols-3">
           <BsPeople size={15} />
           <h2>max guests</h2>
@@ -142,12 +109,52 @@ export const SpecificCard = ({ data }) => {
           </p>
         </li>
       </ul>
-      <div className="p-2 bg-zinc-900 rounded-xl mt-3">
-        <h2 className="uppercase text-sm font-thin text-zinc-300 mb-2">
-          Description:{" "}
+
+      <div className="text-xl mt-1 p-2 bg-zinc-900 text-zinc-400 rounded-xl">
+        <h2 className="font-dm font-semibold text-zinc-300 text-xs mb-1">
+          Location
         </h2>
-        {description}
+        <div className="flex">
+          <p className="font-dm font-thin">{country},</p>
+          &nbsp;
+          <p className="font-dm font-thin">{city}</p>
+        </div>
+        <div className="flex justify-between">
+          <p className="font-dm font-thin text-[20px]">{address}</p>
+          <div className="flex">
+            <div className="flex items-center justify-end text-lg font-dm tracking-wider font-semibold text-gray-900 dark:text-white">
+              <p>$ &nbsp; </p>
+              <p>{price}</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-between p-1">
+          <div className="mb-2 mt-2.5 flex items-center">
+            <h2 className="text-sm font-semibold text-zinc-300">Rating: </h2>
+            <span className="ml-3 mr-2 rounded-full px-3 text-white text-sm border-2 border-[#FCB5FF]">
+              {rating ? (
+                <p>{rating} / 5</p>
+              ) : (
+                <p className="text-[8px] font-dm uppercase">No rating</p>
+              )}
+            </span>
+            <span>
+              {rating > 0 && rating < 1 ? (
+                <p>Not so good</p>
+              ) : rating >= 1 && rating < 2 ? (
+                <p>Ok</p>
+              ) : rating >= 2 && rating < 3 ? (
+                <p>Good</p>
+              ) : rating >= 3 && rating < 4 ? (
+                <p>Very good</p>
+              ) : rating >= 4 && rating <= 5 ? (
+                <p>Excellent!</p>
+              ) : null}
+            </span>
+          </div>
+        </div>
       </div>
+
       <div className="flex justify-end">
         <BtnFull size={22} />
       </div>
