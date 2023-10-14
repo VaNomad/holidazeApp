@@ -34,10 +34,10 @@ export const ProfileIndex = () => {
           </TabPanel>
           <TabPanel>
             <p>Your Venues</p>
+            <MyVenues />
           </TabPanel>
           <TabPanel>
             <p>Add a new Venue</p>
-            <MyVenues />
           </TabPanel>
         </Tabs>
       </div>
