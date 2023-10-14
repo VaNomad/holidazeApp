@@ -14,7 +14,8 @@ export function MyVenues() {
     const fetchData = async () => {
       const accessToken = localStorage.getItem("accessToken");
       console.log(accessToken);
-      const user = localStorage.getItem("username");
+      const userParsed = JSON.parse(localStorage.getItem("user"));
+      const user = userParsed.name;
       console.log(user);
       const isUrl = `${API_BASE_URL}/profiles/${user}/venues?_bookings=true&_venues=true;`;
 
@@ -70,10 +71,14 @@ export function MyVenues() {
     );
   }
 
+  if (venueData.length === 0) {
+    return <div>No bookings available.</div>;
+  }
+
   console.log("LAST LOG BEFORE MOUNT:", venueData);
   return (
     <div>
-      {venueData.bookings.map((data) => {
+      {venueData.map((data) => {
         console.log(data);
         return <MyVenuesCard data={data} key={data.id} />;
       })}

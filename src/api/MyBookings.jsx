@@ -14,9 +14,10 @@ export function MyBookings() {
     const fetchData = async () => {
       const accessToken = localStorage.getItem("accessToken");
       console.log(accessToken);
-      const user = localStorage.getItem("user");
+      const userParsed = JSON.parse(localStorage.getItem("user"));
+      const user = userParsed.name
       console.log(user);
-      const isUrl = `${API_BASE_URL}/profiles/${user}?_bookings=true&_venues=true;`;
+      const isUrl = `${API_BASE_URL}/profiles/${user}?_bookings=true&_venues=true`;
 
       try {
         setIsLoading(true);
@@ -68,6 +69,10 @@ export function MyBookings() {
         <ErrorDisplay message={errorDisplay} />
       </div>
     );
+  }
+
+  if (bookingData.length === 0) {
+    return <div>No bookings available.</div>;
   }
 
   console.log("LAST LOG BEFORE MOUNT:", bookingData)
