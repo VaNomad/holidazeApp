@@ -1,4 +1,4 @@
-import { useContext, createContext, useReducer } from "react";
+import { useContext, createContext, useReducer, useEffect } from "react";
 import { SignUpUser } from "../api/SignUpUser";
 import { UpdateProfile } from "../api/UpdateProfile";
 import { UpdateAvatarUrl } from "../api/UpdateAvatarUrl";
@@ -6,7 +6,7 @@ import { UpdateAvatarUrl } from "../api/UpdateAvatarUrl";
 const UserContext = createContext();
 
 const initialState = {
-  user: localStorage.getItem("user"),
+  user: JSON.parse(localStorage.getItem("user")),
   accessToken: localStorage.getItem("accessToken"),
   isAuthenticated: !!localStorage.getItem("accessToken"),
   isLoading: false,
@@ -109,18 +109,23 @@ const userReducer = (state, action) => {
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, initialState);
 
+  useEffect(() => {
+    if (initialState.accessToken) {
+      dispatch({
+        type: "LOGIN_SUCCESS",
+        payload: { accessToken: initialState.accessToken, user: initialState.user },
+      });
+    }
+  },[])
+    
   console.log("Initial User Data:", state.user);
 
   const loginUser = async (data) => {
     console.log("Received data in loginUser:", data);
     const { accessToken, ...user } = data;
-    const currentUser = JSON.stringify(user)
-    localStorage.setItem("user", currentUser);
+    // const currentUser = JSON.stringify(user)
+    localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("accessToken", accessToken);
-    // localStorage.setItem("username", user.name);
-    // localStorage.setItem("email", user.email);
-    // localStorage.setItem("avatar", user.avatar);
-    // localStorage.setItem("venueManager", user.venueManager);
     dispatch({ type: "LOGIN_SUCCESS", payload: { accessToken, user } });
     console.log("User logged in(clg from loginUser). isAuthenticated:", true)
   };
