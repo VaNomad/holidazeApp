@@ -23,10 +23,10 @@ export const ProfileHeader = () => {
         <img
           src={header}
           alt="profile header"
-          className="h-[300px] w-full object-cover object-bottom"
+          className="h-[250px] mb-3 w-full object-cover object-bottom md:object-center"
         />
       </div>
-      <div className="absolute top-[25%] md:top-[18%] right-[25%] md:right-[30%] flex flex-col">
+      <div className="absolute top-[15%] md:top-[11%] right-[25%] md:right-[25%] flex flex-col">
         <div className="h-[150px] md:h-[200px] w-[150px] md:w-[200px] border-4 border-zinc-700 bg-black rounded-full">
           {user && (
             <img
@@ -40,7 +40,7 @@ export const ProfileHeader = () => {
         <button
           id="plus-button"
           onClick={openModal}
-          className="text-4xl text-holiblue p- absolute bottom-[-1rem] right-[-1rem]"
+          className="text-4xl text-holiblue p- absolute top-[7.5rem] left-[8.5rem] md:top-[11rem] md:left-[11rem]"
         >
           +
         </button>
