@@ -8,6 +8,7 @@ import { GiCheckMark, GiCrossMark } from "react-icons/gi";
 import { FiLogIn } from "react-icons/fi";
 import { BookingForm } from "../forms/BookingForm";
 
+
 // import noAvatar from "../../assets/vectors/hLogoGreen.png"
 import { BtnFull } from "../ui/buttons/BtnFull";
 import { useUser } from "../../context/UserContext";
@@ -15,7 +16,7 @@ import { useUser } from "../../context/UserContext";
 import { Link } from "react-router-dom";
 
 export const SpecificCard = ({ data }) => {
-  const { user, isAuthenticated } = useUser();
+  const {user, isAuthenticated } = useUser();
   console.log(data)
   const {
     id,
@@ -167,20 +168,7 @@ export const SpecificCard = ({ data }) => {
         <BtnFull size={22} />
       </div>
 
-      {!isAuthenticated && !user ? (
-        <>
-          <div className=" container mx-auto flex justify-center flex-col items-center text-2xl py-4 my-4">
-            <h3 className="text-blue font-semibold "></h3>
-            <Link
-              type="button"
-              className="my-8 mx-2 bg-none border-2 border-holipink rounded-full p-2 text-white font-alli font-bold hover:bg-holipink hover:text-black hover:scale-105 transition-all duration-300"
-              to="/login"
-            >
-              Login To Reserve <FiLogIn size={20}/>
-            </Link>
-          </div>
-        </>
-      ) : (
+      {isAuthenticated && user ? (
         <div className="my-5">
           <p className="text-white font-semibold text-xl p-2 font-dm">
             Check Availability{" "}
@@ -191,6 +179,19 @@ export const SpecificCard = ({ data }) => {
             maxGuests={maxGuests}
             price={price}
           />
+        </div>
+      ) : (
+        <div>
+          <div className=" container mx-auto flex justify-center flex-col items-center text-2xl py-4 my-4">
+            <h3 className="text-blue font-semibold "></h3>
+            <Link
+              type="button"
+              className="my-8 mx-2 bg-none border-2 border-holipink rounded-full p-2 text-white font-alli font-bold hover:bg-holipink hover:text-black hover:scale-105 transition-all duration-300"
+              to="/login"
+            >
+              Login To Reserve <FiLogIn size={20} />
+            </Link>
+          </div>
         </div>
       )}
     </div>
