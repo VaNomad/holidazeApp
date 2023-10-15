@@ -15,7 +15,7 @@ import { useUser } from "../../context/UserContext";
 import { Link } from "react-router-dom";
 
 export const SpecificCard = ({ data }) => {
-  const { isAuthenticated } = useUser();
+  const { user, isAuthenticated } = useUser();
   console.log(data)
   const {
     id,
@@ -167,22 +167,22 @@ export const SpecificCard = ({ data }) => {
         <BtnFull size={22} />
       </div>
 
-      {!isAuthenticated ? (
+      {!isAuthenticated && !user ? (
         <>
           <div className=" container mx-auto flex justify-center flex-col items-center text-2xl py-4 my-4">
             <h3 className="text-blue font-semibold "></h3>
             <Link
               type="button"
-              className="my-8 mx-2 bg-none border-2 border-holipink text-white font-alli font-bold hover:bg-holipink hover:text-black hover:scale-105 transition-all duration-300"
+              className="my-8 mx-2 bg-none border-2 border-holipink rounded-full p-2 text-white font-alli font-bold hover:bg-holipink hover:text-black hover:scale-105 transition-all duration-300"
               to="/login"
             >
-              Login To Reserve <FiLogIn size={20} />
+              Login To Reserve <FiLogIn size={20}/>
             </Link>
           </div>
         </>
       ) : (
         <div className="my-5">
-          <p className="text-black font-semibold text-xl p-2 font-dm">
+          <p className="text-white font-semibold text-xl p-2 font-dm">
             Check Availability{" "}
           </p>
           <BookingForm
