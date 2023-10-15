@@ -9,7 +9,7 @@ import {
   calculateTotalPrice,
 } from "../../utils/Calculations";
 
-export const BookingForm = ({ data }) => {
+export const BookingForm = () => {
   const [bookingError, setBookingError] = useState(null);
   const navigate = useNavigate();
   const {
@@ -25,14 +25,12 @@ export const BookingForm = ({ data }) => {
       const response = await BookingCall(data);
       console.log("Booking Response:", response);
 
-      if (response.userData && response.accessToken) {
-        navigate("/profile");
+      if (response.ok) {
+        setTimeout(() => {
+          navigate("/venues/:id");
+          reset();
+        }, 1000);
       }
-
-      setTimeout(() => {
-        navigate("/venues/:id");
-        reset();
-      }, 1000);
 
       setBookingError(null);
     } catch (error) {
