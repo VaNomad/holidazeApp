@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
+import { API_BASE_URL } from "./endpoints";
 import { ErrorDisplay } from "../components/ui/messages/ErrorDisplay";
 import { Loader } from "../components/ui/loader/Loader";
-import { CreateVenueCard } from "../components/cards/CreateVenueCard";
 
 export const CreateVenue = ({url, createData}) => {
   const [createVenueData, setCreateVenueData] = useState(null);
@@ -12,8 +12,12 @@ export const CreateVenue = ({url, createData}) => {
   useEffect(() => {
     const postData = async () => {
       const accessToken = localStorage.getItem("accessToken");
+      const userParsed = JSON.parse(localStorage.getItem("user"));
+      const user = userParsed.name;
+      console.log(user);
+      const isUrl = `${API_BASE_URL}/venues`;
       try {
-        const response = await fetch(url, {
+        const response = await fetch(isUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -29,6 +33,7 @@ export const CreateVenue = ({url, createData}) => {
         const data = await response.json();
         console.log(data);
         setCreateVenueData(data);
+        setIsLoading(false)
       } catch (error) {
         setHasError(true);
         setErrorDisplay(error.message);
@@ -56,9 +61,6 @@ export const CreateVenue = ({url, createData}) => {
     );
   }
 
-  return (
-    <div>
-      <CreateVenueCard key={createVenueData.id} data={createVenueData} />
-    </div>
-  );
+  console.log("LAST LOG BEFORE MOUNT:", createVenueData);
+  return { createVenueData, isLoading, hasError, errorDisplay};
 };
