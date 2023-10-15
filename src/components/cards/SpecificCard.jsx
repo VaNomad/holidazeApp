@@ -5,12 +5,20 @@ import {PiBowlFood} from "react-icons/pi"
 import { GiHollowCat } from "react-icons/gi";
 import { CiParking1 } from "react-icons/ci";
 import { GiCheckMark, GiCrossMark } from "react-icons/gi";
+import { FiLogIn } from "react-icons/fi";
+import { BookingForm } from "../forms/BookingForm";
+
 // import noAvatar from "../../assets/vectors/hLogoGreen.png"
 import { BtnFull } from "../ui/buttons/BtnFull";
+import { useUser } from "../../context/UserContext";
+// import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 export const SpecificCard = ({ data }) => {
+  const { isAuthenticated } = useUser();
   console.log(data)
   const {
+    id,
     name,
     media,
     price,
@@ -158,6 +166,33 @@ export const SpecificCard = ({ data }) => {
       <div className="flex justify-end">
         <BtnFull size={22} />
       </div>
+
+      {!isAuthenticated ? (
+        <>
+          <div className=" container mx-auto flex justify-center flex-col items-center text-2xl py-4 my-4">
+            <h3 className="text-blue font-semibold "></h3>
+            <Link
+              type="button"
+              className="my-8 mx-2 bg-none border-2 border-holipink text-white font-alli font-bold hover:bg-holipink hover:text-black hover:scale-105 transition-all duration-300"
+              to="/login"
+            >
+              Login To Reserve <FiLogIn size={20} />
+            </Link>
+          </div>
+        </>
+      ) : (
+        <div className="my-5">
+          <p className="text-black font-semibold text-xl p-2 font-dm">
+            Check Availability{" "}
+          </p>
+          <BookingForm
+            data={data}
+            venueId={id}
+            maxGuests={maxGuests}
+            price={price}
+          />
+        </div>
+      )}
     </div>
   );
 };
