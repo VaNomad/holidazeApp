@@ -1,9 +1,13 @@
 // import { MyBookings } from "../../api/MyBookings";
 // import { VenuesCarousel } from "../carousel/VenuesCarousel";
 import { BtnFull } from "../ui/buttons/BtnFull";
+import { useUser } from "../../context/UserContext";
+import { CreateVenueForm } from "../forms/CreateVenueForm";
+import { Link } from "react-router-dom";
+import {FiArrowRight} from "react-icons/fi"
 
 export const MyVenuesCard = ({ data }) => {
-
+  const { user, isAuthenticated } = useUser();
   const {
     created: venueCreated,
     description,
@@ -68,7 +72,47 @@ export const MyVenuesCard = ({ data }) => {
             </div>
           </div>
         ) : (
-          <p>You have no venues for renting out!</p>
+          <p>You are not renting out any venues</p>
+        )}
+      </div>
+      <div>
+        {isAuthenticated && user.venueManager ? (
+          <div className="my-5">
+            <p className="text-white font-semibold text-xl p-2 font-dm">
+              Add a venue{" "}
+            </p>
+            <CreateVenueForm
+              data={data}
+              name={name}
+              description={description}
+              price={price}
+              maxGuests={maxGuests}
+              // venueId={id}
+              continent={ continent }
+              country={ country }
+              address={ address }
+              city={ city }
+              zip={ zip }
+              wifi={ wifi }
+              parking={ parking }
+              breakfast={ breakfast }
+              pets={ pets }
+              media={media}
+            />
+          </div>
+        ) : (
+          <div>
+            <div className=" container mx-auto flex justify-center flex-col items-center text-2xl py-4 my-4">
+              <h3 className="text-blue font-semibold "></h3>
+              <Link
+                type="button"
+                className="my-8 mx-2 bg-none border-2 border-holipink rounded-full p-2 text-white font-alli font-bold hover:bg-holipink hover:text-black hover:scale-105 transition-all duration-300"
+                to="/profile"
+              >
+                List Venue <FiArrowRight size={20} />
+              </Link>
+            </div>
+          </div>
         )}
       </div>
     </div>
