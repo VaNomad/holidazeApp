@@ -8,6 +8,7 @@ export const BookingCall = (url) => {
   const postData = async (createData) => {
     const accessToken = localStorage.getItem("accessToken");
     try {
+      setLoading(true)
       const response = await fetch(url, {
         method: "POST",
         headers: {
