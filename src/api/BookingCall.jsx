@@ -2,13 +2,16 @@ import { useState } from "react";
 
 export const BookingCall = (url) => {
   const [createBookingData, setCreateBookingData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [hasError, setHasError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const postData = async (createData) => {
     const accessToken = localStorage.getItem("accessToken");
+    const userParsed = JSON.parse(localStorage.getItem("user"));
+    const user = userParsed.name;
+    console.log(user)
     try {
-      setLoading(true)
+      setIsLoading(true)
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -26,11 +29,11 @@ export const BookingCall = (url) => {
       console.log(data);
       setCreateBookingData(data);
     } catch (error) {
-      setError(error.message);
+      setHasError(error.message);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
-  return { createBookingData, loading, error, postData };
+  return { createBookingData, isLoading, hasError, postData };
 };
