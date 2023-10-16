@@ -122,23 +122,29 @@ export const BookingForm = ({ price, maxGuests }) => {
               minDate={new Date()}
               isClearable={true}
             />
-            {formik.errors.dateTo && <p>{formik.errors.dateTo}</p>}
+            {formik.errors.dateTo && (
+              <p className="text-holipink">{formik.errors.dateTo}</p>
+            )}
           </div>
         </div>
 
         {/* Number of Guests */}
         <div className="border border-zinc-600 mt-3 p-3 rounded-xl flex flex-col gap-2">
           <h1 className="font-alli text-3xl">Guests :</h1>
-          <div className="flex justify-between items-center gap-4">
+          <div className="flex flex-col gap-4">
             <input
               type="number"
               name="guests"
               value={formik.values.guests}
-              className="rounded-xl bg-black border-2 border-zinc-500 px-3 py-1 text-xs tracking-widest text-zinc-300 w-full"
+              className="rounded-xl bg-black border-2 border-zinc-500 px-3 py-1 text-xs tracking-widest text-zinc-300 max-w-xs"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
             />
-            {formik.errors.guests && <p>{formik.errors.guests}</p>}
+            <div>
+              {formik.errors.guests && (
+                <p className="text-holipink">{formik.errors.guests}</p>
+              )}
+            </div>
           </div>
         </div>
 
@@ -157,14 +163,17 @@ export const BookingForm = ({ price, maxGuests }) => {
         </div>
 
         {/* errors */}
-        <div>
+        <div className="flex justify-center m-5 text-center">
           {createBookingData && (
-            <div className="border-2 border-zinc-500 px-3 py-1">
-              <h2>Your Booking was successful! Find it in your profile!</h2>
+            <div className="border-2 border-lime-400 rounded-xl py-4 px-6 shadow-md shadow-lime-700">
+              <p>Your Booking was successful!</p>
+              <p className="text-sm text-zinc-300 animate-pulse">
+                You will find it in your profile..
+              </p>
             </div>
           )}
           {isLoading && <Loader />}
-          {hasError && <p className="text-red-500">Error: {formik.errors}</p>}
+          {hasError && <p className="text-holipink">Error: {formik.errors}</p>}
         </div>
 
         {/* submit btn */}
