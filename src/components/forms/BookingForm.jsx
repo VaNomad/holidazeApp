@@ -1,148 +1,184 @@
-import { useForm, Controller } from "react-hook-form";
+// import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
+import { API_BASE_URL } from "../../api/endpoints";
 import { BookingCall } from "../../api/BookingCall";
-import { useNavigate } from "react-router-dom";
-import {
-  calculateTotalDays,
-  calculateTotalPrice,
-} from "../../utils/Calculations";
+import { useFormik } from "formik";
+import { useParams } from "react-router-dom";
+import * as Yup from "yup"
 
-export const BookingForm = () => {
-  const [bookingError, setBookingError] = useState(null);
-  const navigate = useNavigate();
-  const {
-    handleSubmit,
-    control,
-    reset,
-    formState: { errors },
-  } = useForm();
 
-  const handleBooking = async (data) => {
-    try {
-      console.log("Booking Data:", data);
-      const response = await BookingCall(data);
-      console.log("Booking Response:", response);
 
-      if (response.ok) {
-        setTimeout(() => {
-          navigate("/venues/:id");
-          reset();
-        }, 1000);
-      }
+export const BookingForm = ({ price, maxGuests}) => {
+  const [totalDays, setTotalDays] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
-      setBookingError(null);
-    } catch (error) {
-      console.log("Booking Error:", error);
-      setBookingError("Booking Failed. Check dates selected");
+  const { createBookingData, isLoading, hasError, postData } = BookingCall(
+    `${API_BASE_URL}/bookings`,
+    []
+  );
+  const { id } = useParams();
+
+  const initialValues = {
+    dateFrom: "",
+    dateTo: "",
+    guests: "",
+    venueId: id,
+  };
+
+  const validationSchema = Yup.object().shape({
+    dateFrom: Yup.date().required("Date can not be blank"),
+    dateTo: Yup.date().required("Date can not be blank"),
+    guests: Yup.number()
+      .required("You can not book without number of guests")
+      .min(1, "There must be at least 1 guest")
+      .max(maxGuests, `Max number of guests is ${maxGuests}`)
+      .test("max-guests", "Exceeds maximum number of guests", (value) => {
+        return value <= maxGuests;
+      }),
+  });
+  
+  const handleDates = ({ startDate, endDate }) => {
+    formik.setFieldValue("dateFrom", startDate);
+    formik.setFieldValue("dateTo", endDate);
+
+    // Calculate the total amount based on selected dates and price
+    if (startDate && endDate) {
+      const daysDifference = Math.ceil(
+        (endDate - startDate) / (1000 * 60 * 60 * 24)
+      );
+
+      setTotalDays(daysDifference);
+
+      const newTotalAmount = daysDifference * price;
+      setTotalPrice(newTotalAmount);
     }
   };
 
+  // const calculateTotalPrice = (startDate, endDate, pricePerNight) => {
+  //   const start = new Date(startDate).toLocaleDateString();
+  //   const end = new Date(endDate).toLocaleDateString();
+  //   const timeDiff = end - start;
+  //   const numberOfNights = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+  //   const totalPrice = numberOfNights * pricePerNight;
+  //   return totalPrice;
+  // };
+
+  // const calculateTotalDays = (startDate, endDate) => {
+  //   const start = new Date(startDate).toLocaleDateString();
+  //   const end = new Date(endDate).toLocaleDateString();
+  //   const timeDiff = end - start;
+  //   const totalDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+  //   return totalDays;
+  // };
+
+  const handleBooking = async (postData) => {
+    try {
+      console.log("Booking Data:", postData);
+      const response = BookingCall(postData);
+      console.log("Booking Response:", response);
+    } catch (error) {
+      console.log("Booking Error:", error);
+    }
+  };
+
+  // const {values, handleBlur, handleChange, handleSubmit, errors} = useFormik({
+  //   initialValues: initialValues,
+  //   validationSchema: validationSchema,
+  //   onSubmit: handleBooking,
+  // });
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: handleBooking,
+  });
+
   return (
     <div>
-      <form onSubmit={handleSubmit(handleBooking)}>
+      <form onSubmit={formik.handleSubmit}>
         {/* Dates */}
         <div className="border border-zinc-600 p-3 rounded-xl flex flex-col gap-2">
           <h1 className="font-alli text-3xl">Dates :</h1>
 
-          {/* dateFrom */}
+          {/* date From */}
           <div>
-            <label htmlFor="date" className="font-dm text-sm font-thin">
-              Start Date
-            </label>
-            <Controller
-              name="dateFrom"
-              control={control}
-              rules={{ required: true }}
-              render={({ field }) => (
-                <DatePicker
-                  className="rounded-xl bg-black border-2 border-zinc-500 px-3 py-1 text-xs tracking-widest text-zinc-300"
-                  {...field}
-                  selected={field.value}
-                  onChange={(date) => field.onChange(date)}
-                />
-              )}
+            <DatePicker
+              className="rounded-xl bg-black border-2 border-zinc-500 px-3 py-1 text-xs tracking-widest text-zinc-300"
+              selected={formik.values.dateFrom}
+              onChange={(date) => {
+                formik.setFieldValue("dateFrom", date);
+                handleDates({
+                  startDate: date,
+                  endDate: formik.values.dateTo,
+                });
+              }}
+              dateFormat="dd/MM/yyyy"
+              placeholderText="Start Date"
+              minDate={new Date()}
+              isClearable={true}
             />
-            {errors.date && <span>Date is required</span>}
+            {formik.errors.dateFrom && <p>{formik.errors.dateFrom}</p>}
           </div>
 
           {/* dateTo */}
           <div>
-            <label htmlFor="date" className="font-dm text-sm font-thin">
-              End Date
-            </label>
-            <Controller
-              name="dateTo"
-              control={control}
-              rules={{ required: true }}
-              render={({ field }) => (
-                <DatePicker
-                  className="rounded-xl bg-black border-2 border-zinc-500 px-3 py-1 text-xs tracking-widest text-zinc-300"
-                  {...field}
-                  selected={field.value}
-                  onChange={(date) => field.onChange(date)}
-                />
-              )}
+            <DatePicker
+              className="rounded-xl bg-black border-2 border-zinc-500 px-3 py-1 text-xs tracking-widest text-zinc-300"
+              selected={formik.values.dateTo}
+              onChange={(date) => {
+                formik.setFieldValue("dateTo", date);
+                handleDates({
+                  startDate: formik.values.dateFrom,
+                  endDate: date,
+                });
+              }}
+              dateFormat="dd/MM/yyyy"
+              placeholderText="End Date"
+              minDate={new Date()}
+              isClearable={true}
             />
-            {errors.date && <span>Date is required</span>}
+            {formik.errors.dateTo && <p>{formik.errors.dateTo}</p>}
           </div>
         </div>
 
         {/* Number of Guests */}
         <div className="border border-zinc-600 mt-3 p-3 rounded-xl flex flex-col gap-2">
           <h1 className="font-alli text-3xl">Guests :</h1>
-          <Controller
-            name="guests"
-            control={control}
-            rules={{ required: true }}
-            render={({ field }) => (
-              <div className="flex justify-between items-center gap-4">
-                <input
-                  {...field}
-                  type="number"
-                  className="rounded-xl bg-black border-2 border-zinc-500 px-3 py-1 text-xs tracking-widest text-zinc-300 w-full"
-                />
-                <button
-                  onClick={() => field.onChange(field.value - 1)}
-                  className="px-3 border rounded-full h-full w-[40%]"
-                >
-                  -
-                </button>
-                <button
-                  onClick={() => field.onChange(field.value + 1)}
-                  className="px-3 border rounded-full h-full w-[40%]"
-                >
-                  +
-                </button>
-              </div>
-            )}
-          />
-          {errors.guests && <span>Number of Guests is required</span>}
+          <div className="flex justify-between items-center gap-4">
+            <input
+              type="number"
+              name="guests"
+              value={formik.values.guests}
+              className="rounded-xl bg-black border-2 border-zinc-500 px-3 py-1 text-xs tracking-widest text-zinc-300 w-full"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+            />
+            {formik.errors.guests && <p>{formik.errors.guests}</p>}
+            
+          </div>
         </div>
 
         <div className="my-2">
-          <h2 className="text-md font-dm font-semibold text-zinc-400">
-            Total Days:{" "}
-            <span className="text-holiblue">{calculateTotalDays}</span>
-          </h2>
-          <h2 className="text-md font-dm font-semibold text-zinc-400">
-            <span>
-              Total Amount:{" "}
-              <span className="text-holiblue">{calculateTotalPrice}</span>
-            </span>
-          </h2>
+          <div>
+            <h2 className="text-md font-dm font-semibold text-zinc-400">
+              Total Days:
+            </h2>
+            <p className="text-holiblue">{totalDays}</p>
+          </div>
+          <div className="text-md font-dm font-semibold text-zinc-400">
+            <h2>Total Price:</h2>
+            <p className="text-holiblue">{totalPrice}</p>
+          </div>
         </div>
 
         <button
           className="my-2 rounded-full px-4 py-1 border-2 text-black border-holiblue bg-holiblue hover:text-holiblue hover:bg-black hover:scale-105 tracking-widest font-dm text-md transition-all duration-800 cursor-pointer"
           type="submit"
-          value="Place Booking"
-          onClick={handleSubmit}
         >
           Place Booking
         </button>
-        {bookingError && <p className="text-red-500">{bookingError}</p>}
       </form>
     </div>
   );
