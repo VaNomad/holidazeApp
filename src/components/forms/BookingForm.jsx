@@ -6,11 +6,10 @@ import { API_BASE_URL } from "../../api/endpoints";
 import { BookingCall } from "../../api/BookingCall";
 import { useFormik } from "formik";
 import { useParams } from "react-router-dom";
-import * as Yup from "yup"
+import * as Yup from "yup";
+import { Loader } from "../ui/loader/Loader";
 
-
-
-export const BookingForm = ({ price, maxGuests}) => {
+export const BookingForm = ({ price, maxGuests }) => {
   const [totalDays, setTotalDays] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -38,56 +37,40 @@ export const BookingForm = ({ price, maxGuests}) => {
         return value <= maxGuests;
       }),
   });
-  
-  const handleDates = ({ startDate, endDate }) => {
+
+  const handleDatePickers = ({ startDate, endDate }) => {
     formik.setFieldValue("dateFrom", startDate);
     formik.setFieldValue("dateTo", endDate);
 
-    // Calculate the total amount based on selected dates and price
     if (startDate && endDate) {
-      const daysDifference = Math.ceil(
-        (endDate - startDate) / (1000 * 60 * 60 * 24)
+      const calculateTotalDays = Math.ceil(
+        (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24)
       );
-
-      setTotalDays(daysDifference);
-
-      const newTotalAmount = daysDifference * price;
+      setTotalDays(calculateTotalDays);
+      const newTotalAmount = calculateTotalDays * price;
       setTotalPrice(newTotalAmount);
     }
   };
 
-  // const calculateTotalPrice = (startDate, endDate, pricePerNight) => {
-  //   const start = new Date(startDate).toLocaleDateString();
-  //   const end = new Date(endDate).toLocaleDateString();
-  //   const timeDiff = end - start;
-  //   const numberOfNights = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-  //   const totalPrice = numberOfNights * pricePerNight;
-  //   return totalPrice;
-  // };
-
-  // const calculateTotalDays = (startDate, endDate) => {
-  //   const start = new Date(startDate).toLocaleDateString();
-  //   const end = new Date(endDate).toLocaleDateString();
-  //   const timeDiff = end - start;
-  //   const totalDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-  //   return totalDays;
-  // };
-
-  const handleBooking = async (postData) => {
+  const handleBooking = async (values) => {
+    const bookingData = {
+      dateFrom: values.dateFrom,
+      dateTo: values.dateTo,
+      guests: values.guests,
+      venueId: values.venueId,
+    };
     try {
-      console.log("Booking Data:", postData);
-      const response = BookingCall(postData);
-      console.log("Booking Response:", response);
+      if (formik.isValid) {
+        console.log("Booking Data:", values);
+        const response = await postData(bookingData);
+        console.log("Booking Response:", response);
+      } else {
+        console.log("Form validation failed.");
+      }
     } catch (error) {
       console.log("Booking Error:", error);
     }
   };
-
-  // const {values, handleBlur, handleChange, handleSubmit, errors} = useFormik({
-  //   initialValues: initialValues,
-  //   validationSchema: validationSchema,
-  //   onSubmit: handleBooking,
-  // });
 
   const formik = useFormik({
     initialValues,
@@ -109,12 +92,12 @@ export const BookingForm = ({ price, maxGuests}) => {
               selected={formik.values.dateFrom}
               onChange={(date) => {
                 formik.setFieldValue("dateFrom", date);
-                handleDates({
+                handleDatePickers({
                   startDate: date,
                   endDate: formik.values.dateTo,
                 });
               }}
-              dateFormat="dd/MM/yyyy"
+              dateFormat="dd/mm/yyyy"
               placeholderText="Start Date"
               minDate={new Date()}
               isClearable={true}
@@ -129,12 +112,12 @@ export const BookingForm = ({ price, maxGuests}) => {
               selected={formik.values.dateTo}
               onChange={(date) => {
                 formik.setFieldValue("dateTo", date);
-                handleDates({
+                handleDatePickers({
                   startDate: formik.values.dateFrom,
                   endDate: date,
                 });
               }}
-              dateFormat="dd/MM/yyyy"
+              dateFormat="dd/mm/yyyy"
               placeholderText="End Date"
               minDate={new Date()}
               isClearable={true}
@@ -156,10 +139,10 @@ export const BookingForm = ({ price, maxGuests}) => {
               onChange={formik.handleChange}
             />
             {formik.errors.guests && <p>{formik.errors.guests}</p>}
-            
           </div>
         </div>
 
+        {/* days & price */}
         <div className="my-2">
           <div>
             <h2 className="text-md font-dm font-semibold text-zinc-400">
@@ -173,6 +156,18 @@ export const BookingForm = ({ price, maxGuests}) => {
           </div>
         </div>
 
+        {/* errors */}
+        <div>
+          {createBookingData && (
+            <div className="border-2 border-zinc-500 px-3 py-1">
+              <h2>Your Booking was successful! Find it in your profile!</h2>
+            </div>
+          )}
+          {isLoading && <Loader />}
+          {hasError && <p className="text-red-500">Error: {formik.errors}</p>}
+        </div>
+
+        {/* submit btn */}
         <button
           className="my-2 rounded-full px-4 py-1 border-2 text-black border-holiblue bg-holiblue hover:text-holiblue hover:bg-black hover:scale-105 tracking-widest font-dm text-md transition-all duration-800 cursor-pointer"
           type="submit"
