@@ -25,32 +25,26 @@ export const MyVenuesCard = ({ data }) => {
     <div className="rounded-2xl p-2">
       <div className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
         {data ? (
-          <div className="card container mx-auto p-3 ">
-            <div>
-              <img
-                src={media}
-                alt="User Avatar"
-                className="w-[20px] h-[20px] rounded-full object-cover"
-              />
-            </div>
-            <h2>{name}</h2>
-            <p>{venueId}</p>
-            <div>
+          <div className="card container mx-auto p-3">
+            <h3 className="font-alli text-3xl">Venue name</h3>
+            <div className="flex text-sm font-thin font-dm">
+              <div className="p-2">
+                <img
+                  src={media}
+                  alt="User Avatar"
+                  className="w-[20px] h-[20px] rounded-full object-cover"
+                />
+              </div>
               <div>
-                <p>Max number of guests: {maxGuests}</p>
+                <h2>{name}</h2>
+                <p>{venueId}</p>
+              </div>
+            </div>
+            <div>
+              <div className="font-semibold text-xs">
                 <div>
-                  <img
-                    src={media}
-                    alt=""
-                    className="w-[20px] h-[20px] rounded-full object-cover"
-                  />
-                </div>
-                <div>
-                  <h5>Description:</h5>
-                  <p>{description}</p>
-                </div>
-                <div>
-                  <h3>Location Data:</h3>
+                  <h3 className="font-alli text-3xl">Location Data:</h3>
+                  <p>Max number of guests: {maxGuests}</p>
                   <p>Venue Created: {venueCreated}</p>
                   <p>Continent: {continent}</p>
                   <p>Country: {country}</p>
@@ -88,15 +82,15 @@ export const MyVenuesCard = ({ data }) => {
               price={price}
               maxGuests={maxGuests}
               // venueId={id}
-              continent={ continent }
-              country={ country }
-              address={ address }
-              city={ city }
-              zip={ zip }
-              wifi={ wifi }
-              parking={ parking }
-              breakfast={ breakfast }
-              pets={ pets }
+              continent={continent}
+              country={country}
+              address={address}
+              city={city}
+              zip={zip}
+              wifi={wifi}
+              parking={parking}
+              breakfast={breakfast}
+              pets={pets}
               media={media}
             />
           </div>

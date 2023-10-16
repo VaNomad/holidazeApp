@@ -173,12 +173,14 @@ export const SpecificCard = ({ data }) => {
           <p className="text-white font-semibold text-xl p-2 font-dm">
             Check Availability{" "}
           </p>
-          <BookingForm
-            data={data}
-            venueId={id}
-            maxGuests={maxGuests}
-            price={price}
-          />
+          <div>
+            <BookingForm
+              data={data}
+              venueId={id}
+              maxGuests={maxGuests}
+              price={price}
+            />
+          </div>
         </div>
       ) : (
         <div>
