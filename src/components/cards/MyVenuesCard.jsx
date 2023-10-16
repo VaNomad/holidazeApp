@@ -78,9 +78,9 @@ export const MyVenuesCard = ({ data }) => {
       <div>
         {isAuthenticated && user.venueManager ? (
           <div className="my-5">
-            <p className="text-white font-semibold text-xl p-2 font-dm">
+            <h2 className="text-white font-semibold p-2 font-alli text-4xl">
               Add a venue{" "}
-            </p>
+            </h2>
             <CreateVenueForm
               data={data}
               name={name}
