@@ -1,12 +1,21 @@
 import { useForm, Controller} from 'react-hook-form';
-// import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { CreateVenue } from '../../api/CreateVenueCall';
 import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { CreateVenue } from '../../api/CreateVenueCall';
+import { Loader } from '../ui/loader/Loader';
+import { API_BASE_URL } from '../../api/endpoints';
+
 
 export const CreateVenueForm = () => {
   const [createVenueError, setCreateVenueError] = useState(null);
   const navigate = useNavigate();
+
+  const { createVenueData, isLoading, hasError, postData } = CreateVenueCall(
+    `${API_BASE_URL}/venues`,
+    []
+  );
+  const { id } = useParams();
+
   const {
     reset,
     control,
@@ -255,7 +264,7 @@ export const CreateVenueForm = () => {
         />
       </div>
 
-      <div className='flex gap-3'>
+      <div className="flex gap-3">
         <button
           className="my-2 rounded-full px-4 py-1 border-2 text-black border-holiblue bg-holiblue hover:text-holiblue hover:bg-black hover:scale-105 tracking-widest font-dm text-md transition-all duration-800 cursor-pointer"
           type="submit"
@@ -272,6 +281,20 @@ export const CreateVenueForm = () => {
         >
           Delete Venue
         </button>
+      </div>
+
+      {/* errors */}
+      <div className="flex justify-center m-5 text-center">
+        {createVenueData && (
+          <div className="border-2 border-lime-400 rounded-xl py-4 px-6 shadow-md shadow-lime-700">
+            <p>Your Booking was successful!</p>
+            <p className="text-sm text-zinc-300 animate-pulse">
+              You will find it in your profile..
+            </p>
+          </div>
+        )}
+        {isLoading && <Loader />}
+        {hasError && <p className="text-holipink">Error: {errors}</p>}
       </div>
 
       {createVenueError && <p className="text-red-500">{createVenueError}</p>}
