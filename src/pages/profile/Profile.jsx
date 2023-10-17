@@ -44,14 +44,16 @@ export const Profile = () => {
               className="text-black bg-holipink rounded-full p-1"
             />
           </div>
-          <p className="whitespace-nowrap flex items-center justify-between">
-            Venue Manager:{" "}
-            {user.venueManager ? (
-              <GiCheckMark color="#70C376" />
-            ) : (
-              <GiCrossMark color="#C37070" size={20} />
-            )}
-          </p>
+          <div>
+            <p className="whitespace-nowrap flex items-center justify-between">
+              Venue Manager:{" "}
+              {user.venueManager ? (
+                <GiCheckMark color="#70C376" />
+              ) : (
+                <GiCrossMark color="#C37070" size={20} />
+              )}
+            </p>
+          </div>
         </div>
       </div>
     </div>
