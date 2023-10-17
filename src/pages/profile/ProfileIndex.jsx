@@ -6,6 +6,7 @@ import { Profile } from "./Profile";
 import { MyBookings } from "../../api/MyBookings";
 import { MyVenues } from "../../api/MyVenues";
 import { ProfileHeader } from "./ProfileHeader";
+import { CreateVenueForm } from "../../components/forms/CreateVenueForm";
 
 export const ProfileIndex = () => {
   const { user } = useUser();
@@ -29,15 +30,14 @@ export const ProfileIndex = () => {
             <Profile />
           </TabPanel>
           <TabPanel>
-            <p>Your bookings</p>
+            <h2>Your bookings</h2>
             <MyBookings />
           </TabPanel>
           <TabPanel>
-            <p>Your Venues</p>
             <MyVenues />
           </TabPanel>
           <TabPanel>
-            <p>Add a new Venue</p>
+            <CreateVenueForm />
           </TabPanel>
         </Tabs>
       </div>

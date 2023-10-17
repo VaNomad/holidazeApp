@@ -1,16 +1,15 @@
 // import { MyBookings } from "../../api/MyBookings";
-// import { VenuesCarousel } from "../carousel/VenuesCarousel";
-import { BtnFull } from "../ui/buttons/BtnFull";
-import { useUser } from "../../context/UserContext";
-import { CreateVenueForm } from "../forms/CreateVenueForm";
-import { Link } from "react-router-dom";
-import {FiArrowRight} from "react-icons/fi"
+import { VenuesCarousel } from "../carousel/VenuesCarousel";
+// import { BtnFull } from "../ui/buttons/BtnFull";
+// import { useUser } from "../../context/UserContext";
+// import { CreateVenueForm } from "../forms/CreateVenueForm";
+// import { Link } from "react-router-dom";
+import {TbArrowRight} from "react-icons/tb"
 
 export const MyVenuesCard = ({ data }) => {
-  const { user, isAuthenticated } = useUser();
+  // const { user, isAuthenticated } = useUser();
   const {
     created: venueCreated,
-    description,
     id: venueId,
     location: { address, city, continent, country, zip },
     maxGuests,
@@ -26,18 +25,18 @@ export const MyVenuesCard = ({ data }) => {
       <div className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
         {data ? (
           <div className="card container mx-auto p-3">
-            <h3 className="font-alli text-3xl">Venue name</h3>
-            <div className="flex text-sm font-thin font-dm">
-              <div className="p-2">
-                <img
-                  src={media}
-                  alt="User Avatar"
-                  className="w-[20px] h-[20px] rounded-full object-cover"
-                />
+            <h3 className="font-alli text-3xl">{name}</h3>
+            <div className="flex flex-col text-sm font-thin font-dm pb-2">
+              <div className="py-2">
+                <VenuesCarousel media={media} name={name} />
               </div>
               <div>
-                <h2>{name}</h2>
-                <p>{venueId}</p>
+                <h2>
+                  <span className="font-semibold tracking-widest text-xs me-2">
+                    Venue Id:{" "}
+                  </span>{" "}
+                  {venueId}
+                </h2>
               </div>
             </div>
             <div>
@@ -62,50 +61,17 @@ export const MyVenuesCard = ({ data }) => {
                   <p>Rating {rating} </p>
                 </div>
               </div>
-              <BtnFull />
+              <button className="flex items-center justify-between rounded-full bg-holipink py-2 px-6 my-4 text-black tracking-widest font-dm text-[18px]">
+                Add New Venue
+                <TbArrowRight className="ms-4" />
+              </button>
             </div>
           </div>
         ) : (
-          <p>You are not renting out any venues</p>
-        )}
-      </div>
-      <div>
-        {isAuthenticated && user.venueManager ? (
-          <div className="my-5">
-            <h2 className="text-white font-semibold p-2 font-alli text-4xl">
-              Add a venue{" "}
+          <div className="flex justify-center items-center h-[40vh]">
+            <h2 className="font-alli text-3xl text-center">
+              You have no venues rented out
             </h2>
-            <CreateVenueForm
-              data={data}
-              name={name}
-              description={description}
-              price={price}
-              maxGuests={maxGuests}
-              // venueId={id}
-              continent={continent}
-              country={country}
-              address={address}
-              city={city}
-              zip={zip}
-              wifi={wifi}
-              parking={parking}
-              breakfast={breakfast}
-              pets={pets}
-              media={media}
-            />
-          </div>
-        ) : (
-          <div>
-            <div className=" container mx-auto flex justify-center flex-col items-center text-2xl py-4 my-4">
-              <h3 className="text-blue font-semibold "></h3>
-              <Link
-                type="button"
-                className="my-8 mx-2 bg-none border-2 border-holipink rounded-full p-2 text-white font-alli font-bold hover:bg-holipink hover:text-black hover:scale-105 transition-all duration-300"
-                to="/profile"
-              >
-                List Venue <FiArrowRight size={20} />
-              </Link>
-            </div>
           </div>
         )}
       </div>
