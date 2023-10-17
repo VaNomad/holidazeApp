@@ -37,10 +37,10 @@ export const createVenueSchema = Yup.object().shape({
   ),
   price: Yup.number()
     .required("You must add at least one digit")
-    .min(0, "You have to add a digit"),
+    .min(1,"You have to add a digit"),
   maxGuests: Yup.number()
     .required("You must add at least one digit")
-    .min(0, "You have to add a digit"),
+    .min(1, "You have to add a digit"),
   meta: Yup.object().shape({
     wifi: Yup.boolean().required("Required"),
     parking: Yup.boolean().required("Required"),
