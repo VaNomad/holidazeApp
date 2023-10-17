@@ -11,7 +11,7 @@ export const VenuesCarousel = ({media, name}) => {
             {media.map((imageUrl, index) => (
               <div key={`media-${index}`}>
                 <img
-                  className="object-cover border-2 mx-auto rounded-2xl h-52"
+                  className="object-cover border-2 mx-auto rounded-2xl"
                   src={imageUrl}
                   alt={name}
                 />
