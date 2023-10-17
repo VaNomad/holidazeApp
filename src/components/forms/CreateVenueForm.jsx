@@ -8,7 +8,9 @@ import { PiBowlFood } from "react-icons/pi";
 import { BsWifi } from "react-icons/bs";
 import { GiHollowCat } from "react-icons/gi";
 import { useFormik } from "formik";
-import { initialVenueValues, createVenueSchema } from "./createVenueSchema";
+// import * as Yup from "yup";
+import { initialVenueValues } from "./createVenueSchema";
+import { createVenueSchema } from "./createVenueSchema";
 
 export const CreateVenueForm = () => {
   const [mediaArray, setMediaArray] = useState([]);
@@ -66,7 +68,7 @@ export const CreateVenueForm = () => {
         console.log("Booking Response:", response);
 
         setTimeout(() => {
-          navigate("/add-venue");
+          navigate("/profile");
           action.resetForm();
         }, 2000);
 
@@ -83,6 +85,7 @@ export const CreateVenueForm = () => {
         <form onSubmit={formik.handleSubmit}>
           {/* Venue Name & Price */}
           <div>
+            <h1 className="font-alli text-3xl ">List your Venue</h1>
             <div className="p-4 rounded-xl flex flex-col gap-2">
               <label
                 htmlFor="name"
@@ -100,6 +103,11 @@ export const CreateVenueForm = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.name}
               />
+              {formik.touched.name && formik.errors.name ? (
+                <div className="text-holired">
+                  <p>{formik.errors.name}</p>
+                </div>
+              ) : null}
             </div>
             <div className="p-4 rounded-xl flex flex-col gap-2">
               <label
@@ -109,7 +117,7 @@ export const CreateVenueForm = () => {
                 Price per Night
               </label>
               <input
-                type="text"
+                type="number"
                 id="price"
                 name="price"
                 placeholder="Rent price per night"
@@ -118,6 +126,11 @@ export const CreateVenueForm = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.price}
               />
+              {formik.touched.price && formik.errors.price ? (
+                <div className="text-holired">
+                  <p>{formik.errors.price}</p>
+                </div>
+              ) : null}
             </div>
           </div>
 
@@ -132,7 +145,7 @@ export const CreateVenueForm = () => {
                   Add Venue Images
                 </label>
                 {mediaArray.map((media, index) => (
-                  <div key={index}>
+                  <div key={`media-${index}`}>
                     <div>
                       <input
                         type="url"
@@ -142,8 +155,12 @@ export const CreateVenueForm = () => {
                         value={media}
                         onChange={(e) => mediaChange(e, index)}
                       />
+                      {formik.touched.media && formik.errors.media ? (
+                        <div className="text-holired">
+                          <p>{formik.errors.media}</p>
+                        </div>
+                      ) : null}
                     </div>
-
                     <div>
                       {media && (
                         <img
@@ -197,6 +214,11 @@ export const CreateVenueForm = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.location.description}
               />
+              {formik.touched.description && formik.errors.description ? (
+                <div className="text-holired">
+                  <p>{formik.errors.description}</p>
+                </div>
+              ) : null}
             </div>
           </div>
 
@@ -219,6 +241,11 @@ export const CreateVenueForm = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.location.continent}
               />
+              {formik.touched.continent && formik.errors.continent ? (
+                <div className="text-holired">
+                  <p>{formik.errors.continent}</p>
+                </div>
+              ) : null}
             </div>
             <div className="flex justify-between">
               <label
@@ -237,6 +264,11 @@ export const CreateVenueForm = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.location.country}
               />
+              {formik.touched.country && formik.errors.country ? (
+                <div className="text-holired">
+                  <p>{formik.errors.country}</p>
+                </div>
+              ) : null}
             </div>
             <div className="flex justify-between">
               <label
@@ -255,6 +287,11 @@ export const CreateVenueForm = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.location.city}
               />
+              {formik.touched.city && formik.errors.city ? (
+                <div className="text-holired">
+                  <p>{formik.errors.city}</p>
+                </div>
+              ) : null}
             </div>
             <div className="flex justify-between">
               <label
@@ -273,6 +310,11 @@ export const CreateVenueForm = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.location.address}
               />
+              {formik.touched.address && formik.errors.address ? (
+                <div className="text-holired">
+                  <p>{formik.errors.address}</p>
+                </div>
+              ) : null}
             </div>
             <div className="flex justify-between">
               <label
@@ -291,6 +333,11 @@ export const CreateVenueForm = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.location.zip}
               />
+              {formik.touched.zip && formik.errors.zip ? (
+                <div className="text-holired">
+                  <p>{formik.errors.zip}</p>
+                </div>
+              ) : null}
             </div>
           </div>
 
@@ -316,6 +363,11 @@ export const CreateVenueForm = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.meta.wifi}
                   />
+                  {formik.touched.wifi && formik.errors.wifi ? (
+                    <div className="text-holired">
+                      <p>{formik.errors.wifi}</p>
+                    </div>
+                  ) : null}
                 </div>
                 <div>
                   <h2 className="text-xs font-dm text-zinc-500">Has Wifi</h2>
@@ -334,6 +386,11 @@ export const CreateVenueForm = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.meta.parking}
                   />
+                  {formik.touched.parking && formik.errors.parking ? (
+                    <div className="text-holired">
+                      <p>{formik.errors.parking}</p>
+                    </div>
+                  ) : null}
                 </div>
                 <div>
                   <h2 className="text-xs font-dm text-zinc-500">Parking</h2>
@@ -352,6 +409,11 @@ export const CreateVenueForm = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.meta.breakfast}
                   />
+                  {formik.touched.breakfast && formik.errors.breakfast ? (
+                    <div className="text-holired">
+                      <p>{formik.errors.breakfast}</p>
+                    </div>
+                  ) : null}
                 </div>
                 <div>
                   <h2 className="text-xs font-dm text-zinc-500">Breakfast</h2>
@@ -370,6 +432,11 @@ export const CreateVenueForm = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.meta.pets}
                   />
+                  {formik.touched.pets && formik.errors.pets ? (
+                    <div className="text-holired">
+                      <p>{formik.errors.pets}</p>
+                    </div>
+                  ) : null}
                 </div>
                 <div>
                   <h2 className="text-xs font-dm text-zinc-500">
@@ -391,9 +458,7 @@ export const CreateVenueForm = () => {
               </div>
             )}
             {isLoading && <Loader />}
-            {hasError && (
-              <p className="text-holipink">Error: {formik.errors}</p>
-            )}
+            {hasError && <p className="text-holired">Error: {formik.errors}</p>}
           </div>
 
           <button
