@@ -1,30 +1,41 @@
 import * as Yup from "yup";
 
 export const createVenueSchema = Yup.object().shape({
-  "id": "string",
-  "name": "string",
-  "description": "string",
-  "media": ["string"],
-  "price": 0,
-  "maxGuests": 0,
-  "rating": 0,
-  "created": "string",
-  "updated": "string",
-  "meta": Yup.object().shape({
-    
-    "wifi": true,
-    "parking": true,
-    "breakfast": true,
-    "pets": true
-  
+  name: Yup.string()
+    .required("You have to fill out this field")
+    .min(3, "Your name must be at least 3 characters")
+    .max(50, "Your name can not be longer that 50 characters"),
+  description: Yup.string()
+    .required("You have to fill out this field")
+    .min(10, "Write at least one sentence with 10 characters about your place")
+    .max(1000, "There is a limit of 1000 characters for your description"),
+  media: Yup.array().of(
+    Yup.string()
+      .url("Invalid URL")
+      .required("You have to add at least one image")
+  ),
+  price: Yup.number()
+    .required("You must add at least one digit")
+    .min(0, "You have to add a digit"),
+  maxGuests: Yup.number()
+    .required("You must add at least one digit")
+    .min(0, "You have to add a digit"),
+  meta: Yup.object().shape({
+    wifi: Yup.boolean().required("Required"),
+    parking: Yup.boolean().required("Required"),
+    breakfast: Yup.boolean().required("Required"),
+    pets: Yup.boolean().required("Required"),
   }),
   location: Yup.object().shape({
-    "address": "string",
-    "city": "string",
-    "zip": "string",
-    "country": "string",
-    "continent": "string",
-    "lat": 0,
-    "lng": 0
+    address: Yup.string()
+      .required("You must add an address")
+      .min(5, "At least 5 characters are required")
+      .max(50, "Your address can not be longer than 50 characters"),
+    city: "string",
+    zip: "string",
+    country: "string",
+    continent: "string",
+    lat: 0,
+    lng: 0,
   }),
 });
