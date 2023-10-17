@@ -21,9 +21,7 @@ export const CreateVenueForm = () => {
   );
 
   const addMedia = () => {
-    if (mediaArray.length > 0 && mediaArray[mediaArray.length - 1] !== "") {
-      setMediaArray([...mediaArray, ""]);
-    }
+    setMediaArray([...mediaArray, ""]);
   };
 
   // const handleMedia = (e, index) => {
@@ -119,7 +117,6 @@ export const CreateVenueForm = () => {
   return (
     <div>
       <div>
-
         <form onSubmit={formik.handleSubmit}>
           {/* Venue Name & Price */}
           <div>
@@ -173,26 +170,36 @@ export const CreateVenueForm = () => {
                 </label>
                 {mediaArray.map((media, index) => (
                   <div key={index}>
-                    <input
-                      type="url"
-                      name={`media-${index}`}
-                      className="p-2 w-full rounded-xl sm:text-sm"
-                      placeholder="Venue Image Url"
-                      value={media}
-                      onChange={(e) => mediaChange(e, index)}
-                    />
-                    {media && (
-                      <img
-                        src={media}
-                        alt={`Uploaded Image ${index}`}
-                        className="flex gap-2 h-20 w-20 object-cover rounded-xl"
+                    <div>
+                      <input
+                        type="url"
+                        name={`media-${index}`}
+                        className="w-full mt-1 px-3 py-1 border-2 border-zinc-600 bg-zinc-900 rounded-xl sm:text-sm text-zinc-400"
+                        placeholder="Venue Image Url"
+                        value={media}
+                        onChange={(e) => mediaChange(e, index)}
                       />
-                    )}
-                    {index > 0 && (
-                      <button className="" onClick={() => deleteMedia(index)}>
-                        Delete Image
-                      </button>
-                    )}
+                    </div>
+
+                    <div>
+                      {media && (
+                        <img
+                          src={media}
+                          alt="Uploaded"
+                          className="flex gap-2 h-20 w-20 object-cover rounded-xl font-dm tracking-widest text-xs text-holigreen"
+                        />
+                      )}
+                    </div>
+                    <div>
+                      {index >= 0 && media && (
+                        <button
+                          className="text-holired bg-zinc-800 border-2 border-holired hover:bg-holired hover:text-black px-4 py-1 font-dm font-bold rounded-full text-xs text-center transition-all duration-200"
+                          onClick={() => deleteMedia(index)}
+                        >
+                          Delete Image
+                        </button>
+                      )}
+                    </div>
                   </div>
                 ))}
                 <div className="p-4 mt-3">
