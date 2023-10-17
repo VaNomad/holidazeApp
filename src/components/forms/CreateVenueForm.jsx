@@ -11,7 +11,6 @@ import { useFormik } from "formik";
 import { initialVenueValues, createVenueSchema } from "./createVenueSchema";
 
 export const CreateVenueForm = () => {
-  // const [createVenueError, setCreateVenueError] = useState(null);
   const [mediaArray, setMediaArray] = useState([]);
   const navigate = useNavigate();
 
@@ -23,12 +22,6 @@ export const CreateVenueForm = () => {
   const addMedia = () => {
     setMediaArray([...mediaArray, ""]);
   };
-
-  // const handleMedia = (e, index) => {
-  //   setMediaArray(
-  //     mediaArray.map((value, i) => (i === index ? e.target.value : value))
-  //   );
-  // };
 
   const mediaChange = (e, index) => {
     setMediaArray((mediaArray) => {
@@ -68,51 +61,21 @@ export const CreateVenueForm = () => {
       };
 
       try {
-        if (formik.isValid) {
-          console.log("Create Venue Data:", values);
-          const response = await postData(venueData);
-          console.log("Booking Response:", response);
+        console.log("Create Venue Data:", values);
+        const response = await postData(venueData);
+        console.log("Booking Response:", response);
 
-          setTimeout(() => {
-            navigate("/add-venue");
-            action.resetForm();
-          }, 2000);
+        setTimeout(() => {
+          navigate("/add-venue");
+          action.resetForm();
+        }, 2000);
 
-          console.log("Listing Success!", venueData);
-        } else {
-          console.log("Form validation failed.");
-        }
+        console.log("Listing Success!", venueData);
       } catch (error) {
         console.log("Create Venue Error:", error);
       }
     },
   });
-
-  // const {
-  //   reset,
-  //   control,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm();
-
-  // const onSubmit = (data) => {
-  //   try {
-  //     console.log("Create Venue Data:", data);
-  //     const response = CreateVenue(data);
-  //     console.log("Create Venue Response:", response);
-
-  //     if (response.ok) {
-  //       setTimeout(() => {
-  //         navigate("/profile");
-  //       }, 2000);
-  //     }
-
-  //     setCreateVenueError(null);
-  //   } catch (error) {
-  //     console.log("Booking Error:", error);
-  //     setCreateVenueError("Booking Failed. Check dates selected");
-  //   }
-  // };
 
   return (
     <div>
@@ -225,11 +188,14 @@ export const CreateVenueForm = () => {
                 Description
               </label>
               <textarea
+                className="w-full mt-1 px-3 py-1 border-2 border-zinc-600 bg-zinc-900 rounded-xl sm:text-sm"
                 id="description"
                 name="description"
                 rows="3"
                 placeholder="Describe your venue and services"
-                className="w-full mt-1 px-3 py-1 border-2 border-zinc-600 bg-zinc-900 rounded-xl sm:text-sm"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.location.description}
               />
             </div>
           </div>
@@ -274,6 +240,24 @@ export const CreateVenueForm = () => {
             </div>
             <div className="flex justify-between">
               <label
+                htmlFor="city"
+                className="font-dm tracking-widest text-holiblue"
+              >
+                City
+              </label>
+              <input
+                className="rounded-xl bg-zinc-900 border-2 border-zinc-500 px-3 py-1 text-xs tracking-widest text-zinc-300 max-w-xs"
+                type="text"
+                id="city"
+                name="location.city"
+                placeholder="Venue City"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.location.city}
+              />
+            </div>
+            <div className="flex justify-between">
+              <label
                 htmlFor="address"
                 className="font-dm tracking-widest text-holiblue"
               >
@@ -282,12 +266,12 @@ export const CreateVenueForm = () => {
               <input
                 className="rounded-xl border-2 border-zinc-500 px-3 py-1 text-xs tracking-widest text-zinc-300 bg-zinc-900"
                 type="text"
-                id="city"
+                id="address"
                 name="location.address"
                 placeholder="Venue Address"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.location.city}
+                value={formik.values.location.address}
               />
             </div>
             <div className="flex justify-between">
