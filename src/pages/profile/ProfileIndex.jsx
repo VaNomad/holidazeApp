@@ -23,8 +23,12 @@ export const ProfileIndex = () => {
           <TabList>
             <Tab>Profile</Tab>
             <Tab>Bookings</Tab>
-            <Tab>Venues</Tab>
-            <Tab>Add Venue</Tab>
+            {user.venueManager && (
+              <>
+                <Tab>Venues</Tab>
+                <Tab>Add Venue</Tab>
+              </>
+            )}
           </TabList>
           <TabPanel>
             <Profile />
