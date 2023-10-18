@@ -73,6 +73,7 @@ export const CreateVenueForm = () => {
         }, 2000);
 
         console.log("Listing Success!", venueData);
+        console.log(response);
       } catch (error) {
         console.log("Create Venue Error:", error);
       }
@@ -212,7 +213,7 @@ export const CreateVenueForm = () => {
                 placeholder="Describe your venue and services"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.location.description}
+                value={formik.values.description}
               />
               {formik.touched.description && formik.errors.description ? (
                 <div className="text-holired">
