@@ -20,7 +20,7 @@ export const VenuesCarousel = ({media, name}) => {
           </Carousel>
         ) : (
           <img
-            className="object-cover border-2 mx-auto rounded-2xl h-52 lg:p-10 sm:p-14 md:p-8 xs:p-8"
+            className="object-cover mx-auto rounded-2xl h-52 lg:p-10 sm:p-14 md:p-8 xs:p-8"
             src={noImg}
             alt={name}
           />
