@@ -24,7 +24,7 @@ export const ProfileIndex = () => {
             <Tab>Profile</Tab>
             <Tab>Bookings</Tab>
             <Tab>Venues</Tab>
-            <Tab>+</Tab>
+            <Tab>Add Venue</Tab>
           </TabList>
           <TabPanel>
             <Profile />
