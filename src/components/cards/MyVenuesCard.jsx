@@ -1,6 +1,14 @@
 // import { MyBookings } from "../../api/MyBookings";
 import { VenuesCarousel } from "../carousel/VenuesCarousel";
 import { UpdateVenueForm } from "../forms/UpdateVenueForm";
+import { ConfirmDelete } from "../forms/DeleteVenueForm";
+import { BsPeople, BsWifi } from "react-icons/bs";
+import { PiBowlFood } from "react-icons/pi";
+import { GiHollowCat } from "react-icons/gi";
+import { CiParking1 } from "react-icons/ci";
+import { GiCheckMark, GiCrossMark } from "react-icons/gi";
+import { IoPricetagsOutline} from "react-icons/io5";
+
 // import { BtnFull } from "../ui/buttons/BtnFull";
 // import { useUser } from "../../context/UserContext";
 // import { CreateVenueForm } from "../forms/CreateVenueForm";
@@ -31,8 +39,13 @@ export const MyVenuesCard = ({ data }) => {
               <div className="py-2">
                 <VenuesCarousel media={media} name={name} />
               </div>
-              <div>
-                <UpdateVenueForm />
+              <div className="flex items-center gap-4">
+                <div>
+                  <UpdateVenueForm />
+                </div>
+                <div>
+                  <ConfirmDelete />
+                </div>
               </div>
               <div>
                 <h2>
@@ -45,25 +58,113 @@ export const MyVenuesCard = ({ data }) => {
             </div>
             <div>
               <div className="font-semibold text-xs">
-                <div>
-                  <h3 className="font-alli text-3xl">Location Data:</h3>
-                  <p>Max number of guests: {maxGuests}</p>
-                  <p>Venue Created: {venueCreated}</p>
-                  <p>Continent: {continent}</p>
-                  <p>Country: {country}</p>
-                  <p>Address: {address}</p>
-                  <p>City: {city}</p>
-                  <p>Zip: {zip}</p>
+                <div className="font-dm tracking-wider px-3 mb-4">
+                  <h3 className="font-alli font-thin text-3xl text-zinc-400 py-2">
+                    Location Data:
+                  </h3>
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <p>Max number of guests: </p>
+                      <p>{maxGuests}</p>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <p>Venue Created: </p>
+                      <p>{venueCreated}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <p>Continent: </p>
+                      <p>{continent}</p>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <p>Country: </p>
+                      <p>{country}</p>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <p>Address: </p>
+                      <p>{address}</p>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <p>City: </p>
+                      <p>{city}</p>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <p>Zip: </p>
+                      <p>{zip}</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3>Services:</h3>
-                  <p>Breakfast: {breakfast}</p>
-                  <p>Parking: {parking}</p>
-                  <p>Pets allowed: {pets}</p>
-                  <p>Wifi: {wifi}</p>
-                  <p>Price pr night: {price}</p>
-                  <p>Rating {rating} </p>
-                </div>
+                <ul className="flex flex-col text-white uppercase text-xs font-thin divide-y-[1px] divide-zinc-600 border border-zinc-600 rounded-xl p-2 gap-1">
+                  <li className="grid grid-cols-3">
+                    <BsPeople size={15} />
+                    <h2>max guests</h2>
+                    <p className="flex justify-end items-center">{maxGuests}</p>
+                  </li>
+                  <li className="grid grid-cols-3">
+                    <PiBowlFood size={22} />
+                    <h2 className="flex items-center">Breakfast</h2>
+                    <p className="flex justify-end items-center">
+                      {breakfast ? (
+                        <GiCheckMark color="#70C376" />
+                      ) : (
+                        <GiCrossMark color="#C37070" />
+                      )}
+                    </p>
+                  </li>
+                  <li className="grid grid-cols-3">
+                    <BsWifi size={18} />
+                    <h2 className="flex items-center">Wifi</h2>
+                    <p className="flex justify-end items-center">
+                      {wifi ? (
+                        <GiCheckMark color="#70C376" />
+                      ) : (
+                        <GiCrossMark color="#C37070" />
+                      )}
+                    </p>
+                  </li>
+                  <li className="grid grid-cols-3">
+                    <GiHollowCat size={22} />
+                    <h2 className="flex items-center">Pets allowed</h2>
+                    <p className="flex justify-end items-center">
+                      {pets ? (
+                        <GiCheckMark color="#70C376" />
+                      ) : (
+                        <GiCrossMark color="#C37070" />
+                      )}
+                    </p>
+                  </li>
+                  <li className="grid grid-cols-3">
+                    <CiParking1 size={22} />
+                    <h2 className="flex items-center">Parking on site</h2>
+                    <p className="flex justify-end items-center">
+                      {parking ? (
+                        <GiCheckMark color="#70C376" />
+                      ) : (
+                        <GiCrossMark color="#C37070" />
+                      )}
+                    </p>
+                  </li>
+                  <li className="grid grid-cols-3">
+                    <IoPricetagsOutline size={22} />
+                    <h2 className="flex items-center">Price per night</h2>
+                    <p className="flex justify-end items-center">
+                      {price ? <p>{price}</p> : 0}
+                    </p>
+                  </li>
+                  <li className="grid grid-cols-3">
+                    <h2 className="flex items-center">Rating</h2>
+                    <p className="ml-3 mr-2 rounded-full px-3 text-white text-sm border-2 border-[#FCB5FF]">
+                      {rating ? (
+                        <p>{rating} / 5</p>
+                      ) : (
+                        <p className="text-[8px] font-dm uppercase">
+                          No rating
+                        </p>
+                      )}
+                    </p>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
