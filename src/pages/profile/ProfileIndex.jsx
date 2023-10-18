@@ -20,21 +20,45 @@ export const ProfileIndex = () => {
       <ProfileHeader />
       <div>
         <Tabs>
-          <TabList>
+          <TabList className="flex">
+            <Tab>Profile</Tab>
+            <Tab>Bookings</Tab>
+            {user.venueManager && <Tab>Venues</Tab>}
+            {user.venueManager && <Tab>Add Venue</Tab>}
+          </TabList>
+          <TabPanel>
+            <Profile />
+          </TabPanel>
+          <TabPanel>
+            <MyBookings />
+          </TabPanel>
+          {user.venueManager && (
+            <TabPanel>
+              <MyVenues />
+            </TabPanel>
+          )}
+          {user.venueManager && (
+            <TabPanel>
+              <CreateVenueForm />
+            </TabPanel>
+          )}
+        </Tabs>
+
+        {/* <Tabs>
+          <TabList className="flex">
             <Tab>Profile</Tab>
             <Tab>Bookings</Tab>
             {user.venueManager && (
-              <>
+              <Tab>
                 <Tab>Venues</Tab>
                 <Tab>Add Venue</Tab>
-              </>
+              </Tab>
             )}
           </TabList>
           <TabPanel>
             <Profile />
           </TabPanel>
           <TabPanel>
-            <h2>Your bookings</h2>
             <MyBookings />
           </TabPanel>
           <TabPanel>
@@ -43,7 +67,7 @@ export const ProfileIndex = () => {
           <TabPanel>
             <CreateVenueForm />
           </TabPanel>
-        </Tabs>
+        </Tabs> */}
       </div>
     </div>
   );

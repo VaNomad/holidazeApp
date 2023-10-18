@@ -99,70 +99,70 @@ export const MyVenuesCard = ({ data }) => {
                   <li className="grid grid-cols-3">
                     <BsPeople size={15} />
                     <h2>max guests</h2>
-                    <p className="flex justify-end items-center">{maxGuests}</p>
+                    <div className="flex justify-end items-center">{maxGuests}</div>
                   </li>
                   <li className="grid grid-cols-3">
                     <PiBowlFood size={22} />
                     <h2 className="flex items-center">Breakfast</h2>
-                    <p className="flex justify-end items-center">
+                    <div className="flex justify-end items-center">
                       {breakfast ? (
                         <GiCheckMark color="#70C376" />
                       ) : (
                         <GiCrossMark color="#C37070" />
                       )}
-                    </p>
+                    </div>
                   </li>
                   <li className="grid grid-cols-3">
                     <BsWifi size={18} />
                     <h2 className="flex items-center">Wifi</h2>
-                    <p className="flex justify-end items-center">
+                    <div className="flex justify-end items-center">
                       {wifi ? (
                         <GiCheckMark color="#70C376" />
                       ) : (
                         <GiCrossMark color="#C37070" />
                       )}
-                    </p>
+                    </div>
                   </li>
                   <li className="grid grid-cols-3">
                     <GiHollowCat size={22} />
                     <h2 className="flex items-center">Pets allowed</h2>
-                    <p className="flex justify-end items-center">
+                    <div className="flex justify-end items-center">
                       {pets ? (
                         <GiCheckMark color="#70C376" />
                       ) : (
                         <GiCrossMark color="#C37070" />
                       )}
-                    </p>
+                    </div>
                   </li>
                   <li className="grid grid-cols-3">
                     <CiParking1 size={22} />
                     <h2 className="flex items-center">Parking on site</h2>
-                    <p className="flex justify-end items-center">
+                    <div className="flex justify-end items-center">
                       {parking ? (
                         <GiCheckMark color="#70C376" />
                       ) : (
                         <GiCrossMark color="#C37070" />
                       )}
-                    </p>
+                    </div>
                   </li>
                   <li className="grid grid-cols-3">
                     <IoPricetagsOutline size={22} />
                     <h2 className="flex items-center">Price per night</h2>
-                    <p className="flex justify-end items-center">
-                      {price ? <p>{price}</p> : 0}
-                    </p>
+                    <div className="flex justify-end items-center">
+                      {price ? (<div>{price}</div>) : (<div>0</div>)}
+                    </div>
                   </li>
                   <li className="grid grid-cols-3">
                     <h2 className="flex items-center">Rating</h2>
-                    <p className="ml-3 mr-2 rounded-full px-3 text-white text-sm border-2 border-[#FCB5FF]">
+                    <div className="ml-3 mr-2 rounded-full px-3 text-white text-sm border-2 border-[#FCB5FF]">
                       {rating ? (
-                        <p>{rating} / 5</p>
+                        <div>{rating} / 5</div>
                       ) : (
-                        <p className="text-[8px] font-dm uppercase">
+                        <div className="text-[8px] font-dm uppercase">
                           No rating
-                        </p>
+                        </div>
                       )}
-                    </p>
+                    </div>
                   </li>
                 </ul>
               </div>
