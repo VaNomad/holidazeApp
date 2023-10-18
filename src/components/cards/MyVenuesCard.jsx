@@ -1,10 +1,11 @@
 // import { MyBookings } from "../../api/MyBookings";
 import { VenuesCarousel } from "../carousel/VenuesCarousel";
+import { UpdateVenueForm } from "../forms/UpdateVenueForm";
 // import { BtnFull } from "../ui/buttons/BtnFull";
 // import { useUser } from "../../context/UserContext";
 // import { CreateVenueForm } from "../forms/CreateVenueForm";
 // import { Link } from "react-router-dom";
-import {TbArrowRight} from "react-icons/tb"
+// import {TbArrowRight} from "react-icons/tb"
 
 export const MyVenuesCard = ({ data }) => {
   // const { user, isAuthenticated } = useUser();
@@ -29,6 +30,9 @@ export const MyVenuesCard = ({ data }) => {
             <div className="flex flex-col text-sm font-thin font-dm pb-2">
               <div className="py-2">
                 <VenuesCarousel media={media} name={name} />
+              </div>
+              <div>
+                <UpdateVenueForm />
               </div>
               <div>
                 <h2>
@@ -61,10 +65,6 @@ export const MyVenuesCard = ({ data }) => {
                   <p>Rating {rating} </p>
                 </div>
               </div>
-              <button className="flex items-center justify-between rounded-full bg-holipink py-2 px-6 my-4 text-black tracking-widest font-dm text-[18px]">
-                Add New Venue
-                <TbArrowRight className="ms-4" />
-              </button>
             </div>
           </div>
         ) : (
