@@ -8,13 +8,14 @@ import { PiBowlFood } from "react-icons/pi";
 import { BsWifi, BsPen } from "react-icons/bs";
 import { GiHollowCat } from "react-icons/gi";
 import { useFormik } from "formik";
-import { createVenueSchema, initialVenueValues } from "./createVenueSchema";
+import { createVenueIdSchema, initialVenueValues } from "./createVenueSchema";
+// import { ConfirmDelete } from "./ConfirmDelete";
 
 export const UpdateVenueForm = ({onUpdate}) => {
   const [mediaArray, setMediaArray] = useState([]);
   const [isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate();
-  const { id } = useParams();
+  let { id } = useParams();
   const [initialValues, setInitialValues] = useState(initialVenueValues)
   
 
@@ -45,7 +46,7 @@ export const UpdateVenueForm = ({onUpdate}) => {
 
   const formik = useFormik({
     initialValues: initialValues,
-    validationSchema: createVenueSchema,
+    validationSchema: createVenueIdSchema,
     onSubmit: async (values, action) => {
       const updateData = {
         name: values.name,
@@ -483,6 +484,7 @@ export const UpdateVenueForm = ({onUpdate}) => {
             </div>
 
             <div className="flex justify-center items-center  py-6">
+              {/* <ConfirmDelete venue={id} /> */}
               <div>
                 <button
                   type="submit"
