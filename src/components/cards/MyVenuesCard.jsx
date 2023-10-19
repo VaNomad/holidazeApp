@@ -41,7 +41,7 @@ export const MyVenuesCard = ({ data }) => {
               </div>
               <div className="flex items-center gap-4">
                 <div>
-                  <UpdateVenueForm />
+                  <UpdateVenueForm residence={data.residence} />
                 </div>
                 <div>
                   <ConfirmDelete />
