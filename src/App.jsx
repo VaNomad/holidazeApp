@@ -12,7 +12,7 @@ import { ProfileIndex } from "./pages/profile/ProfileIndex";
 
 function App() {
   return (
-    <div className="bg-blackish min-h-screen text-white">
+    <div className="bg-blackish text-white">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

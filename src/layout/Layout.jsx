@@ -7,13 +7,13 @@ export const Layout = () => {
   const location = useLocation();
 
   return (
-    <div className="">
-      <Header />
-      <main>
+    <div className="min-h-screen flex flex-col">
+      <Header className="" />
+      <main className="flex-1" >
         <Outlet />
       </main>
       {location.pathname === "/" || location.pathname === "/home" ? null : (
-        <Footer />
+        <Footer className="h-[10vh]" />
       )}
     </div>
   );
