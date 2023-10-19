@@ -79,7 +79,7 @@ export const LoginForm = () => {
               className="h-14 rounded-md p-3 bg-zinc-700"
               {...register("password", {
                 required: "A password is required",
-              }) }
+              })}
               type="password"
               placeholder="Password"
               onBlur={() => {
@@ -91,11 +91,11 @@ export const LoginForm = () => {
             )}
 
             <button
-              className="h-16 rounded-full bg-zinc-800 border border-holipink hover:bg-holipink hover:text-black hover:scale-105 uppercase font-medium tracking-widest font-dm text-xl transition-all duration-800 cursor-pointer"
+              className="px-6 py-2 bg-none border-2 border-holiblue bg-holiblue rounded-full text-black font-alli text-4xl hover:bg-black hover:text-holiblue hover:scale-105 transition-all duration-300 tracking-widest whitespace-nowrap"
               type="submit"
               disabled={isLoading}
             >
-              {isLoading ? <GridLoader className="h-1 w-1" /> : "login"}
+              {isLoading ? <GridLoader className="h-1 w-1" /> : "Login"}
             </button>
             {loginError && <p className="text-red-500">{loginError}</p>}
           </form>
