@@ -12,8 +12,8 @@ export const Layout = () => {
       <main className="flex-1" >
         <Outlet />
       </main>
-      {location.pathname === "/" || location.pathname === "/home" ? null : (
-        <Footer className="h-[10vh]" />
+      {location.pathname === "/" || location.pathname === "/home" || location.pathname === "/" ? null : (
+        <Footer className="h-[10vh] fixed bottom-0 w-full" />
       )}
     </div>
   );
