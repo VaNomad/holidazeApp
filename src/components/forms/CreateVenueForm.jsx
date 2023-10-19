@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { CreateVenueCall } from "../../api/CreateVenueCall";
 import { Loader } from "../ui/loader/Loader";
 import { API_BASE_URL } from "../../api/endpoints";
@@ -14,7 +14,7 @@ import { createVenueSchema } from "./createVenueSchema";
 
 export const CreateVenueForm = () => {
   const [mediaArray, setMediaArray] = useState([]);
-  const navigate = useNavigate();
+  
 
   const { createVenueData, isLoading, hasError, postData } = CreateVenueCall(
     `${API_BASE_URL}/venues`,
@@ -68,8 +68,9 @@ export const CreateVenueForm = () => {
         console.log("Booking Response:", response);
 
         setTimeout(() => {
-          navigate("/profile");
           action.resetForm();
+          setMediaArray([]);
+          window.location.reload()
         }, 2000);
 
         console.log("Listing Success!", venueData);
@@ -454,7 +455,7 @@ export const CreateVenueForm = () => {
               <div className="border-2 border-lime-400 rounded-xl py-4 px-6 shadow-md shadow-lime-700">
                 <p>Your Listing was a success!</p>
                 <p className="text-sm text-zinc-300 animate-pulse">
-                  You will find it in your profile..
+                  Find it in the Venues tab..
                 </p>
               </div>
             )}
