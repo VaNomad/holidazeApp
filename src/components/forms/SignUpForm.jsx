@@ -94,7 +94,7 @@ export const SignUpForm = () => {
 
       <input
         className="h-14 rounded-md p-3 bg-zinc-700"
-        {...register("password", {
+        { ...register("password", {
           required: "A password is required",
           pattern: {
             value:
@@ -102,7 +102,8 @@ export const SignUpForm = () => {
             message:
               "Password must be 8 - 16 characters, have 1 lowercase & 1 uppercase letter, one number and 1 special character",
           },
-        })}
+        }) }
+        type="password"
         placeholder="Password"
         onBlur={() => {
           trigger("password");

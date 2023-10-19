@@ -79,7 +79,8 @@ export const LoginForm = () => {
               className="h-14 rounded-md p-3 bg-zinc-700"
               {...register("password", {
                 required: "A password is required",
-              })}
+              }) }
+              type="password"
               placeholder="Password"
               onBlur={() => {
                 trigger("password");
