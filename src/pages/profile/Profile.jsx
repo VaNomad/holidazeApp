@@ -7,52 +7,59 @@ export const Profile = () => {
   const { user } = useUser();
 
   return (
-    <div className="bg-black">
-      <div className="flex flex-col items-center justify-evenly h-[40vh]">
-        <div className="relative ps-14 pe-5 py-1 border-[2px] border-holipink rounded-full w-[80%] sm:max-w-[30rem]">
-          <div className="absolute top-0 left-[-1px]">
-            <AiOutlineUser
-              size={32}
-              className="text-black bg-holipink rounded-full p-1"
-            />
+    <div className="bg-black flex h-[44vh] justify-center items-center">
+      <div className="max-w-[80%]">
+        <div className="max-w-sm mx-auto flex flex-col gap-5">
+          <div className="flex border-[2px] border-holipink rounded-full items-center">
+            <div>
+              <AiOutlineUser
+                size={32}
+                className="text-black bg-holipink rounded-full p-1"
+              />
+            </div>
+            <div className=" mx-5">
+              <p className="">{user.name}</p>
+            </div>
           </div>
-          {/* {user && <p>{user.name}</p>} */}
-          <p className="whitespace-nowrap">{user.name}</p>
-        </div>
-        <div className="relative ps-14 pe-5 py-1 border-[2px] border-holipink rounded-full w-[80%] sm:max-w-[30rem]">
-          <div className="absolute top-0 left-0">
-            <AiOutlineMail
-              size={32}
-              className="text-black bg-holipink rounded-full p-1"
-            />
+          <div className="flex border-[2px] border-holipink rounded-full items-center">
+            <div>
+              <AiOutlineMail
+                size={32}
+                className="text-black bg-holipink rounded-full p-1"
+              />
+            </div>
+            <div className="mx-5">
+              <p className="">{user.email}</p>
+            </div>
           </div>
-          <p className="whitespace-nowrap">{user.email}</p>
-        </div>
-        <div className="relative ps-14 pe-5 py-1 border-[2px] border-holipink rounded-full w-[80%] sm:max-w-[30rem]">
-          <div className="absolute top-0 left-0">
-            <AiOutlineCamera
-              size={32}
-              className="text-black bg-holipink rounded-full p-1"
-            />
+          <div className="flex border-[2px] border-holipink rounded-full items-center">
+            <div>
+              <AiOutlineCamera
+                size={32}
+                className="text-black bg-holipink rounded-full p-1"
+              />
+            </div>
+            <div className="overflow-x-hidden mx-5">
+              <p className="whitespace-nowrap">{user.avatar}</p>
+            </div>
           </div>
-          <p className="whitespace-nowrap overflow-hidden">{user.avatar}</p>
-        </div>
-        <div className="relative ps-14 pe-5 py-1 border-[2px] border-holipink rounded-full w-[80%] sm:max-w-[30rem]">
-          <div className="absolute top-0 left-0">
-            <BsKey
-              size={32}
-              className="text-black bg-holipink rounded-full p-1"
-            />
-          </div>
-          <div>
-            <p className="whitespace-nowrap flex items-center justify-between">
-              Venue Manager:{" "}
-              {user.venueManager ? (
-                <GiCheckMark color="#70C376" />
-              ) : (
-                <GiCrossMark color="#C37070" size={20} />
-              )}
-            </p>
+          <div className="flex border-[2px] border-holipink rounded-full items-center">
+            <div>
+              <BsKey
+                size={32}
+                className="text-black bg-holipink rounded-full p-1"
+              />
+            </div>
+            <div>
+              <p className="flex items-center justify-between mx-5 gap-5">
+                Venue Manager:{" "}
+                {user.venueManager ? (
+                  <GiCheckMark color="#70C376" />
+                ) : (
+                  <GiCrossMark color="#C37070" size={20} />
+                )}
+              </p>
+            </div>
           </div>
         </div>
       </div>
