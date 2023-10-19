@@ -44,7 +44,7 @@ export const MyVenuesCard = ({ data }) => {
                   <UpdateVenueForm data={data} />
                 </div>
                 <div>
-                  <ConfirmDelete />
+                  <ConfirmDelete data={data} id={venueId} />
                 </div>
               </div>
               <div>
