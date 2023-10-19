@@ -1,4 +1,3 @@
-// import { AiTwotoneStar } from "react-icons/ai";
 import { VenuesCarousel } from "../carousel/VenuesCarousel";
 import {BsPeople, BsWifi, BsKey} from "react-icons/bs"
 import {PiBowlFood} from "react-icons/pi"
@@ -7,12 +6,7 @@ import { CiParking1 } from "react-icons/ci";
 import { GiCheckMark, GiCrossMark } from "react-icons/gi";
 import { FiLogIn } from "react-icons/fi";
 import { BookingForm } from "../forms/BookingForm";
-
-
-// import noAvatar from "../../assets/vectors/hLogoGreen.png"
-import { BtnFull } from "../ui/buttons/BtnFull";
 import { useUser } from "../../context/UserContext";
-// import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 export const SpecificCard = ({ data }) => {
@@ -164,10 +158,6 @@ export const SpecificCard = ({ data }) => {
         </div>
       </div>
 
-      <div className="flex justify-end">
-        <BtnFull size={22} />
-      </div>
-
       {isAuthenticated && user ? (
         <div className="my-5">
           <p className="text-white font-semibold text-xl p-2 font-dm">
@@ -184,14 +174,14 @@ export const SpecificCard = ({ data }) => {
         </div>
       ) : (
         <div>
-          <div className=" container mx-auto flex justify-center flex-col items-center text-2xl py-4 my-4">
-            <h3 className="text-blue font-semibold "></h3>
+          <div className="flex">
             <Link
               type="button"
-              className="my-8 mx-2 bg-none border-2 border-holipink rounded-full p-2 text-white font-alli font-bold hover:bg-holipink hover:text-black hover:scale-105 transition-all duration-300"
+              className="flex items-center px-6 bg-none border-2 border-holiblue bg-holiblue font-semibold rounded-full p-2 text-black font-alli text-3xl hover:bg-black hover:text-holiblue hover:scale-105 transition-all duration-300 tracking-widest whitespace-nowrap"
               to="/login"
             >
-              Login To Reserve <FiLogIn size={20} />
+              <h2>Login To Reserve</h2>
+              <FiLogIn size={26} className="ms-5" />
             </Link>
           </div>
         </div>
