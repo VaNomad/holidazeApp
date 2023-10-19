@@ -7,8 +7,10 @@ import { MyBookings } from "../../api/MyBookings";
 import { MyVenues } from "../../api/MyVenues";
 import { ProfileHeader } from "./ProfileHeader";
 import { CreateVenueForm } from "../../components/forms/CreateVenueForm";
+import { UpdateVenueForm } from "../../components/forms/UpdateVenueForm";
+// import { Formik, useFormik } from "formik";
 
-export const ProfileIndex = () => {
+export const ProfileIndex = ({data}) => {
   const { user } = useUser();
 
   console.log("User in Profile:", user);
@@ -32,42 +34,14 @@ export const ProfileIndex = () => {
           <TabPanel>
             <MyBookings />
           </TabPanel>
-          {user.venueManager && (
-            <TabPanel>
-              <MyVenues />
-            </TabPanel>
-          )}
-          {user.venueManager && (
-            <TabPanel>
-              <CreateVenueForm />
-            </TabPanel>
-          )}
-        </Tabs>
-
-        {/* <Tabs>
-          <TabList className="flex">
-            <Tab>Profile</Tab>
-            <Tab>Bookings</Tab>
-            {user.venueManager && (
-              <Tab>
-                <Tab>Venues</Tab>
-                <Tab>Add Venue</Tab>
-              </Tab>
-            )}
-          </TabList>
-          <TabPanel>
-            <Profile />
-          </TabPanel>
-          <TabPanel>
-            <MyBookings />
-          </TabPanel>
           <TabPanel>
             <MyVenues />
+            <UpdateVenueForm data={data}/>
           </TabPanel>
           <TabPanel>
             <CreateVenueForm />
           </TabPanel>
-        </Tabs> */}
+        </Tabs>
       </div>
     </div>
   );

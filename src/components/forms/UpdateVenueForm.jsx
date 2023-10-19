@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { UpdateVenueCall } from "../../api/UpdateVenue";
 import { Loader } from "../ui/loader/Loader";
 import { API_BASE_URL } from "../../api/endpoints";
@@ -8,16 +8,14 @@ import { PiBowlFood } from "react-icons/pi";
 import { BsWifi, BsPen } from "react-icons/bs";
 import { GiHollowCat } from "react-icons/gi";
 import { useFormik } from "formik";
-import { createVenueIdSchema, initialVenueValues } from "./createVenueSchema";
+import { createVenueSchema } from "./createVenueSchema";
 // import { ConfirmDelete } from "./ConfirmDelete";
 
-export const UpdateVenueForm = ({onUpdate}) => {
-  const [mediaArray, setMediaArray] = useState([]);
-  const [isOpen, setIsOpen] = useState(false)
+export const UpdateVenueForm = ({ data }) => {
+  const { id } = data;
+  const [mediaArray, setMediaArray] = useState(data?.media || []);
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  let { id } = useParams();
-  const [initialValues, setInitialValues] = useState(initialVenueValues)
-  
 
   const { updateVenueData, isLoading, hasError, putData } = UpdateVenueCall(
     `${API_BASE_URL}/venues/${id}`,
@@ -25,8 +23,8 @@ export const UpdateVenueForm = ({onUpdate}) => {
   );
 
   const toggleModal = () => {
-    setIsOpen(!isOpen)
-  }
+    setIsOpen(!isOpen);
+  };
 
   const addMedia = () => {
     setMediaArray([...mediaArray, ""]);
@@ -45,9 +43,29 @@ export const UpdateVenueForm = ({onUpdate}) => {
   };
 
   const formik = useFormik({
-    initialValues: initialValues,
-    validationSchema: createVenueIdSchema,
-    onSubmit: async (values, action) => {
+    initialValues: {
+      name: data?.name || "",
+      description: data?.description || "",
+      media: mediaArray,
+      price: data?.price || 1,
+      maxGuests: data?.maxGuests || 1,
+      meta: {
+        wifi: data?.meta.wifi || false,
+        parking: data?.meta.parking || false,
+        breakfast: data?.meta.breakfast || false,
+        pets: data?.meta.pets || false,
+      },
+      location: {
+        address: data?.location.address || "",
+        city: data?.location.city || "",
+        zip: data?.location.zip || "",
+        country: data?.location.country || "",
+        continent: data?.location.continent || "",
+      },
+    },
+    // initialValues: initialValues,
+    validationSchema: createVenueSchema,
+    onSubmit: async (values) => {
       const updateData = {
         name: values.name,
         description: values.description,
@@ -68,25 +86,29 @@ export const UpdateVenueForm = ({onUpdate}) => {
           continent: values.location.continent,
         },
       };
-
+      console.log(updateData);
       try {
         console.log("Venue Id Data:", values);
-        const response = await putData(updateData);
-        console.log("Update Id Data Response:", response);
-        setInitialValues(updateData)
-        onUpdate(updateData)
-        toggleModal()
-
-        setTimeout(() => {
-          navigate("/profile");
-          action.resetForm();
-        }, 2000);
+        await putData(updateData);
+        console.log("Update Id Data Response:", updateData);
+        console.log("Update Id Data Response:", putData);
+        toggleModal();
 
         console.log("Updating your Venue was a Success!", updateData);
       } catch (error) {
         console.log("Update Venue Error:", error);
       }
     },
+  });
+
+  useEffect(() => {
+    if (updateVenueData) {
+      setTimeout(() => {
+        setIsOpen(false);
+        navigate("/profile");
+        window.location.reload();
+      }, 2000);
+    }
   });
 
   return (
