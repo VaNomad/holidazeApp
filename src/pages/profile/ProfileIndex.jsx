@@ -7,10 +7,10 @@ import { MyBookings } from "../../api/MyBookings";
 import { MyVenues } from "../../api/MyVenues";
 import { ProfileHeader } from "./ProfileHeader";
 import { CreateVenueForm } from "../../components/forms/CreateVenueForm";
-import { UpdateVenueForm } from "../../components/forms/UpdateVenueForm";
+// import { UpdateVenueForm } from "../../components/forms/UpdateVenueForm";
 // import { Formik, useFormik } from "formik";
 
-export const ProfileIndex = ({data}) => {
+export const ProfileIndex = () => {
   const { user } = useUser();
 
   console.log("User in Profile:", user);
@@ -36,7 +36,6 @@ export const ProfileIndex = ({data}) => {
           </TabPanel>
           <TabPanel>
             <MyVenues />
-            <UpdateVenueForm data={data}/>
           </TabPanel>
           <TabPanel>
             <CreateVenueForm />
