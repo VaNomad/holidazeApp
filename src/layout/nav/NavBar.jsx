@@ -50,20 +50,20 @@ export const NavBar = () => {
               onClick={() => setToggle(!toggle)}
             >
               <div
-                className={`transition-all duration-600 ease-in-out absolute ${
+                className={`transition-all duration-600 ease-in-out absolute top-24 left-10 z-40 ${
                   toggle ? "opacity-100 scale-100" : "opacity-0 scale-0"
                 }`}
               >
-                <div className="border-2 border-[#FCB5FF] rounded-full hover:text-black hover:border-none hover:bg-[#FCB5FF] hover:scale-105 transition-scale duration-200 ease-in">
+                <div className="border-2 border-[#FCB5FF] rounded-full hover:text-black hover:bg-[#FCB5FF] hover:scale-105 transition-scale duration-200 ease-in">
                   <h1 className="text-[18px] font-dm font-medium">
-                    <GiCrossMark />
+                    <GiCrossMark className="m-2" />
                   </h1>
                 </div>
               </div>
 
               <div
                 className={`transition-all duration-600 ease-in-out absolute p-2.5 ${
-                  toggle ? "opacity-0 scale-0" : "opacity-100 scale-100"
+                  toggle ? "opacity-30 scale-100 disabled" : "opacity-100 scale-100"
                 }`}
               >
                 <div className="text-center border-2 border-[#FCB5FF] hover:border-none hover:bg-[#FCB5FF] hover:text-black rounded-full w-[80px] sm:w-[120px] hover:scale-105 transition-scale duration-200 ease-in">
