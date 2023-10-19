@@ -46,7 +46,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <div className="mx-auto border border-holiblue p-5 rounded-xl max-w-xl w-[80%]">
+    <div className="mx-auto border border-holiblue p-5 rounded-xl max-w-md w-[80%]">
       <Tabs selectedIndex={activeTab} onSelect={handleTabChange}>
         <TabList>
           <Tab>Login</Tab>
