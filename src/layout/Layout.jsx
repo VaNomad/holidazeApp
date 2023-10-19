@@ -7,7 +7,7 @@ export const Layout = () => {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="">
       <Header />
       <main>
         <Outlet />
