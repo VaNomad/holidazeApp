@@ -40,7 +40,7 @@ export const ProfileHeader = () => {
         <button
           id="plus-button"
           onClick={openModal}
-          className="text-4xl text-holiblue p- absolute top-[7.5rem] left-[8.5rem] md:top-[11rem] md:left-[11rem]"
+          className="text-5xl text-holiblue absolute top-[7.5rem] left-[8.5rem] md:top-[11rem] md:left-[11rem]"
         >
           +
         </button>

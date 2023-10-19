@@ -89,11 +89,11 @@ export const ChangeAvatarModal = ({ isOpen, closeModal }) => {
             ) }
             <button
               id="save"
-              className="absolute whitespace-nowrap right-[-4rem] bottom-[3rem] flex justify-center items-center gap-2 py-1 px-2 rounded-full text-black border border-black bg-holigreen font-ndo hover:scale-105 font-medium transition-all duration-800 cursor-pointer"
+              className="absolute whitespace-nowrap  right-[-4rem] bottom-[3rem] flex justify-center items-center gap-2 py-1 px-2 rounded-full text-black border border-black bg-holigreen font-ndo hover:scale-105 font-medium transition-all duration-800 cursor-pointer"
               type="submit"
               onClick={ handleUpdateAvatar }
             >
-              <BsCloudUpload size={ 20 } className="rounded-full w-full h-full" />
+              <BsCloudUpload size={ 20 } className="rounded-full" />
               { isLoading ? <GridLoader className="h-1 w-1" /> : "Save" }
             </button>
             { urlError && <p className="text-red-500">{ urlError }</p> }
