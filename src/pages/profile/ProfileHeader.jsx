@@ -11,8 +11,7 @@ export const ProfileHeader = () => {
 
   console.log("User in Profile:", user);
 
-  const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
+  const toggleModal = () => setModalOpen(!isModalOpen);
 
   console.log("User:", user);
   console.log(useUser());
@@ -23,10 +22,10 @@ export const ProfileHeader = () => {
         <img
           src={header}
           alt="profile header"
-          className="h-[250px] mb-3 w-full object-cover object-bottom md:object-center"
+          className="h-[270px] mb-7 w-full object-cover object-bottom md:object-center"
         />
       </div>
-      <div className="absolute top-[15%] md:top-[11%] right-[25%] md:right-[25%] flex flex-col">
+      <div className="absolute top-[12%] md:top-[11%] right-[25%] md:right-[25%] flex flex-col">
         <div className="h-[150px] md:h-[200px] w-[150px] md:w-[200px] border-4 border-zinc-700 bg-black rounded-full">
           {user && (
             <img
@@ -39,12 +38,12 @@ export const ProfileHeader = () => {
         </div>
         <button
           id="plus-button"
-          onClick={openModal}
-          className="text-5xl text-holiblue absolute top-[7.5rem] left-[8.5rem] md:top-[11rem] md:left-[11rem]"
+          onClick={toggleModal}
+          className="text-5xl text-holiblue absolute top-[6.5rem] left-[9rem] md:top-[11rem] md:left-[11rem]"
         >
           +
         </button>
-        <ChangeAvatarModal isOpen={isModalOpen} closeModal={closeModal} />
+        <ChangeAvatarModal isOpen={isModalOpen} closeModal={toggleModal} />
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ export const ProfileIndex = () => {
       <ProfileHeader />
       <div>
         <Tabs>
-          <TabList className="flex flex-wrap font-thin text-[10px] px-2">
+          <TabList className="flex flex-wrap font-thin text-[22px] px-2">
             <Tab className="mx-1 px-2 py-1 border-x-1 border-t-1 border-x-zinc-500 border-t-zinc-500 rounded-t-md cursor-pointer">
               <span className="font-semibold">my</span>Profile
             </Tab>

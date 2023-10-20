@@ -8,7 +8,7 @@ export const Layout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header className="" />
-      <main className="flex-1">
+      <main className="flex-1 bg-black">
         <Outlet />
       </main>
       {/* {location.pathname === "/" || location.pathname === "/home" || location.pathname === "/" ? null : (
