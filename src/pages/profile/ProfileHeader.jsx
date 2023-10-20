@@ -25,7 +25,7 @@ export const ProfileHeader = () => {
           className="h-[270px] mb-7 w-full object-cover object-bottom md:object-center"
         />
       </div>
-      <div className="absolute top-[12%] md:top-[11%] right-[25%] md:right-[25%] flex flex-col">
+      <div className="absolute top-[14%] md:top-[11%] right-[25%] md:right-[25%] flex flex-col">
         <div className="h-[150px] md:h-[200px] w-[150px] md:w-[200px] border-4 border-zinc-700 bg-black rounded-full">
           {user && (
             <img
