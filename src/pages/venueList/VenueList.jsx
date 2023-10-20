@@ -4,12 +4,15 @@ import { API_BASE_URL } from "../../api/endpoints";
 import { Loader } from "../../components/ui/loader/Loader";
 import { ErrorDisplay } from "../../components/ui/messages/ErrorDisplay";
 import { AllVenuesCard } from "../../components/cards/AllVenuesCard";
+import { SearchBar } from "../../components/search/Search";
+import { useState } from "react";
 
 const query = "?sortOrder=desc&sort=created&_owner=true&_bookings=true;";
-const isUrl = (`${API_BASE_URL}/venues/${query}`);
+const isUrl = `${API_BASE_URL}/venues/${query}`;
 
 export const VenueList = () => {
   const { data, isLoading, hasError, errorDisplay } = Api(isUrl);
+  const [search, setSearch] = useState("");
 
   if (isLoading) {
     return (
@@ -29,30 +32,38 @@ export const VenueList = () => {
 
   const filteredVenues = data.filter((venue) => {
     return (
-      venue.name.toLowerCase() || venue.location.country.toLowerCase()
+      venue.name.toLowerCase().includes(search.toLowerCase()) ||
+      venue.location.country.toLowerCase().includes(search.toLocaleLowerCase())
     );
   });
 
   return (
-    <div className="mt-10 flex flex-col items-center bg-black">
-      <div className="fixed text-center bg-black z-30 w-screen mt-3">
-        <h1 className="font-alli text-[40px] decoration-holipink underline-offset-8">
-          Popular Venues
-        </h1>
+    <>
+      <div id="top"></div>
+      <div className="flex flex-col items-center bg-black">
+        <SearchBar onSearch={setSearch} />
+        {/* <div className="fixed text-center bg-black z-30 w-screen">
+          <h1 className="font-alli text-[40px] decoration-holipink underline-offset-8">
+            Popular Venues
+          </h1>
+        </div> */}
+        <div className="flex justify-center items-center max-w-md p-2 mx-auto z-40">
+          {filteredVenues.length === 0 ? (
+            <div>
+              <h1 className="font-alli text-4xl text-holipink">
+                No venues match your search, please try again!
+              </h1>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 gap-3 mx-auto bg-black">
+              {filteredVenues.map((venue) => {
+                return <AllVenuesCard key={venue.id} venue={venue} />;
+              })}
+            </div>
+          )}
+        </div>
+        {/* Link or button that takes you back to the top of this page */}
       </div>
-      <div className="flex justify-center items-center max-w-md p-2 mx-auto mt-16 z-40">
-        {filteredVenues.length === 0 ? (
-          <div>
-            <h1>No venues match your search, please try again!</h1>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 gap-3 mx-auto bg-black">
-            {filteredVenues.map((venue) => {
-              return <AllVenuesCard key={venue.id} venue={venue} />;
-            })}
-          </div>
-        )}
-      </div>
-    </div>
+    </>
   );
 };
