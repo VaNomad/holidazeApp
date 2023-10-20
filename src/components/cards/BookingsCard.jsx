@@ -1,13 +1,13 @@
 // import { MyBookings } from "../../api/MyBookings";
 import { VenuesCarousel } from "../carousel/VenuesCarousel";
-import { BtnFull } from "../ui/buttons/BtnFull";
+
+import { Loader } from "../ui/loader/Loader";
 
 export const BookingsCard = ({ data }) => {
 
   const {
     created: venueCreated,
     description,
-    id: venueId,
     location: { address, city, continent, country, zip },
     maxGuests,
     media,
@@ -57,11 +57,10 @@ export const BookingsCard = ({ data }) => {
                   <p>Rating {rating} </p>
                 </div>
               </div>
-              <BtnFull />
             </div>
           </div>
         ) : (
-          <p>Loading...</p>
+          <div><Loader /></div>
         )}
       </div>
     </div>
