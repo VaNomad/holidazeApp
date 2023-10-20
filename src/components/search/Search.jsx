@@ -10,14 +10,14 @@ export const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className="mb-2 mt-6">
+    <div className="mb-2 mt-8">
       <form>
         <div className="flex items-center justify-center gap-2">
           <input
             className="px-4 py-1 rounded-full bg-zinc-700 border-2 border-zinc-600 font-dm tracking-widest"
             type="text"
             name="text"
-            placeholder="Search for venues..."
+            placeholder="Search venues..."
             value={search}
             onChange={handleSearch}
           />
