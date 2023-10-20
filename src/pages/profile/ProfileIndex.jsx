@@ -7,7 +7,7 @@ import { MyBookings } from "../../api/MyBookings";
 import { MyVenues } from "../../api/MyVenues";
 import { ProfileHeader } from "./ProfileHeader";
 import { CreateVenueForm } from "../../components/forms/CreateVenueForm";
-import { UpcomingBookingsCall } from "../../api/UpcomingBookings";
+import { MyVenueBookingsCall } from "../../api/MyVenueBookings";
 // import { UpdateVenueForm } from "../../components/forms/UpdateVenueForm";
 // import { Formik, useFormik } from "formik";
 
@@ -43,7 +43,7 @@ export const ProfileIndex = () => {
             <CreateVenueForm />
           </TabPanel>
           <TabPanel>
-            <UpcomingBookingsCall />
+            <MyVenueBookingsCall />
           </TabPanel>
         </Tabs>
       </div>
