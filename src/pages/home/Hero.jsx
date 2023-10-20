@@ -21,7 +21,7 @@ export const Hero = () => {
           Popular Venues
         </h1>
       </div> */}
-      <div className="absolute bottom-[-2rem] bg-transparent text-center bg-black z-30 w-screen">
+      <div className="absolute bottom-[-3rem] bg-transparent text-center bg-black z-30 w-screen">
         <h1 className="font-alli text-[60px] tracking-wide decoration-holipink underline-offset-8">
           Find your next journey
         </h1>

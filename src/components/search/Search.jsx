@@ -10,7 +10,7 @@ export const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className="mb-2 mt-8">
+    <div className="mb-2 mt-16">
       <form>
         <div className="flex items-center justify-center gap-2">
           <input
