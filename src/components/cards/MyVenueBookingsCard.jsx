@@ -10,6 +10,7 @@ export const MyVenueBookingsCard = ({ booking }) => {
   
   const { id, created, dateFrom, dateTo, guests, venue: {name, media} } = booking
   const options = { day: "2-digit", month: "long", year: "numeric" };
+  const booked = new Date(created).toLocaleDateString(undefined, options);
   const arrival = new Date(dateFrom).toLocaleDateString(undefined, options);
   const departure = new Date(dateTo).toLocaleDateString(undefined, options);
 
@@ -17,19 +18,18 @@ export const MyVenueBookingsCard = ({ booking }) => {
     <div className="rounded-2xl p-2">
       <div className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
         {booking ? (
-          <div className="card container mx-auto p-3">
-            <h3 className="font-alli text-3xl">{name}</h3>
+          <div className="card container mx-auto p-3 border border-holipink rounded-xl">
+            <h3 className="font-alli text-4xl font-thin">{name}</h3>
             <div className="flex flex-col text-sm font-thin font-dm pb-2">
               <div className="py-2">
                 <VenuesCarousel media={media} name={name} />
               </div>
               <div>
-                <h1>{id}</h1>
                 <h2>
-                  <span className="font-semibold tracking-widest text-xs me-2">
+                  <span className="font-semibold tracking-widest text-xs text-holiblue me-2">
                     Venue Id:{" "}
                   </span>{" "}
-                  { id }
+                  {id}
                 </h2>
               </div>
             </div>
@@ -39,36 +39,36 @@ export const MyVenueBookingsCard = ({ booking }) => {
                   <h3 className="font-alli font-thin text-3xl text-zinc-400 py-2">
                     Booking Data:
                   </h3>
-                  <ul className="flex flex-col text-white uppercase text-xs font-thin divide-y-[1px] divide-zinc-600 border border-zinc-600 rounded-xl p-2 gap-1">
-                    <li className="grid grid-cols-3">
-                      <BsClockHistory size={15} />
-                      <h2>Booking Date:</h2>
-                      <div className="flex justify-end items-center">
-                        {created}
+                  <div className="flex flex-col text-white text-[10px] sm:text-[14px] md:text-[18px] font-thin divide-y-[1px] divide-zinc-600 border border-zinc-600 rounded-xl px-2">
+                    <div className="flex justify-between px-1 py-2">
+                      <div className="flex">
+                        <BsClockHistory size={15} />
+                        <h2 className="ps-10">Booked :</h2>
                       </div>
-                    </li>
-                    <li className="grid grid-cols-3">
-                      <BsPeople size={22} />
-                      <h2 className="flex items-center">Guests:</h2>
-                      <div className="flex justify-end items-center">
-                        {guests}
+                      <div>{booked}</div>
+                    </div>
+                    <div className="flex justify-between px-1 py-2">
+                      <div className="flex">
+                        <BsPeople size={15} />
+                        <h2 className="ps-10">Guests :</h2>
                       </div>
-                    </li>
-                    <li className="grid grid-cols-3">
-                      <BsCalendar2Date size={18} />
-                      <h2 className="flex items-center">Arrival:</h2>
-                      <div className="flex justify-end items-center">
-                        {arrival}
+                      <div>{guests}</div>
+                    </div>
+                    <div className="flex justify-between px-1 py-2">
+                      <div className="flex">
+                        <BsCalendar2Date size={15} />
+                        <h2 className="ps-10">Arrival :</h2>
                       </div>
-                    </li>
-                    <li className="grid grid-cols-3">
-                      <BsCalendar2DateFill size={22} />
-                      <h2 className="flex items-center">Departure:</h2>
-                      <div className="flex justify-end items-center">
-                        {departure}
+                      <div>{arrival}</div>
+                    </div>
+                    <div className="flex justify-between px-1 py-2">
+                      <div className="flex">
+                        <BsCalendar2DateFill size={15} />
+                        <h2 className="ps-10">Departure :</h2>
                       </div>
-                    </li>
-                  </ul>
+                      <div>{departure}</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
