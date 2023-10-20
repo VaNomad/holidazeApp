@@ -8,10 +8,12 @@ import { useFormik } from "formik";
 import { useParams } from "react-router-dom";
 import * as Yup from "yup";
 import { Loader } from "../ui/loader/Loader";
+// import { useUser } from "../../context/UserContext";
 
 export const BookingForm = ({ price, maxGuests }) => {
   const [totalDays, setTotalDays] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  // const user = useUser();
 
   const { createBookingData, isLoading, hasError, postData } = BookingCall(
     `${API_BASE_URL}/bookings`,
@@ -59,6 +61,7 @@ export const BookingForm = ({ price, maxGuests }) => {
       guests: values.guests,
       venueId: values.venueId,
     };
+
     try {
       if (formik.isValid) {
         console.log("Booking Data:", values);
@@ -174,15 +177,18 @@ export const BookingForm = ({ price, maxGuests }) => {
           )}
           {isLoading && <Loader />}
           {hasError && <p className="text-holipink">Error: {formik.errors}</p>}
+          
         </div>
 
         {/* submit btn */}
-        <button
-          className="my-2 rounded-full px-4 py-1 border-2 text-black border-holiblue bg-holiblue hover:text-holiblue hover:bg-black hover:scale-105 tracking-widest font-dm text-md transition-all duration-800 cursor-pointer"
-          type="submit"
-        >
-          Place Booking
-        </button>
+        <div>
+          <button
+            className="my-2 rounded-full px-4 py-1 border-2 text-black border-holiblue bg-holiblue hover:text-holiblue hover:bg-black hover:scale-105 tracking-widest font-dm text-md transition-all duration-800 cursor-pointer"
+            type="submit"
+          >
+            Place Booking
+          </button>
+        </div>
       </form>
     </div>
   );
