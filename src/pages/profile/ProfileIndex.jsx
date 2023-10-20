@@ -23,12 +23,28 @@ export const ProfileIndex = () => {
       <ProfileHeader />
       <div>
         <Tabs>
-          <TabList className="flex">
-            <Tab>Profile</Tab>
-            <Tab>Bookings</Tab>
-            {user.venueManager && <Tab>Venues</Tab>}
-            {user.venueManager && <Tab>Add Venue</Tab>}
-            {user.venueManager && <Tab>Upcoming</Tab>}
+          <TabList className="flex flex-wrap font-thin text-[10px] px-2">
+            <Tab className="mx-1 px-2 py-1 border-x-1 border-t-1 border-x-zinc-500 border-t-zinc-500 rounded-t-md cursor-pointer">
+              <span className="font-semibold">my</span>Profile
+            </Tab>
+            <Tab className="mx-1  px-2 py-1 border-x border-t border-x-zinc-500 border-t-zinc-500 rounded-t-md cursor-pointer">
+              <span className="font-semibold">my</span>Bookings
+            </Tab>
+            {user.venueManager && (
+              <Tab className="mx-1  px-2 py-1 border-x border-t border-x-zinc-500 border-t-zinc-500 rounded-t-md cursor-pointer">
+                <span className="font-semibold">my</span>Homes
+              </Tab>
+            )}
+            {user.venueManager && (
+              <Tab className="mx-1  px-2 py-1 border-x border-t border-x-zinc-500 border-t-zinc-500 rounded-t-md cursor-pointer">
+                <span className="font-semibold">add</span>Home
+              </Tab>
+            )}
+            {user.venueManager && (
+              <Tab className="mx-1  px-2 py-1 border-x border-t border-x-zinc-500 border-t-zinc-500 rounded-t-md cursor-pointer">
+                <span className="font-semibold">to</span>Host
+              </Tab>
+            )}
           </TabList>
           <TabPanel>
             <Profile />
