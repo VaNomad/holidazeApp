@@ -77,10 +77,10 @@ export const navLinks = [
     id: "login",
     title: "Login",
   },
-  {
-    id: "search",
-    title: "Search",
-  },
+  // {
+  //   id: "search",
+  //   title: "Search",
+  // },
   // {
   //   id: "sign-up",
   //   title: "Sign Up",
@@ -89,14 +89,14 @@ export const navLinks = [
     id: "profile",
     title: "Profile",
   },
-  {
-    id: "my-venues",
-    title: "My Venues",
-  },
-  {
-    id: "add-venue",
-    title: "Add Venue",
-  },
+  // {
+  //   id: "my-venues",
+  //   title: "My Venues",
+  // },
+  // {
+  //   id: "add-venue",
+  //   title: "Add Venue",
+  // },
   // {
   //   id: "contact",
   //   title: "Contact",
