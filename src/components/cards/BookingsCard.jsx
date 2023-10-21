@@ -1,6 +1,12 @@
-// import { MyBookings } from "../../api/MyBookings";
 import { VenuesCarousel } from "../carousel/VenuesCarousel";
-
+import {
+  BsCalendar2Date,
+  BsPeople,
+  BsFillCalendar2DateFill,
+} from "react-icons/bs";
+import { GiWorld } from "react-icons/gi";
+import { FaCity, FaMapPin } from "react-icons/fa";
+import { IoHome } from "react-icons/io5";
 import { Loader } from "../ui/loader/Loader";
 
 export const BookingsCard = ({ data }) => {
@@ -29,58 +35,60 @@ export const BookingsCard = ({ data }) => {
     guests,
     venue: { name, media },
   } = data;
-  const options = { day: "2-digit", month: "long", year: "numeric" };
-  // const booked = new Date(created).toLocaleDateString(undefined, options);
+
+  const options = { day: "2-digit", month: "short", year: "numeric" };
   const arrival = new Date(dateFrom).toLocaleDateString(undefined, options);
   const departure = new Date(dateTo).toLocaleDateString(undefined, options);
 
   return (
-    <div className="rounded-2xl p-2">
-      <div className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+    <div className="rounded-2xl p-4 ">
+      <div className="tracking-wide">
         {data ? (
-          <div className="card container mx-auto p-3 ">
+          <div className="card container mx-auto p-4 bg-zinc-800 rounded-3xl text-xs">
             <VenuesCarousel media={media} name={name} />
-            <h2>{name}</h2>
-            <div>
-              <div>
-                {/* <p>Max number of guests: {maxGuests}</p> */}
-                <div>
-                  <img
-                    src={media}
-                    alt=""
-                    className="w-[20px] h-[20px] rounded-full object-cover"
+            <h3 className="font-alli font-thin text-3xl text-zinc-400 py-2">
+              Your Booking Details:
+            </h3>
+            <div className="flex flex-wrap gap-1">
+              <div className="flex items-center gap-5 bg-blackish rounded-full px-3 py-1 whitespace-nowrap overflow-x-scroll">
+                <IoHome size={18} className="text-holiblue" />
+                <p className="">{name}</p>
+              </div>
+              <div className="flex items-center gap-5 bg-blackish rounded-full px-3 py-1 whitespace-nowrap overflow-x-scroll">
+                <BsPeople size={18} className="text-holiblue" />
+                <p>{guests}</p>
+              </div>
+              <div className="flex items-center gap-5 bg-blackish rounded-full px-3 py-1 whitespace-nowrap overflow-x-scroll">
+                <GiWorld size={18} className="text-holiblue" />
+                <p>{country}</p>
+              </div>
+              <div className="flex items-center gap-5 bg-blackish rounded-full px-3 py-1 whitespace-nowrap overflow-x-scroll">
+                <FaCity size={18} className="text-holiblue" />
+                <p>{city}</p>
+              </div>
+              <div className="flex items-center gap-5 bg-blackish rounded-full px-3 py-1 whitespace-nowrap overflow-x-scroll">
+                <FaMapPin size={18} className="text-holiblue" />
+                <p>{address}</p>
+              </div>
+              <div className="flex gap-1">
+                <div className="flex items-center gap-5 bg-blackish rounded-full px-3 py-1 whitespace-nowrap overflow-x-scroll">
+                  <BsCalendar2Date size={18} className="text-holiblue" />
+                  <p>{arrival}</p>
+                </div>
+                <div className="flex items-center gap-5 bg-blackish rounded-full px-3 py-1 whitespace-nowrap overflow-x-scroll">
+                  <BsFillCalendar2DateFill
+                    size={18}
+                    className="text-holiblue"
                   />
-                </div>
-                <div>
-                  <h5>Name:</h5>
-                  <p>{name}</p>
-                </div>
-                <div>
-                  <h3>Location Data:</h3>
-                  <p>Arrival: {arrival}</p>
-                  <p>Departure: {departure}</p>
-                  <p>Guests: {guests}</p>
-                  {/* <p>Country: {venueCreated}</p> */}
-                  {/* <p>Country: {continent}</p> */}
-                  <p>Country: {country}</p>
-                  <p>Address: {address}</p>
-                  <p>City: {city}</p>
-                  {/* <p>Zip: {zip}</p> */}
-                </div>
-                <div>
-                  <h3>Services:</h3>
-                  {/* <p>Breakfast: {breakfast}</p> */}
-                  {/* <p>Parking: {parking}</p> */}
-                  {/* <p>Pets allowed: {pets}</p> */}
-                  {/* <p>Wifi: {wifi}</p> */}
-                  {/* <p>Price pr night: {price}</p> */}
-                  {/* <p>Rating {rating} </p> */}
+                  <p>{departure}</p>
                 </div>
               </div>
             </div>
           </div>
         ) : (
-          <div><Loader /></div>
+          <div>
+            <Loader />
+          </div>
         )}
       </div>
     </div>
