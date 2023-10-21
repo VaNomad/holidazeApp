@@ -48,7 +48,7 @@ export const ConfirmDelete = ({ id }) => {
 
 
   return (
-    <div className="relative flex justify-center items-center py-4">
+    <div className="relative flex justify-center items-center">
       {isOpen ? null : (
         <button
           onClick={toggleModal}
