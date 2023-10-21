@@ -172,28 +172,32 @@ export const CreateVenueForm = () => {
                         </div>
                       ) : null}
                     </div>
-                    <div className="py-2">
+                    <div>
                       {media && (
-                        <img
-                          src={media}
-                          alt="Uploaded"
-                          className="flex gap-2 h-20 w-20 object-cover rounded-xl font-dm tracking-widest text-xs text-holigreen"
-                        />
+                        <div className="py-2">
+                          <img
+                            src={media}
+                            alt="Uploaded"
+                            className="flex gap-2 h-20 w-20 object-cover rounded-xl font-dm tracking-widest text-xs text-holigreen"
+                          />
+                        </div>
                       )}
                     </div>
                     <div>
                       {index >= 0 && media && (
-                        <button
-                          className="text-holired bg-zinc-800 border-2 border-holired hover:bg-holired hover:text-black px-4 py-1 font-dm font-bold rounded-full text-xs text-center transition-all duration-200"
-                          onClick={() => deleteMedia(index)}
-                        >
-                          Delete Image
-                        </button>
+                        <div className="pb-3">
+                          <button
+                            className="text-holired bg-zinc-800 border-2 border-holired hover:bg-holired hover:text-black px-4 py-1 font-dm font-bold rounded-full text-xs text-center transition-all duration-200"
+                            onClick={() => deleteMedia(index)}
+                          >
+                            Delete Image
+                          </button>
+                        </div>
                       )}
                     </div>
                   </div>
                 ))}
-                <div className="p-4 mt-3">
+                <div className="py-2">
                   <button
                     type="button"
                     onClick={addMedia}
@@ -353,8 +357,8 @@ export const CreateVenueForm = () => {
           </div>
 
           {/* Residence Features */}
-          <div className="p-2">
-            <h2 className="font-alli text-3xl py-3 px-3 mb-2">
+          <div className="px-2">
+            <h2 className="font-alli text-3xl p-3 px-3 mb-2">
               Residence Facilities
             </h2>
             <div
@@ -458,8 +462,17 @@ export const CreateVenueForm = () => {
             </div>
           </div>
 
+          <div className="px-4 py-8">
+            <button
+              type="submit"
+              className="text-holipink bg-zinc-800 border-2 border-holiblue hover:bg-holiblue hover:text-black px-8 py-2 font-dm font-bold rounded-full text-sm text-center transition-all duration-200"
+            >
+              Submit
+            </button>
+          </div>
+
           {/* errors */}
-          <div className="flex justify-center m-5 text-center">
+          <div className="flex justify-center text-center">
             {createVenueData && (
               <div className="border-2 border-lime-400 rounded-xl py-4 px-6 shadow-md shadow-lime-700">
                 <p>Your Listing was a success!</p>
@@ -471,13 +484,6 @@ export const CreateVenueForm = () => {
             {isLoading && <Loader />}
             {hasError && <p className="text-holired">Error: {formik.errors}</p>}
           </div>
-
-          <button
-            type="submit"
-            className="text-holipink bg-zinc-800 border-2 border-holiblue hover:bg-holiblue hover:text-black px-8 py-2 font-dm font-bold rounded-full text-sm text-center transition-all duration-200"
-          >
-            Submit
-          </button>
         </form>
       </div>
     </div>
