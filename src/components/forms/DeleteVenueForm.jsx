@@ -72,7 +72,14 @@ export const ConfirmDelete = ({ id }) => {
             className="text-holired bg-zinc-800 border-2 border-holired hover:bg-holired hover:text-black px-8 py-2 font-dm font-bold rounded-full text-sm text-center transition-all duration-200"
             onClick={deleteVenue}
           >
-            Delete Listing
+            Delete
+          </button>
+          <button
+            type="submit"
+            className="text-holigreen bg-zinc-800 border-2 border-holigreen hover:bg-holigreen hover:text-black px-8 py-2 font-dm font-bold rounded-full text-sm text-center transition-all duration-200"
+            onClick={toggleModal}
+          >
+            Cancel
           </button>
         </div>
       )}
