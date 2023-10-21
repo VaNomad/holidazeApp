@@ -25,7 +25,7 @@ export const NavBar = () => {
 
   return (
     <div>
-      <nav className="w-full flex justify-center items-center fixed bg-blackish h-[40px] sm:h-[50px] z-50">
+      <nav className="w-full flex justify-center items-center fixed bg-blackish h-[50px] sm:h-[60px] z-50">
         <div className="w-full flex flex-cols justify-between items-center">
           {/* Desktop Menu */}
           {/* <ul className="list-none hidden">
@@ -50,7 +50,7 @@ export const NavBar = () => {
             >
               {/* close button */}
               <div
-                className={`transition-all duration-600 ease-in-out absolute top-1 sm:top-1.5 left-8 sm:left-11 bg-zinc-900 rounded-full z-40 ${
+                className={`transition-all duration-600 ease-in-out absolute top-2 sm:top-2.5 left-8 sm:left-11 bg-zinc-900 rounded-full z-40 ${
                   toggle ? "opacity-100 scale-100" : "opacity-0 scale-0"
                 }`}
               >
@@ -63,13 +63,13 @@ export const NavBar = () => {
 
               {/* menu button */}
               <div
-                className={`transition-all duration-600 ease-in-out absolute top-0 p-2  ${
+                className={`transition-all duration-600 ease-in-out absolute top-0 p-2 sm:p-3  ${
                   toggle
                     ? "opacity-0 scale-100 disabled"
                     : "opacity-100 scale-100"
                 }`}
               >
-                <div className="sm:p-1 text-center border-2 border-[#FCB5FF] hover:border-none hover:bg-[#FCB5FF] hover:text-black rounded-full w-[80px] sm:w-[110px] hover:scale-105 transition-scale duration-200 ease-in">
+                <div className="p-1 sm:px-2 text-center border-2 border-[#FCB5FF] hover:border-none hover:bg-[#FCB5FF] hover:text-black rounded-full w-[80px] sm:w-[110px] hover:scale-105 transition-scale duration-200 ease-in">
                   <h1 className="font-dm text-[14px] font-medium sm:text-[16px] ">
                     menu
                   </h1>
@@ -83,7 +83,7 @@ export const NavBar = () => {
                 !toggle ? "hidden" : "flex"
               } bg-blackish absolute top-20 left-10 right-10 mx-auto max-w-xs rounded-xl`}
             >
-              <ul className="flex flex-col items-start mx-auto my-14 gap-4 font-alli text-3xl">
+              <ul className="flex flex-col items-start mx-auto my-14 gap-4 font-alli text-4xl">
                 {navLinks.map((link) =>
                   (link.id === "profile" && !isAuthenticated()) ||
                   (link.id === "login" && isAuthenticated()) ||
@@ -107,7 +107,7 @@ export const NavBar = () => {
                 )}
                 {isAuthenticated && user ? (
                   <li
-                    className="bg-holiblue text-black rounded-full flex items-center gap-3 w-full px-4 py-2 whitespace-nowrap cursor-pointer hover:scale-105 hover:bg-gradient-to-br from-holigreen to-holired transition-all duration-300 ease-in"
+                    className="bg-holiblue text-black rounded-full flex items-center gap-3 w-full px-5 py-2 whitespace-nowrap cursor-pointer hover:scale-105 hover:bg-gradient-to-br from-holigreen to-holired transition-all duration-300 ease-in"
                     onClick={handleLogout}
                   >
                     Log Out {<FiLogOut size={20} />}
@@ -137,12 +137,12 @@ export const NavBar = () => {
           {/* Logo */}
           <Link
             to="/"
-            className="pe-2 sm:pe-3"
+            className="pe-3 sm:pe-5"
             onClick={() => {
               setActive("Home");
             }}
           >
-            <div className="w-[130px] sm:w-[150px]">
+            <div className="w-[150px] sm:w-[170px]">
               <img
                 src={holidazeLogoPink2}
                 alt="logo"
