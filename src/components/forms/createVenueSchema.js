@@ -30,14 +30,22 @@ export const createVenueSchema = Yup.object().shape({
     .required("You have to fill out this field")
     .min(10, "Write at least one sentence with 10 characters about your place")
     .max(1000, "There is a limit of 1000 characters for your description"),
-  media: Yup.array().of(
-    Yup.string()
-      .url("Invalid URL")
-      .required("You have to add at least one image")
-  ),
+  media: Yup.array()
+    .of(
+      Yup.string()
+        .url("Invalid URL")
+        .required("You have to add at least one image")
+    )
+    .test(
+      "atLeastOneImage",
+      "You must add at least one image",
+      function (mediaArray) {
+        return mediaArray.some((media) => !!media);
+      }
+    ),
   price: Yup.number()
     .required("You must add at least one digit")
-    .min(1,"You have to add a digit"),
+    .min(1, "You have to add a digit"),
   maxGuests: Yup.number()
     .required("You must add at least one digit")
     .min(1, "You have to add a digit"),

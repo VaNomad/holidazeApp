@@ -21,8 +21,17 @@ export const CreateVenueForm = () => {
     []
   );
 
+  // const addMedia = () => {
+  //   setMediaArray([...mediaArray, ""]);
+  // };
+
   const addMedia = () => {
-    setMediaArray([...mediaArray, ""]);
+    if (mediaArray.every((media) => media !== "")) {
+      setMediaArray([...mediaArray, ""]);
+      formik.setFieldError("media", "");
+    } else {
+      formik.setFieldError(formik.errors.media);
+    }
   };
 
   const mediaChange = (e, index) => {
@@ -83,12 +92,12 @@ export const CreateVenueForm = () => {
 
   return (
     <div>
-      <div>
+      <div className="mx-auto text-sm">
         <form onSubmit={formik.handleSubmit}>
           {/* Venue Name & Price */}
           <div>
-            <h1 className="font-alli text-3xl ">List your Venue</h1>
-            <div className="p-4 rounded-xl flex flex-col gap-2">
+            <h1 className="font-alli text-3xl pt-5 px-3">List your Venue</h1>
+            <div className="px-3 pt-3 rounded-xl flex flex-col gap-1">
               <label
                 htmlFor="name"
                 className="font-dm text-holiblue tracking-widest"
@@ -111,7 +120,7 @@ export const CreateVenueForm = () => {
                 </div>
               ) : null}
             </div>
-            <div className="p-4 rounded-xl flex flex-col gap-2">
+            <div className="px-3 pt-3 rounded-xl flex flex-col gap-1">
               <label
                 htmlFor="price"
                 className="font-dm text-holiblue tracking-widest"
@@ -139,7 +148,7 @@ export const CreateVenueForm = () => {
           {/* Venue Images */}
           <div>
             <div>
-              <div className="p-4">
+              <div className="px-3 pt-4">
                 <label
                   htmlFor="media"
                   className="font-dm text-holiblue tracking-widest"
@@ -163,7 +172,7 @@ export const CreateVenueForm = () => {
                         </div>
                       ) : null}
                     </div>
-                    <div>
+                    <div className="py-2">
                       {media && (
                         <img
                           src={media}
@@ -188,7 +197,7 @@ export const CreateVenueForm = () => {
                   <button
                     type="button"
                     onClick={addMedia}
-                    className="text-holiblue bg-zinc-800 border-2 border-holiblue hover:bg-holiblue hover:text-black px-8 py-2 font-dm font-bold rounded-full text-sm text-center transition-all duration-200"
+                    className="text-holipink bg-zinc-800 border-2 border-holiblue hover:bg-holiblue hover:text-black px-8 py-2 font-dm font-bold rounded-full text-sm text-center transition-all duration-200"
                   >
                     Add Image
                   </button>
@@ -345,7 +354,7 @@ export const CreateVenueForm = () => {
 
           {/* Residence Features */}
           <div className="p-2">
-            <h2 className="font-alli text-3xl py-3 mb-2">
+            <h2 className="font-alli text-3xl py-3 px-3 mb-2">
               Residence Facilities
             </h2>
             <div
@@ -465,7 +474,7 @@ export const CreateVenueForm = () => {
 
           <button
             type="submit"
-            className="text-holiblue bg-zinc-800 border-2 border-holiblue hover:bg-holiblue hover:text-black px-8 py-2 font-dm font-bold rounded-full text-sm text-center transition-all duration-200"
+            className="text-holipink bg-zinc-800 border-2 border-holiblue hover:bg-holiblue hover:text-black px-8 py-2 font-dm font-bold rounded-full text-sm text-center transition-all duration-200"
           >
             Submit
           </button>
