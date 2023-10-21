@@ -42,11 +42,6 @@ export const VenueList = () => {
       <div id="top"></div>
       <div className="flex flex-col items-center bg-black">
         <SearchBar onSearch={setSearch} />
-        {/* <div className="fixed text-center bg-black z-30 w-screen">
-          <h1 className="font-alli text-[40px] decoration-holipink underline-offset-8">
-            Popular Venues
-          </h1>
-        </div> */}
         <div className="flex justify-center items-center max-w-md p-2 mx-auto z-40">
           {filteredVenues.length === 0 ? (
             <div>

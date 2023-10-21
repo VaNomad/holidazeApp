@@ -25,7 +25,7 @@ export const NavBar = () => {
 
   return (
     <div>
-      <nav className="w-full flex justify-center items-center fixed bg-blackish z-50">
+      <nav className="w-full flex justify-center items-center fixed bg-blackish h-[40px] sm:h-[50px] z-50">
         <div className="w-full flex flex-cols justify-between items-center">
           {/* Desktop Menu */}
           {/* <ul className="list-none hidden">
@@ -63,13 +63,13 @@ export const NavBar = () => {
 
               {/* menu button */}
               <div
-                className={`transition-all duration-600 ease-in-out absolute top-0 p-3 ${
+                className={`transition-all duration-600 ease-in-out absolute top-0 p-2  ${
                   toggle
                     ? "opacity-30 scale-100 disabled"
                     : "opacity-100 scale-100"
                 }`}
               >
-                <div className="text-center border-2 border-[#FCB5FF] hover:border-none hover:bg-[#FCB5FF] hover:text-black rounded-full w-[80px] sm:w-[110px] hover:scale-105 transition-scale duration-200 ease-in">
+                <div className="sm:p-1 text-center border-2 border-[#FCB5FF] hover:border-none hover:bg-[#FCB5FF] hover:text-black rounded-full w-[80px] sm:w-[110px] hover:scale-105 transition-scale duration-200 ease-in">
                   <h1 className="font-dm text-[14px] font-medium sm:text-[16px] ">
                     menu
                   </h1>
@@ -137,12 +137,12 @@ export const NavBar = () => {
           {/* Logo */}
           <Link
             to="/"
-            className=""
+            className="pe-2 sm:pe-3"
             onClick={() => {
               setActive("Home");
             }}
           >
-            <div className="w-[130px]">
+            <div className="w-[130px] sm:w-[150px]">
               <img
                 src={holidazeLogoPink2}
                 alt="logo"
