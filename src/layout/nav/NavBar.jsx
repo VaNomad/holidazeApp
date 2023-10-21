@@ -16,7 +16,6 @@ export const NavBar = () => {
   console.log(user);
   const navigate = useNavigate();
 
-
   const handleLogout = () => {
     logout();
     navigate("/");
@@ -26,22 +25,22 @@ export const NavBar = () => {
 
   return (
     <div>
-      <nav className="w-full flex items-center fixed bg-blackish z-50">
-        <div className="w-full grid grid-cols-5">
+      <nav className="w-full flex justify-center items-center fixed bg-blackish z-50">
+        <div className="w-full flex flex-cols justify-between items-center">
           {/* Desktop Menu */}
           {/* <ul className="list-none hidden">
-          {navLinks.map((link) => (
-            <li
-              key={link.id}
-              className={`${
-                active === link.title ? "text-black" : "text-purple-600"
-              } text-purple-600 cursor-pointer`}
-              onClick={() => setActive(link.title)}
-            >
-              <Link to={link.id}>{link.title}</Link>
-            </li>
-          ))}
-        </ul> */}
+            {navLinks.map((link) => (
+              <li
+                key={link.id}
+                className={`${
+                  active === link.title ? "text-black" : "text-purple-600"
+                } text-purple-600 cursor-pointer`}
+                onClick={() => setActive(link.title)}
+              >
+                <Link to={link.id}>{link.title}</Link>
+              </li>
+            ))}
+          </ul> */}
 
           {/* Mobile Menu */}
           <div className="col-span-2">
@@ -49,6 +48,7 @@ export const NavBar = () => {
               className="cursor-pointer transition-transform ease-in-out duration-600"
               onClick={() => setToggle(!toggle)}
             >
+              {/* close button */}
               <div
                 className={`transition-all duration-600 ease-in-out absolute top-24 left-10 z-40 ${
                   toggle ? "opacity-100 scale-100" : "opacity-0 scale-0"
@@ -61,19 +61,23 @@ export const NavBar = () => {
                 </div>
               </div>
 
+              {/* menu button */}
               <div
-                className={`transition-all duration-600 ease-in-out absolute p-2.5 ${
-                  toggle ? "opacity-30 scale-100 disabled" : "opacity-100 scale-100"
+                className={`transition-all duration-600 ease-in-out absolute top-0 p-3 ${
+                  toggle
+                    ? "opacity-30 scale-100 disabled"
+                    : "opacity-100 scale-100"
                 }`}
               >
-                <div className="text-center border-2 border-[#FCB5FF] hover:border-none hover:bg-[#FCB5FF] hover:text-black rounded-full w-[80px] sm:w-[120px] hover:scale-105 transition-scale duration-200 ease-in">
-                  <h1 className=" font-dm text-[14px] font-medium sm:text-[19px] ">
+                <div className="text-center border-2 border-[#FCB5FF] hover:border-none hover:bg-[#FCB5FF] hover:text-black rounded-full w-[80px] sm:w-[110px] hover:scale-105 transition-scale duration-200 ease-in">
+                  <h1 className="font-dm text-[14px] font-medium sm:text-[16px] ">
                     menu
                   </h1>
                 </div>
               </div>
             </div>
 
+            {/* menu overlay */}
             <div
               className={`${
                 !toggle ? "hidden" : "flex"
@@ -109,34 +113,16 @@ export const NavBar = () => {
                     Log Out {<FiLogOut size={20} />}
                   </li>
                 ) : null}
-                {/* <li
-                className="bg-holiblue text-black rounded-full flex items-center gap-3 w-full px-4 py-2 whitespace-nowrap cursor-pointer hover:scale-105 hover:bg-gradient-to-br from-holigreen to-holired transition-all duration-300 ease-in"
-                onClick={handleLogout}
-              >
-                Log Out {<FiLogOut size={20} />}
-              </li> */}
               </ul>
             </div>
           </div>
 
-          {/* {!isAuthenticated ? null : (
-          <Link to="/profile" className="flex">
-            {user && (
-              <img
-                id="avatar-image"
-                src={user.avatar}
-                alt="avatar"
-                className="w-[40px] h-[40px] object-cover rounded-full"
-              />
-            )}
-          </Link>
-        )} */}
-
-          <div className="col-span-1">
+          {/* nav avatar */}
+          <div className="flex justify-end w-full">
             {isAuthenticated && user && (
               <Link
                 to="/profile"
-                className="grid justify-self-center items-center h-full w-8"
+                className="flex justify-center items-center m-2 w-8 h-8"
               >
                 <img
                   id="avatar-image"
@@ -148,18 +134,21 @@ export const NavBar = () => {
             )}
           </div>
 
+          {/* Logo */}
           <Link
             to="/"
-            className="col-span-2 justify-self-end"
+            className=""
             onClick={() => {
               setActive("Home");
             }}
           >
-            <img
-              src={holidazeLogoPink2}
-              alt="logo"
-              className="p-3 w-[150px] sm:w-[180px]"
-            />
+            <div className="w-[130px]">
+              <img
+                src={holidazeLogoPink2}
+                alt="logo"
+                className=""
+              />
+            </div>
           </Link>
         </div>
       </nav>
