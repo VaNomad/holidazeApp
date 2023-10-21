@@ -6,8 +6,8 @@ import { SignUpForm } from "./SignUpForm";
 import { LoginUserCall } from "../../api/LoginUserCall";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
-// import { GridLoader } from "react-spinners";
-import { Loader } from "../ui/loader/Loader";
+// import { Loader } from "../ui/loader/Loader";
+import { GridLoader } from "react-spinners";
 
 
 export const LoginForm = () => {
@@ -57,10 +57,10 @@ export const LoginForm = () => {
           <div className="container mx-auto backdrop-blur-lg rounded-b-2xl p-2">
             <form
               onSubmit={handleSubmit(handleLogin)}
-              className="flex flex-col gap-12 max-w-full p-5"
+              className="flex flex-col gap-12 max-w-full p-5 text-zinc-800"
             >
               <input
-                className="rounded-full px-5 py-2 max-w-full text-sm"
+                className="rounded-full px-5 py-2 max-w-full text-sm font-dm tracking-widest"
                 {...register("email", {
                   required: "E-mail is required",
                   pattern: {
@@ -77,7 +77,7 @@ export const LoginForm = () => {
                 <p className="text-red-500 text-sm">{errors.email.message}</p>
               )}
               <input
-                className="rounded-full px-5 py-2 max-w-full text-sm"
+                className="rounded-full px-5 py-2 max-w-full text-sm font-dm tracking-widest"
                 {...register("password", {
                   required: "A password is required",
                 })}
@@ -97,7 +97,7 @@ export const LoginForm = () => {
                 type="submit"
                 disabled={isLoading}
               >
-                {isLoading ? <Loader className="h-1 w-1" /> : "Login"}
+                {isLoading ? (<GridLoader size={8} />) : ("Login")}
               </button>
               {loginError && (
                 <p className="text-red-500 text-sm">{loginError}</p>
