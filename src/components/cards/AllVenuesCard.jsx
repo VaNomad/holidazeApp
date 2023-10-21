@@ -7,12 +7,10 @@ export const AllVenuesCard = ({ venue }) => {
 
   return (
     <div className="container mx-auto backdrop-blur-md rounded-2xl p-2 hover:scale-95 hover:backdrop-blur-sm transition-all duration-600">
-      <VenuesCarousel media={media} name={name} />
       <Link to={`/venues/${id}`}>
+        <VenuesCarousel media={media} name={name} />
         <div className="p-2 mt-1">
-          <h1 className="font-dm text-lg uppercase flex flex-wrap">
-            {name}
-          </h1>
+          <h1 className="font-dm text-lg uppercase flex flex-wrap">{name}</h1>
           <div className="flex font-alli text-3xl">
             <p className="">{country},</p>
             &nbsp;
