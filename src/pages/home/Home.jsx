@@ -9,7 +9,7 @@ export const Home = () => {
   // };
 
   return (
-    <div id="top" className="bg-hero-pattern bg-cover bg-no-repeat bg-fixed">
+    <div id="top" className="bg-hero-pattern bg-cover bg-no-repeat bg-fixed md:bg-center">
       <Hero />
       <VenueList />
       <SearchBtn />
