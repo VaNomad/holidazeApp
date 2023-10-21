@@ -8,9 +8,11 @@ import { useFormik } from "formik";
 import { useParams } from "react-router-dom";
 import * as Yup from "yup";
 import { Loader } from "../ui/loader/Loader";
+import { parseISO, isBefore, addDays } from "date-fns";
+
 // import { useUser } from "../../context/UserContext";
 
-export const BookingForm = ({ price, maxGuests }) => {
+export const BookingForm = ({ data, price, maxGuests }) => {
   const [totalDays, setTotalDays] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   // const user = useUser();
@@ -81,6 +83,24 @@ export const BookingForm = ({ price, maxGuests }) => {
     onSubmit: handleBooking,
   });
 
+  const disabledDates = data?.bookings?.flatMap((booking) => {
+    const dateFrom = parseISO(booking.dateFrom);
+    let currentDate = new Date(dateFrom);
+    const dateTo = parseISO(booking.dateTo);
+
+    const dates = [];
+
+    while (
+      isBefore(currentDate, dateTo) ||
+      currentDate.getTime() === dateTo.getTime()
+    ) {
+      dates.push(new Date(currentDate));
+      currentDate = addDays(currentDate, 1);
+    }
+
+    return dates;
+  });
+
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
@@ -104,6 +124,7 @@ export const BookingForm = ({ price, maxGuests }) => {
               placeholderText="Start Date"
               minDate={new Date()}
               isClearable={true}
+              excludeDates={disabledDates}
             />
             {formik.errors.dateFrom && <p>{formik.errors.dateFrom}</p>}
           </div>
@@ -124,6 +145,7 @@ export const BookingForm = ({ price, maxGuests }) => {
               placeholderText="End Date"
               minDate={new Date()}
               isClearable={true}
+              excludeDates={disabledDates}
             />
             {formik.errors.dateTo && (
               <p className="text-holipink">{formik.errors.dateTo}</p>
@@ -177,7 +199,6 @@ export const BookingForm = ({ price, maxGuests }) => {
           )}
           {isLoading && <Loader />}
           {hasError && <p className="text-holipink">Error: {formik.errors}</p>}
-          
         </div>
 
         {/* submit btn */}
