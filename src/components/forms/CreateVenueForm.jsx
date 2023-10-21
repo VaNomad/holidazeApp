@@ -25,12 +25,23 @@ export const CreateVenueForm = () => {
   //   setMediaArray([...mediaArray, ""]);
   // };
 
+  // const addMedia = () => {
+  //   if (mediaArray.every((media) => media !== "")) {
+  //     setMediaArray([...mediaArray, ""]);
+  //     formik.setFieldError("media", "");
+  //   } else {
+  //     formik.setFieldError(formik.errors.media);
+  //   }
+  // };
+
   const addMedia = () => {
-    if (mediaArray.every((media) => media !== "")) {
-      setMediaArray([...mediaArray, ""]);
-      formik.setFieldError("media", "");
+    if (mediaArray.some((media) => media === "")) {
+      // Set the media input field error
+      formik.setFieldError("media", "You must add at least one image");
     } else {
-      formik.setFieldError(formik.errors.media);
+      // If all fields have URLs, add a new input and clear any previous error
+      formik.setFieldError("media", ""); // Clear the error
+      setMediaArray([...mediaArray, ""]);
     }
   };
 
