@@ -81,9 +81,9 @@ export const NavBar = () => {
             <div
               className={`${
                 !toggle ? "hidden" : "flex"
-              } bg-blackish border-2 black absolute top-20 left-10 right-10 mx-auto max-w-xs rounded-xl`}
+              } bg-blackish absolute top-20 left-10 right-10 mx-auto max-w-xs rounded-xl`}
             >
-              <ul className="flex flex-col items-start mx-auto my-16 gap-5">
+              <ul className="flex flex-col items-start mx-auto my-14 gap-4 font-alli text-3xl">
                 {navLinks.map((link) =>
                   (link.id === "profile" && !isAuthenticated()) ||
                   (link.id === "login" && isAuthenticated()) ||
@@ -93,9 +93,9 @@ export const NavBar = () => {
                       key={link.id}
                       className={`${
                         active === link.title
-                          ? "text-white font-semibold px-5 py-2"
-                          : "text-pink-300 px-5 py-2 hover:text-black hover:bg-holipink hover:rounded-full transition-all duration-300"
-                      } text-[16px] cursor-pointer font-medium `}
+                          ? "text-white font-semibold px-5 py-1"
+                          : "text-pink-300 px-5 py-1 hover:text-black hover:bg-holipink hover:rounded-full transition-all duration-300"
+                      } cursor-pointer font-medium `}
                       onClick={() => {
                         setActive(link.title);
                         setToggle(!toggle);

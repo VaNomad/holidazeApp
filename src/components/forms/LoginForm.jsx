@@ -6,7 +6,8 @@ import { SignUpForm } from "./SignUpForm";
 import { LoginUserCall } from "../../api/LoginUserCall";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
-import { GridLoader } from "react-spinners";
+// import { GridLoader } from "react-spinners";
+import { Loader } from "../ui/loader/Loader";
 
 
 export const LoginForm = () => {
@@ -56,7 +57,7 @@ export const LoginForm = () => {
           <div className="container mx-auto backdrop-blur-lg rounded-b-2xl p-2">
             <form
               onSubmit={handleSubmit(handleLogin)}
-              className="flex flex-col gap-10 max-w-full p-5"
+              className="flex flex-col gap-12 max-w-full p-5"
             >
               <input
                 className="rounded-full px-5 py-2 max-w-full text-sm"
@@ -96,7 +97,7 @@ export const LoginForm = () => {
                 type="submit"
                 disabled={isLoading}
               >
-                {isLoading ? <GridLoader className="h-1 w-1" /> : "Login"}
+                {isLoading ? <Loader className="h-1 w-1" /> : "Login"}
               </button>
               {loginError && (
                 <p className="text-red-500 text-sm">{loginError}</p>
