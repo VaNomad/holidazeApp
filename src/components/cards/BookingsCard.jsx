@@ -6,16 +6,33 @@ import { Loader } from "../ui/loader/Loader";
 export const BookingsCard = ({ data }) => {
 
   const {
-    created: venueCreated,
-    description,
-    location: { address, city, continent, country, zip },
-    maxGuests,
-    media,
-    meta: { breakfast, parking, pets, wifi },
-    name,
-    price,
-    rating,
+    // created: venueCreated,
+    // dateFrom,
+    // dateTo,
+    // guests,
+    location: { address, city, country },
+    // maxGuests,
+    // media,
+    // meta: { breakfast, parking, pets, wifi },
+    // name,
+    // price,
+    // rating,
   } = data.venue;
+
+  // const { location: { address, city, continent, country }, media } = data.venue;
+  
+  const {
+    // id,
+    // created,
+    dateFrom,
+    dateTo,
+    guests,
+    venue: { name, media },
+  } = data;
+  const options = { day: "2-digit", month: "long", year: "numeric" };
+  // const booked = new Date(created).toLocaleDateString(undefined, options);
+  const arrival = new Date(dateFrom).toLocaleDateString(undefined, options);
+  const departure = new Date(dateTo).toLocaleDateString(undefined, options);
 
   return (
     <div className="rounded-2xl p-2">
@@ -26,7 +43,7 @@ export const BookingsCard = ({ data }) => {
             <h2>{name}</h2>
             <div>
               <div>
-                <p>Max number of guests: {maxGuests}</p>
+                {/* <p>Max number of guests: {maxGuests}</p> */}
                 <div>
                   <img
                     src={media}
@@ -35,26 +52,29 @@ export const BookingsCard = ({ data }) => {
                   />
                 </div>
                 <div>
-                  <h5>Description:</h5>
-                  <p>{description}</p>
+                  <h5>Name:</h5>
+                  <p>{name}</p>
                 </div>
                 <div>
                   <h3>Location Data:</h3>
-                  <p>Venue Created: {venueCreated}</p>
-                  <p>Continent: {continent}</p>
+                  <p>Arrival: {arrival}</p>
+                  <p>Departure: {departure}</p>
+                  <p>Guests: {guests}</p>
+                  {/* <p>Country: {venueCreated}</p> */}
+                  {/* <p>Country: {continent}</p> */}
                   <p>Country: {country}</p>
                   <p>Address: {address}</p>
                   <p>City: {city}</p>
-                  <p>Zip: {zip}</p>
+                  {/* <p>Zip: {zip}</p> */}
                 </div>
                 <div>
                   <h3>Services:</h3>
-                  <p>Breakfast: {breakfast}</p>
-                  <p>Parking: {parking}</p>
-                  <p>Pets allowed: {pets}</p>
-                  <p>Wifi: {wifi}</p>
-                  <p>Price pr night: {price}</p>
-                  <p>Rating {rating} </p>
+                  {/* <p>Breakfast: {breakfast}</p> */}
+                  {/* <p>Parking: {parking}</p> */}
+                  {/* <p>Pets allowed: {pets}</p> */}
+                  {/* <p>Wifi: {wifi}</p> */}
+                  {/* <p>Price pr night: {price}</p> */}
+                  {/* <p>Rating {rating} </p> */}
                 </div>
               </div>
             </div>
