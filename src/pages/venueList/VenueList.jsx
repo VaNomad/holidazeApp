@@ -38,7 +38,7 @@ export const VenueList = () => {
   });
 
   return (
-    <>
+    <div className="">
       <div id="top"></div>
       <div className="flex flex-col items-center bg-black">
         <SearchBar onSearch={setSearch} />
@@ -59,6 +59,6 @@ export const VenueList = () => {
         </div>
         {/* Link or button that takes you back to the top of this page */}
       </div>
-    </>
+    </div>
   );
 };
