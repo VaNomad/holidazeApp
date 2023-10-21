@@ -50,12 +50,12 @@ export const NavBar = () => {
             >
               {/* close button */}
               <div
-                className={`transition-all duration-600 ease-in-out absolute top-24 left-10 z-40 ${
+                className={`transition-all duration-600 ease-in-out absolute top-1 sm:top-1.5 left-8 sm:left-11 bg-zinc-900 rounded-full z-40 ${
                   toggle ? "opacity-100 scale-100" : "opacity-0 scale-0"
                 }`}
               >
                 <div className="border-2 border-[#FCB5FF] rounded-full hover:text-black hover:bg-[#FCB5FF] hover:scale-105 transition-scale duration-200 ease-in">
-                  <h1 className="text-[18px] font-dm font-medium">
+                  <h1 className="text-[12px] sm:text-[18px] font-dm font-medium">
                     <GiCrossMark className="m-2" />
                   </h1>
                 </div>
@@ -65,7 +65,7 @@ export const NavBar = () => {
               <div
                 className={`transition-all duration-600 ease-in-out absolute top-0 p-2  ${
                   toggle
-                    ? "opacity-30 scale-100 disabled"
+                    ? "opacity-0 scale-100 disabled"
                     : "opacity-100 scale-100"
                 }`}
               >
@@ -81,7 +81,7 @@ export const NavBar = () => {
             <div
               className={`${
                 !toggle ? "hidden" : "flex"
-              } bg-blackish border-2 black absolute top-20 left-5 right-5 mx-auto max-w-md rounded-xl`}
+              } bg-blackish border-2 black absolute top-20 left-10 right-10 mx-auto max-w-xs rounded-xl`}
             >
               <ul className="flex flex-col items-start mx-auto my-16 gap-5">
                 {navLinks.map((link) =>

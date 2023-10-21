@@ -1,5 +1,5 @@
 import { Carousel } from "react-responsive-carousel";
-import noImg from "../../assets/vectors/hLogoGreen.png"
+import noImg from "../../assets/vectors/hLogoPink.png"
 
 export const VenuesCarousel = ({media, name}) => {
 
@@ -7,11 +7,11 @@ export const VenuesCarousel = ({media, name}) => {
     
     <div className="relative z-40">
       {media.length > 0 ? (
-          <Carousel showStatus={false} showThumbs={false} dynamicHeight={true} >
+          <Carousel showStatus={false} showThumbs={false} dynamicHeight={false} >
             {media.map((imageUrl, index) => (
               <div key={`media-${index}`}>
                 <img
-                  className="object-cover border-2 mx-auto rounded-2xl"
+                  className="object-cover object-center border-2 mx-auto rounded-2xl max-h-[400px]"
                   src={imageUrl}
                   alt={name}
                 />

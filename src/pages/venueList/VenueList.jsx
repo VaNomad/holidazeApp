@@ -6,6 +6,7 @@ import { ErrorDisplay } from "../../components/ui/messages/ErrorDisplay";
 import { AllVenuesCard } from "../../components/cards/AllVenuesCard";
 import { SearchBar } from "../../components/search/Search";
 import { useState } from "react";
+// import hero from "../../assets/images/nickson.jpg";
 
 const query = "?sortOrder=desc&sort=created&_owner=true&_bookings=true;";
 const isUrl = `${API_BASE_URL}/venues/${query}`;
@@ -38,9 +39,8 @@ export const VenueList = () => {
   });
 
   return (
-    <div className="">
-      <div id="top"></div>
-      <div className="flex flex-col items-center bg-black">
+    <div>
+      <div className="flex flex-col items-center">
         <SearchBar onSearch={setSearch} />
         <div className="flex justify-center items-center max-w-md p-2 mx-auto z-40">
           {filteredVenues.length === 0 ? (
@@ -50,7 +50,7 @@ export const VenueList = () => {
               </h1>
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-3 mx-auto bg-black">
+            <div className="grid grid-cols-1 gap-3 mx-auto">
               {filteredVenues.map((venue) => {
                 return <AllVenuesCard key={venue.id} venue={venue} />;
               })}

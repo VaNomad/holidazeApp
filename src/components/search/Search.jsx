@@ -10,13 +10,13 @@ export const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className="mb-2 mt-16">
+    <div className="mb-14">
       <form>
         <input
-          className="px-4 py-1 rounded-full bg-zinc-700 border-2 border-zinc-600 font-dm tracking-widest"
+          className="px-4 py-1 rounded-full bg-zinc-100 text-black font-alli font-semibold tracking-widest"
           type="text"
           name="text"
-          placeholder="Search venues..."
+          placeholder="Search..."
           value={search}
           onChange={handleSearch}
         />
