@@ -49,9 +49,10 @@ This was the entry point to our final exam at Noroff School of technology and di
    <button onclick="copyToClipboard('input4')">Copy</button>
 
 
-<clipboard-copy for="blob-path">Copy</clipboard-copy>
-<input id="blob-path" value="src/index.js">
-
+<clipboard-copy for="blob-path" class="btn btn-sm BtnGroup-item">
+  Copy path
+</clipboard-copy>
+<div id="blob-path">src/index.js</div>
 
 ## Project overview
 
