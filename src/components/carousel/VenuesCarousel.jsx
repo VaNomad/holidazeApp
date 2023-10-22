@@ -7,11 +7,11 @@ export const VenuesCarousel = ({media, name}) => {
     
     <div className="relative z-40">
       {media.length > 0 ? (
-          <Carousel showStatus={false} showThumbs={false} dynamicHeight={true} >
+          <Carousel showStatus={false} showThumbs={false} >
             {media.map((imageUrl, index) => (
               <div key={`media-${index}`}>
                 <img
-                  className="object-cover object-center border-2 mx-auto rounded-2xl max-h-[400px]"
+                  className="object-cover object-center border-2 mx-auto rounded-2xl h-[200px]"
                   src={imageUrl}
                   alt={name}
                 />
