@@ -12,7 +12,7 @@ export const Home = () => {
   <div
     id="top"
     className="bg-hero-pattern bg-fixed md:bg-center"
-    style={{ backgroundSize: "cover", height: "100vh" }}
+    style={{ backgroundSize: "cover"}}
   >
     <Hero />
     <VenueList />
