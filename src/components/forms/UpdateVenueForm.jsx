@@ -9,7 +9,6 @@ import { BsWifi, BsPen } from "react-icons/bs";
 import { GiHollowCat } from "react-icons/gi";
 import { useFormik } from "formik";
 import { createVenueSchema } from "./createVenueSchema";
-// import { ConfirmDelete } from "./ConfirmDelete";
 
 export const UpdateVenueForm = ({ data }) => {
   const { id } = data;

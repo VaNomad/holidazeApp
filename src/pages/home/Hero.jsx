@@ -1,5 +1,3 @@
-// import header from "../../assets/images/maldives1.jpg";
-
 export const Hero = () => {
 
   return (

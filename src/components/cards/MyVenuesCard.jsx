@@ -1,4 +1,3 @@
-// import { MyBookings } from "../../api/MyBookings";
 import { VenuesCarousel } from "../carousel/VenuesCarousel";
 import { UpdateVenueForm } from "../forms/UpdateVenueForm";
 import { ConfirmDelete } from "../forms/DeleteVenueForm";

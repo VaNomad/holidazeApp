@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import { BsSearchHeart } from "react-icons/bs";
 
 export const SearchBar = ({ onSearch }) => {
   const [search, setSearch] = useState("");

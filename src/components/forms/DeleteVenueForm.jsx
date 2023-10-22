@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import { navigate } from "react-router-dom";
 import { DeleteVenueCall } from "../../api/DeleteVenue";
 import { BsTrash } from "react-icons/bs";
 import { Loader } from "../ui/loader/Loader";
@@ -22,7 +21,7 @@ export const ConfirmDelete = ({ id }) => {
       if (response.ok) {
         setIsOpen(false);
         setIsSuccess(true)
-        // data(id);
+
         setTimeout(() => {
           setIsLoading(true)
           window.location.reload();
@@ -35,17 +34,6 @@ export const ConfirmDelete = ({ id }) => {
       setIsLoading(false)
     }
   }
-
-  // useEffect(() => {
-  //   if (data(id)) {
-  //     setTimeout(() => {
-  //       setIsOpen(false);
-  //       navigate("/profile");
-  //       window.location.reload();
-  //     }, 2000);
-  //   }
-  // }, [data, id]);
-
 
   return (
     <div className="relative flex justify-center items-center">

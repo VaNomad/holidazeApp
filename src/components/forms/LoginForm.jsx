@@ -6,9 +6,7 @@ import { SignUpForm } from "./SignUpForm";
 import { LoginUserCall } from "../../api/LoginUserCall";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
-// import { Loader } from "../ui/loader/Loader";
 import { GridLoader } from "react-spinners";
-
 
 export const LoginForm = () => {
   const [loginError, setLoginError] = useState(null);

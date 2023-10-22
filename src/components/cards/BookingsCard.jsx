@@ -12,24 +12,10 @@ import { Loader } from "../ui/loader/Loader";
 export const BookingsCard = ({ data }) => {
 
   const {
-    // created: venueCreated,
-    // dateFrom,
-    // dateTo,
-    // guests,
     location: { address, city, country },
-    // maxGuests,
-    // media,
-    // meta: { breakfast, parking, pets, wifi },
-    // name,
-    // price,
-    // rating,
   } = data.venue;
-
-  // const { location: { address, city, continent, country }, media } = data.venue;
   
   const {
-    // id,
-    // created,
     dateFrom,
     dateTo,
     guests,

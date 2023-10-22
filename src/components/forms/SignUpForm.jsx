@@ -60,8 +60,6 @@ export const SignUpForm = () => {
     
   }
 
-  
-
   return (
     <form
       onSubmit={handleSubmit(handleSignup)}

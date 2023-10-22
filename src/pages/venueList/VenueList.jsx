@@ -1,12 +1,10 @@
 import { Api } from "../../api/Api";
 import { API_BASE_URL } from "../../api/endpoints";
-// import { GridLoader } from "react-spinners";
 import { Loader } from "../../components/ui/loader/Loader";
 import { ErrorDisplay } from "../../components/ui/messages/ErrorDisplay";
 import { AllVenuesCard } from "../../components/cards/AllVenuesCard";
 import { SearchBar } from "../../components/search/Search";
 import { useState } from "react";
-// import hero from "../../assets/images/nickson.jpg";
 
 const query = "?sortOrder=desc&sort=created&_owner=true&_bookings=true;";
 const isUrl = `${API_BASE_URL}/venues/${query}`;
@@ -59,7 +57,6 @@ export const VenueList = () => {
             </div>
           )}
         </div>
-        {/* Link or button that takes you back to the top of this page */}
       </div>
     </div>
   );

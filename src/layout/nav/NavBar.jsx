@@ -27,21 +27,7 @@ export const NavBar = () => {
     <div>
       <nav className="w-full flex justify-center items-center fixed bg-blackish h-[50px] sm:h-[60px] z-50">
         <div className="w-full flex flex-cols justify-between items-center">
-          {/* Desktop Menu */}
-          {/* <ul className="list-none hidden">
-            {navLinks.map((link) => (
-              <li
-                key={link.id}
-                className={`${
-                  active === link.title ? "text-black" : "text-purple-600"
-                } text-purple-600 cursor-pointer`}
-                onClick={() => setActive(link.title)}
-              >
-                <Link to={link.id}>{link.title}</Link>
-              </li>
-            ))}
-          </ul> */}
-
+          
           {/* Mobile Menu */}
           <div className="col-span-2">
             <div
@@ -83,7 +69,7 @@ export const NavBar = () => {
                 !toggle ? "hidden" : "flex"
               } bg-blackish absolute top-20 left-10 right-10 mx-auto max-w-xs rounded-xl`}
             >
-              <ul className="flex flex-col items-start mx-auto my-14 gap-4 font-alli text-4xl">
+              <ul className="flex flex-col items-start mx-auto my-14 gap-4 font-alli text-5xl">
                 {navLinks.map((link) =>
                   (link.id === "profile" && !isAuthenticated()) ||
                   (link.id === "login" && isAuthenticated()) ||
@@ -107,10 +93,10 @@ export const NavBar = () => {
                 )}
                 {isAuthenticated && user ? (
                   <li
-                    className="bg-holiblue text-black rounded-full flex items-center gap-3 w-full px-5 py-2 whitespace-nowrap cursor-pointer hover:scale-105 hover:bg-gradient-to-br from-holigreen to-holired transition-all duration-300 ease-in"
+                    className="bg-holiblue text-black font-dm text-[22px] rounded-full flex items-center gap-3 w-full px-5 py-2 whitespace-nowrap cursor-pointer hover:scale-105 hover:bg-gradient-to-br from-holigreen to-holired transition-all duration-300 ease-in"
                     onClick={handleLogout}
                   >
-                    Log Out {<FiLogOut size={20} />}
+                    Log Out {<FiLogOut size={30} />}
                   </li>
                 ) : null}
               </ul>

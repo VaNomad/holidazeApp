@@ -5,7 +5,6 @@ import { FiHome } from "react-icons/fi";
 export const Header = () => {
   const location = useLocation();
 
-  // Conditionally render different navigation content based on the current route
   const renderNav = () => {
     if (location.pathname === "*") {
       return (

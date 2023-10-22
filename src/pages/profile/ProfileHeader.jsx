@@ -1,4 +1,3 @@
-// import header from "../../assets/images/maldives1.jpg";
 import { useState } from "react";
 import noAvatar from "../../assets/vectors/hLogoGreen.png";
 import { ChangeAvatarModal } from "../../components/ui/modals/ChangeAvatarModal";

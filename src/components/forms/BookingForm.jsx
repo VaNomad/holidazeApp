@@ -1,4 +1,3 @@
-// import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
@@ -10,12 +9,9 @@ import * as Yup from "yup";
 import { Loader } from "../ui/loader/Loader";
 import { parseISO, isBefore, addDays } from "date-fns";
 
-// import { useUser } from "../../context/UserContext";
-
 export const BookingForm = ({ data, price, maxGuests }) => {
   const [totalDays, setTotalDays] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  // const user = useUser();
 
   const { createBookingData, isLoading, hasError, postData } = BookingCall(
     `${API_BASE_URL}/bookings`,

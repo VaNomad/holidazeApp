@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-// import {FiHome} from "react-icons/fi"
 
 export const Error404 = () => {
 

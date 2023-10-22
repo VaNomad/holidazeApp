@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import { CreateVenueCall } from "../../api/CreateVenueCall";
 import { Loader } from "../ui/loader/Loader";
 import { API_BASE_URL } from "../../api/endpoints";
@@ -8,7 +7,6 @@ import { PiBowlFood } from "react-icons/pi";
 import { BsWifi } from "react-icons/bs";
 import { GiHollowCat } from "react-icons/gi";
 import { useFormik } from "formik";
-// import * as Yup from "yup";
 import { initialVenueValues } from "./createVenueSchema";
 import { createVenueSchema } from "./createVenueSchema";
 
@@ -36,11 +34,11 @@ export const CreateVenueForm = () => {
 
   const addMedia = () => {
     if (mediaArray.some((media) => media === "")) {
-      // Set the media input field error
+
       formik.setFieldError("media", "You must add at least one image");
     } else {
-      // If all fields have URLs, add a new input and clear any previous error
-      formik.setFieldError("media", ""); // Clear the error
+
+      formik.setFieldError("media", ""); 
       setMediaArray([...mediaArray, ""]);
     }
   };
