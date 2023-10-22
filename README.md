@@ -1,3 +1,6 @@
+### HolidazeApp
+<img width="1436" alt="Screenshot 2023-10-22 at 10 05 59" src="https://github.com/VaNomad/holidazeApp/assets/77972892/0b8e55e1-0e5e-4362-b30f-f43a9f945658">
+
 
 ## Description
 
@@ -62,12 +65,12 @@ function copyToClipboard(inputId) {
 
 | Resource        | URL        |
 |-----------------|------------|
-| Gantt Chart     | [[URL 1](https://holidaze-sjurhassel.notion.site/ProjectExam2-Holidaze-05ebb56f105a4519ac5339991799c220?pvs=4)]    |
-| Design Prototype| [URL 2]    |
-| Style Guide     | [URL 3]    |
-| Kanban Board    | [[URL 4]](https://holidaze-sjurhassel.notion.site/ProjectExam2-Holidaze-05ebb56f105a4519ac5339991799c220?pvs=4)    |
-| Repository       | [[URL 5](https://github.com/VaNomad/holidazeApp/tree/main)]    |
-| Hosted Demo     | [[URL 6](https://phenomenal-longma-1eaa5b.netlify.app/)]    |
+| Gantt Chart     | [[Gantt](https://holidaze-sjurhassel.notion.site/ProjectExam2-Holidaze-05ebb56f105a4519ac5339991799c220?pvs=4)]    |
+| Design Prototype| [Prototype]    |
+| Style Guide     | [StyleGuide]    |
+| Kanban Board    | [[Trello]](https://holidaze-sjurhassel.notion.site/ProjectExam2-Holidaze-05ebb56f105a4519ac5339991799c220?pvs=4)    |
+| Repository       | [[Repo](https://github.com/VaNomad/holidazeApp/tree/main)]    |
+| Hosted Demo     | [[Netlify](https://phenomenal-longma-1eaa5b.netlify.app/)]    |
 
 
 ## Contact
