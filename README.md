@@ -33,8 +33,7 @@ This was the entry point to our final exam at Noroff School of technology and di
 
 ## Setting up
 1. Clone the repo:
-   <input type="text" id="input1" value="https://github.com/VaNomad/holidazeApp" readonly>
-   <button onclick="copyToClipboard('input1')">Copy</button>
+   [[Prototype](https://github.com/VaNomad/holidazeApp)] 
    
 2. Install packages:
    <input type="text" id="input2" value="npm i" readonly>
@@ -45,14 +44,8 @@ This was the entry point to our final exam at Noroff School of technology and di
    <button onclick="copyToClipboard('input3')">Copy</button>
 
 4. To build locally:
-   <input type="text" id="input4" value="npm run build" readonly>
-   <button onclick="copyToClipboard('input4')">Copy</button>
+    [[npm run build]] 
 
-
-<clipboard-copy for="blob-path" class="btn btn-sm BtnGroup-item">
-  Copy path
-</clipboard-copy>
-<div id="blob-path">src/index.js</div>
 
 ## Project overview
 
