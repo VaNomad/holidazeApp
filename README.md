@@ -48,13 +48,6 @@ This was the entry point to our final exam at Noroff School of technology and di
    <input type="text" id="input4" value="npm run build" readonly>
    <button onclick="copyToClipboard('input4')">Copy</button>
 
-<script>
-function copyToClipboard(inputId) {
-  var copyText = document.getElementById(inputId);
-  copyText.select();
-  document.execCommand("copy");
-}
-</script>
 
 <clipboard-copy for="blob-path">Copy</clipboard-copy>
 <input id="blob-path" value="src/index.js">
