@@ -33,23 +33,19 @@ This was the entry point to our final exam at Noroff School of technology and di
 
 ## Setting up
 1. Clone the repo:
-   <input type="text" id="input1" value="URL 1" readonly>
-   https://github.com/VaNomad/holidazeApp
+   <input type="text" id="input1" value="https://github.com/VaNomad/holidazeApp" readonly>
    <button onclick="copyToClipboard('input1')">Copy</button>
    
 2. Install packages:
-   <input type="text" id="input2" value="URL 2" readonly>
-   npm i
+   <input type="text" id="input2" value="npm i" readonly>
    <button onclick="copyToClipboard('input2')">Copy</button>
    
 3. To run locally:
-   <input type="text" id="input3" value="URL 3" readonly>
-   npm run dev
+   <input type="text" id="input3" value="npm run dev" readonly>
    <button onclick="copyToClipboard('input3')">Copy</button>
 
 4. To build locally:
-   <input type="text" id="input3" value="URL 3" readonly>
-   npm run build
+   <input type="text" id="input3" value="npm run build" readonly>
    <button onclick="copyToClipboard('input3')">Copy</button>
 
 <script>
