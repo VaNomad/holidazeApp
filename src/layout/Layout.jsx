@@ -8,7 +8,7 @@ export const Layout = () => {
   return (
     <div className="h-screen flex flex-col bg-hero-pattern bg-fixed md:bg-center bg-cover">
       <Header />
-      <main className="flex-1">
+      <main className="">
         <Outlet />
       </main>
       {/* {location.pathname === "/" || location.pathname === "/home" || location.pathname === "/" ? null : (
