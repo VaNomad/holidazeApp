@@ -45,8 +45,8 @@ This was the entry point to our final exam at Noroff School of technology and di
    <button onclick="copyToClipboard('input3')">Copy</button>
 
 4. To build locally:
-   <input type="text" id="input3" value="npm run build" readonly>
-   <button onclick="copyToClipboard('input3')">Copy</button>
+   <input type="text" id="input4" value="npm run build" readonly>
+   <button onclick="copyToClipboard('input4')">Copy</button>
 
 <script>
 function copyToClipboard(inputId) {
