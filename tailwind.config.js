@@ -31,4 +31,4 @@ export default {
   },
   plugins: [],
 };
-//this is my tailwind config file
+//this is my tailwind config files
