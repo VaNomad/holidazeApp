@@ -50,8 +50,8 @@ This was the entry point to our final exam at Noroff School of technology and di
 | Resource        | URL        |
 |-----------------|------------|
 | Gantt Chart     | [[Gantt](https://holidaze-sjurhassel.notion.site/ProjectExam2-Holidaze-05ebb56f105a4519ac5339991799c220?pvs=4)]    |
-| Design Prototype| [Prototype]    |
-| Style Guide     | [StyleGuide]    |
+| Design Prototype| [[Prototype](https://xd.adobe.com/view/82ebd71c-ffbc-4a25-b737-b66d33d95173-d7b8/)]    |
+| Style Guide     | [[StyleGuide](https://xd.adobe.com/view/82ebd71c-ffbc-4a25-b737-b66d33d95173-d7b8/)]    |
 | Kanban Board    | [[Trello]](https://holidaze-sjurhassel.notion.site/ProjectExam2-Holidaze-05ebb56f105a4519ac5339991799c220?pvs=4)    |
 | Repository       | [[Repo](https://github.com/VaNomad/holidazeApp/tree/main)]    |
 | Hosted Demo     | [[Netlify](https://phenomenal-longma-1eaa5b.netlify.app/)]    |
