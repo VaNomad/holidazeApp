@@ -20,11 +20,6 @@ export const ProfileHeader = () => {
   return (
     <div>
       <div className="h-[250px] md:h-[300px] w-full bg-transparent">
-        {/* <img
-          src={header}
-          alt="profile header"
-          className="h-[270px] mb-7 w-full object-cover object-bottom md:object-center"
-        /> */}
       </div>
       <div className="absolute top-[14%] md:top-[14%] right-[25%] md:right-[25%] flex flex-col">
         <div className="h-[150px] md:h-[200px] w-[150px] md:w-[200px] border-4 border-zinc-800 rounded-full">

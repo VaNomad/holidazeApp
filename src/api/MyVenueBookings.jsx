@@ -80,11 +80,15 @@ export function MyVenueBookingsCall() {
 
   console.log("LAST LOG BEFORE MOUNT:", myVenueData);
   return (
-    <div>
-      {myVenueData.map((booking) => {
-        console.log(booking);
-        return <MyVenueBookingsCard booking={booking} key={booking.id} />;
-      })}
+    <div className="max-w-3xl">
+      <div className="container mx-auto md:max-w-3xl">
+        <div className="container grid grid-cols-1 gap-4 mx-auto md:grid-cols-2 md:gap-5">
+          {myVenueData.map((booking) => {
+            console.log(booking);
+            return <MyVenueBookingsCard booking={booking} key={booking.id} />;
+          })}
+        </div>
+      </div>
     </div>
   );
 }

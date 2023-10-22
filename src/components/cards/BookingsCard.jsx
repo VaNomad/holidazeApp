@@ -44,9 +44,9 @@ export const BookingsCard = ({ data }) => {
     <div className="rounded-2xl">
       <div className="tracking-wide">
         {data ? (
-          <div className="card container mx-auto p-2 bg-zinc-800 rounded-3xl text-xs">
+          <div className="card container mx-auto p-2 backdrop-blur-lg rounded-3xl text-xs">
             <VenuesCarousel media={media} name={name} />
-            <h3 className="font-alli font-thin text-3xl text-zinc-400 py-2">
+            <h3 className="font-alli font-thin text-3xl text-zinc-100 py-2">
               Your Booking Details:
             </h3>
             <div className="flex flex-wrap gap-1">
@@ -70,18 +70,13 @@ export const BookingsCard = ({ data }) => {
                 <FaMapPin size={18} className="text-holiblue" />
                 <p>{address}</p>
               </div>
-              <div className="flex gap-1">
-                <div className="flex items-center gap-5 bg-blackish rounded-full px-3 py-1 whitespace-nowrap overflow-x-scroll">
-                  <BsCalendar2Date size={18} className="text-holiblue" />
-                  <p>{arrival}</p>
-                </div>
-                <div className="flex items-center gap-5 bg-blackish rounded-full px-3 py-1 whitespace-nowrap overflow-x-scroll">
-                  <BsFillCalendar2DateFill
-                    size={18}
-                    className="text-holiblue"
-                  />
-                  <p>{departure}</p>
-                </div>
+              <div className="flex items-center gap-5 bg-blackish rounded-full px-3 py-1 whitespace-nowrap overflow-x-scroll">
+                <BsCalendar2Date size={18} className="text-holiblue" />
+                <p>{arrival}</p>
+              </div>
+              <div className="flex items-center gap-5 bg-blackish rounded-full px-3 py-1 whitespace-nowrap overflow-x-scroll">
+                <BsFillCalendar2DateFill size={18} className="text-holiblue" />
+                <p>{departure}</p>
               </div>
             </div>
           </div>

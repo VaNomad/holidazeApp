@@ -14,7 +14,7 @@ export const SearchBar = ({ onSearch }) => {
       <form className="max-w-screen">
         <div className="">
           <input
-            className="max-w-full px-4 py-1 rounded-full bg-zinc-100 text-black font-alli font-semibold tracking-widest"
+            className="max-w-full px-4 py-1 rounded-full bg-zinc-100 text-black font-dm font-semibold tracking-widest"
             type="text"
             name="text"
             placeholder="Search..."

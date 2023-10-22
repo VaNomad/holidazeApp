@@ -77,11 +77,15 @@ export function MyVenues() {
 
   console.log("LAST LOG BEFORE MOUNT:", venueData);
   return (
-    <div>
-      {venueData.map((data) => {
-        console.log(data);
-        return <MyVenuesCard data={data} key={data.id} />;
-      })}
+    <div className="max-w-3xl">
+      <div className="container mx-auto md:max-w-3xl">
+        <div className="container grid grid-cols-1 gap-4 mx-auto md:grid-cols-2 md:gap-5">
+          {venueData.map((data) => {
+            console.log(data);
+            return <MyVenuesCard data={data} key={data.id} />;
+          })}
+        </div>
+      </div>
     </div>
   );
 }

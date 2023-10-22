@@ -79,7 +79,7 @@ export function MyBookings() {
   return (
     <div className="max-w-3xl">
       <div className="container mx-auto md:max-w-3xl">
-        <div className="container grid grid-cols-1 gap-4 mx-auto xs:grid-cols-2 sm:gap-3 md:grid-cols-3 md:gap-5">
+        <div className="container grid grid-cols-1 gap-4 mx-auto md:grid-cols-2 md:gap-5">
           {bookingData.bookings.map((data) => {
             console.log(data);
             return <BookingsCard data={data} key={data.id} />;

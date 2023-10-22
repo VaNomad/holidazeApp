@@ -29,7 +29,7 @@ export const MyVenuesCard = ({ data }) => {
 
   return (
     <div className="rounded-2xl p-2">
-      <div className="card container mx-auto p-2 bg-zinc-900 rounded-3xl text-xs">
+      <div className="card container mx-auto p-2 backdrop-blur-sm rounded-3xl text-xs">
         {data ? (
           <div className="card container mx-auto px-4">
             <h3 className="font-alli text-3xl pb-2">{name}</h3>
@@ -56,8 +56,8 @@ export const MyVenuesCard = ({ data }) => {
               <div className="font-dm text-xs py-2">
 
                 {/* Location Details */}
-                <div className="card container mx-auto px-3 pb-3 my-2 bg-zinc-800 rounded-3xl text-xs">
-                  <h3 className="font-alli font-thin text-3xl text-zinc-400 pb-2">
+                <div className="card container mx-auto px-3 pb-3 my-2  rounded-3xl text-xs">
+                  <h3 className="font-alli font-thin text-3xl text-zinc-100 pb-2">
                     Location Details:
                   </h3>
                   <div className="flex flex-wrap gap-1">
@@ -91,7 +91,7 @@ export const MyVenuesCard = ({ data }) => {
                 </div>
 
                 {/* Venue Features */}
-                <div className="card container mx-auto px-3 pb-3 mt-2 bg-zinc-800 rounded-3xl text-xs">
+                <div className="card container mx-auto px-3 pb-3 mt-2 rounded-3xl text-xs">
                   <h3 className="font-alli font-thin text-3xl text-zinc-400 pb-2">
                     Venue Features:
                   </h3>

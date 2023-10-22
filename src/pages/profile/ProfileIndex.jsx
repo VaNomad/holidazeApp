@@ -21,7 +21,7 @@ export const ProfileIndex = () => {
     <div id="top" className="bg-cover bg-hero-pattern bg-fixed md:bg-center h-screen">
       <ProfileHeader />
       <div className="flex justify-center py-4">
-        <Tabs className="backdrop-blur-lg rounded-3xl m-8 md:m-10 lg:m-14">
+        <Tabs className="backdrop-blur-sm rounded-3xl m-8 md:m-10 lg:m-14">
           <TabList className="flex flex-wrap font-thin text-[22px] px-2 rounded-b2xl">
             <Tab className="mx-1 px-2 py-1 border-x-1 border-t-1 border-x-zinc-500 border-t-zinc-500 rounded-t-md cursor-pointer">
               <span className="font-semibold">my</span>Profile
