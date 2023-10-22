@@ -56,6 +56,9 @@ function copyToClipboard(inputId) {
 }
 </script>
 
+<clipboard-copy for="blob-path">Copy</clipboard-copy>
+<input id="blob-path" value="src/index.js">
+
 
 ## Project overview
 
