@@ -61,8 +61,12 @@ export const ApiId = () => {
 
   return (
     <div>
-      <SpecificCard key={data.id} data={data} />
+      <div className="p-3 mx-8 mt-5 mb-10 rounded-2xl">
+        <div className="container mx-auto max-w-3xl backdrop-blur-md rounded-2xl">
+          <SpecificCard key={data.id} data={data} />
+        </div>
+      </div>
     </div>
-  )
+  );
   
 };

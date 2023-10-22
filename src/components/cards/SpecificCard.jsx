@@ -39,7 +39,7 @@ export const SpecificCard = ({ data }) => {
             <BsKey className="mx-2" size={25} /> {owner}
             <h2 className="font-dm uppercase font-medium text-sm">owner</h2>
           </div>
-          <p className="flex font-dm font-thin text-xs justify-center">
+          <p className="flex font-dm font-thin text-sm justify-center">
             {email}
           </p>
         </div>
@@ -54,14 +54,14 @@ export const SpecificCard = ({ data }) => {
 
       <VenuesCarousel media={media} name={name} />
 
-      <div className="p-2 bg-zinc-900 rounded-xl mt-3">
-        <h2 className="text-sm font-semibold text-zinc-300 mb-2">
+      <div className="p-2 backdrop-blur-2xl rounded-xl mt-3">
+        <h2 className="text-3xl font-semibold font-alli text-zinc-100 mb-2">
           Description:{" "}
         </h2>
-        <p className="font-dm font-thin text-xs text-zinc-400">{description}</p>
+        <p className="font-dm font-thin text-sm text-zinc-100">{description}</p>
       </div>
 
-      <ul className="flex flex-col text-white uppercase text-xs font-thin divide-y-[1px] divide-zinc-600 border border-zinc-600 rounded-xl p-2 gap-1">
+      <ul className="flex flex-col text-white uppercase text-xs font-thin divide-y-[1px] divide-zinc-100 border border-zinc-100 rounded-xl p-2 gap-1">
         <li className="grid grid-cols-3">
           <BsPeople size={15} />
           <h2>max guests</h2>
@@ -113,14 +113,14 @@ export const SpecificCard = ({ data }) => {
         </li>
       </ul>
 
-      <div className="text-xl mt-1 p-2 bg-zinc-900 text-zinc-400 rounded-xl">
-        <h2 className="font-dm font-semibold text-zinc-300 text-xs mb-1">
+      <div className="text-xl mt-1 p-2 backdrop-blur-2xl text-zinc-400 rounded-xl">
+        <h2 className="font-alli font-semibold text-zinc-100 text-3xl mb-1">
           Location
         </h2>
         <div className="flex">
-          <p className="font-dm font-thin">{country},</p>
+          <p className="font-dm">{country},</p>
           &nbsp;
-          <p className="font-dm font-thin">{city}</p>
+          <p className="font-dm">{city}</p>
         </div>
         <div className="flex justify-between">
           <p className="font-dm font-thin text-[20px]">{address}</p>
@@ -133,8 +133,8 @@ export const SpecificCard = ({ data }) => {
         </div>
         <div className="flex justify-between p-1">
           <div className="mb-2 mt-2.5 flex items-center">
-            <h2 className="text-sm font-semibold text-zinc-300">Rating: </h2>
-            <span className="ml-3 mr-2 rounded-full px-3 text-white text-sm border-2 border-[#FCB5FF]">
+            <h2 className="text-sm font-dm font-semibold text-zinc-300">Rating: </h2>
+            <span className="ml-3 mr-2 rounded-full px-3 py-1 text-white text-sm border-2">
               {rating ? (
                 <p>{rating} / 5</p>
               ) : (
@@ -160,7 +160,7 @@ export const SpecificCard = ({ data }) => {
 
       {isAuthenticated && user ? (
         <div className="my-5">
-          <p className="text-white font-semibold text-xl p-2 font-dm">
+          <p className="text-white text-xl tracking-wider p-2 font-dm">
             Check Availability{" "}
           </p>
           <div>

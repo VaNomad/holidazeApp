@@ -101,13 +101,13 @@ export const BookingForm = ({ data, price, maxGuests }) => {
     <div>
       <form onSubmit={formik.handleSubmit}>
         {/* Dates */}
-        <div className="border border-zinc-600 p-3 rounded-xl flex flex-col gap-2">
+        <div className="border border-zinc-100 p-3 rounded-xl flex flex-col gap-2">
           <h1 className="font-alli text-3xl">Dates :</h1>
 
           {/* date From */}
           <div>
             <DatePicker
-              className="rounded-xl bg-black border-2 border-zinc-500 px-3 py-1 text-xs tracking-widest text-zinc-300"
+              className="rounded-xl bg-black border-2 border-zinc-100 px-3 py-1 text-xs tracking-widest text-zinc-300"
               selected={formik.values.dateFrom}
               onChange={(date) => {
                 formik.setFieldValue("dateFrom", date);
@@ -128,7 +128,7 @@ export const BookingForm = ({ data, price, maxGuests }) => {
           {/* dateTo */}
           <div>
             <DatePicker
-              className="rounded-xl bg-black border-2 border-zinc-500 px-3 py-1 text-xs tracking-widest text-zinc-300"
+              className="rounded-xl bg-black border-2 border-zinc-100 px-3 py-1 text-xs tracking-widest text-zinc-300"
               selected={formik.values.dateTo}
               onChange={(date) => {
                 formik.setFieldValue("dateTo", date);
@@ -150,14 +150,14 @@ export const BookingForm = ({ data, price, maxGuests }) => {
         </div>
 
         {/* Number of Guests */}
-        <div className="border border-zinc-600 mt-3 p-3 rounded-xl flex flex-col gap-2">
+        <div className="border border-zinc-100 mt-3 p-3 rounded-xl flex flex-col gap-2">
           <h1 className="font-alli text-3xl">Guests :</h1>
           <div className="flex flex-col gap-4">
             <input
               type="number"
               name="guests"
               value={formik.values.guests}
-              className="rounded-xl bg-black border-2 border-zinc-500 px-3 py-1 text-xs tracking-widest text-zinc-300 max-w-xs"
+              className="rounded-xl bg-black border-2 border-zinc-100 px-3 py-1 text-xs tracking-widest text-zinc-300 max-w-xs"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
             />
@@ -172,12 +172,12 @@ export const BookingForm = ({ data, price, maxGuests }) => {
         {/* days & price */}
         <div className="my-2">
           <div>
-            <h2 className="text-md font-dm font-semibold text-zinc-400">
+            <h2 className="text-md font-dm font-semibold text-zinc-100">
               Total Days:
             </h2>
             <p className="text-holiblue">{totalDays}</p>
           </div>
-          <div className="text-md font-dm font-semibold text-zinc-400">
+          <div className="text-md font-dm font-semibold text-zinc-100">
             <h2>Total Price:</h2>
             <p className="text-holiblue">{totalPrice}</p>
           </div>
@@ -200,7 +200,7 @@ export const BookingForm = ({ data, price, maxGuests }) => {
         {/* submit btn */}
         <div>
           <button
-            className="my-2 rounded-full px-4 py-1 border-2 text-black border-holiblue bg-holiblue hover:text-holiblue hover:bg-black hover:scale-105 tracking-widest font-dm text-md transition-all duration-800 cursor-pointer"
+            className="my-2 rounded-full px-4 py-1 border-2 text-black border-holiblue bg-holiblue hover:text-holiblue hover:bg-black hover:scale-105 tracking-widest font-alli text-3xl transition-all duration-800 cursor-pointer"
             type="submit"
           >
             Place Booking
