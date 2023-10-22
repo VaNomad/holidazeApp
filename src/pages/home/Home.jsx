@@ -1,5 +1,5 @@
 import { VenueList } from "../venueList/VenueList";
-// import { Hero } from "./Hero";
+import { Hero } from "./Hero";
 import { SearchBtn } from "../../components/ui/buttons/SearchBtn";
 
 export const Home = () => {
@@ -8,7 +8,7 @@ export const Home = () => {
   <div
     id="top"
   >
-    {/* <Hero /> */}
+    <Hero />
     <VenueList />
     <SearchBtn />
   </div>
