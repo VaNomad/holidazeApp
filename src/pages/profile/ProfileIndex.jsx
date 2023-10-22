@@ -18,7 +18,7 @@ export const ProfileIndex = () => {
   console.log(useUser());
 
   return (
-    <div id="top" className="bg-cover bg-hero-pattern bg-fixed md:bg-center">
+    <div id="top">
       <ProfileHeader />
       <div className="flex justify-center py-4">
         <Tabs className="backdrop-blur-sm rounded-3xl m-8 md:m-10 lg:m-14">

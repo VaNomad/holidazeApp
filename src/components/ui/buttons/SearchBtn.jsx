@@ -6,7 +6,7 @@ export const SearchBtn = () => {
   };
   
   return (
-    <div className="fixed bottom-4 right-4 z-40">
+    <div className="fixed bottom-24 right-4 z-50">
       <button
         onClick={scrollToTop}
         className="border-[3px] border-black bg-holipink hover:bg-black text-black hover:text-holipink font-bold p-2 rounded-full hover:scale-105 transition-all duration-300"

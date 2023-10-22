@@ -8,7 +8,7 @@ export const Profile = () => {
 
   return (
     <div className="backdrop-blur-lg rounded-b-2xl flex justify-center items-center p-3">
-      <div className="p-3">
+      <div className="p-3 w-full max-w-xs sm:max-w-sm">
         <div className="max-w-sm mx-auto flex flex-col gap-5">
           <div className="flex border-[2px] border-holipink rounded-full items-center">
             <div>
