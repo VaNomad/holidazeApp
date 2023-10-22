@@ -38,6 +38,11 @@ export const VenueList = () => {
 
   return (
     <div>
+      <div className="text-center text-black z-30 w-screen">
+        <h1 className="font-alli text-[40px] xs:text-[50px] sm:text-[60px] md:text-[80px] md:text-white tracking-wide">
+          Find your next journey
+        </h1>
+      </div>
       <div className="flex flex-col items-center">
         <SearchBar onSearch={setSearch} />
         <div className="flex justify-center items-center max-w-6xl p-2 mx-auto z-40">

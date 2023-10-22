@@ -1,15 +1,15 @@
-export const Hero = () => {
+// export const Hero = () => {
 
-  return (
-    <div>
-      <div className="text-center text-black z-30 w-screen">
-        <h1 className="font-alli text-[40px] xs:text-[50px] sm:text-[60px] md:text-[80px] md:text-white tracking-wide">
-          Find your next journey
-        </h1>
-      </div>
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       <div className="text-center text-black z-30 w-screen">
+//         <h1 className="font-alli text-[40px] xs:text-[50px] sm:text-[60px] md:text-[80px] md:text-white tracking-wide">
+//           Find your next journey
+//         </h1>
+//       </div>
+//     </div>
+//   );
+// };
 
 {/* <div className="relative">
   <div className="h-[330px] w-full bg-transparent"></div>
