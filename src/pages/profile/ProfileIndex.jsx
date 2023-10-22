@@ -8,8 +8,7 @@ import { MyVenues } from "../../api/MyVenues";
 import { ProfileHeader } from "./ProfileHeader";
 import { CreateVenueForm } from "../../components/forms/CreateVenueForm";
 import { MyVenueBookingsCall } from "../../api/MyVenueBookings";
-// import { UpdateVenueForm } from "../../components/forms/UpdateVenueForm";
-// import { Formik, useFormik } from "formik";
+import { TabsBtn } from "../../components/ui/buttons/TabsBtn";
 
 export const ProfileIndex = () => {
   const { user } = useUser();
@@ -19,9 +18,9 @@ export const ProfileIndex = () => {
   console.log(useUser());
 
   return (
-    <div className="bg-black">
+    <div id="top" className="bg-cover bg-hero-pattern bg-fixed md:bg-center">
       <ProfileHeader />
-      <div>
+      <div className="flex justify-center backdrop-blur-sm mx-24 py-4 rounded-3xl">
         <Tabs>
           <TabList className="flex flex-wrap font-thin text-[22px] px-2">
             <Tab className="mx-1 px-2 py-1 border-x-1 border-t-1 border-x-zinc-500 border-t-zinc-500 rounded-t-md cursor-pointer">
@@ -63,6 +62,7 @@ export const ProfileIndex = () => {
           </TabPanel>
         </Tabs>
       </div>
+      <TabsBtn />
     </div>
   );
 };

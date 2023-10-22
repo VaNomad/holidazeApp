@@ -41,10 +41,10 @@ export const BookingsCard = ({ data }) => {
   const departure = new Date(dateTo).toLocaleDateString(undefined, options);
 
   return (
-    <div className="rounded-2xl p-4 ">
+    <div className="rounded-2xl">
       <div className="tracking-wide">
         {data ? (
-          <div className="card container mx-auto p-4 bg-zinc-800 rounded-3xl text-xs">
+          <div className="card container mx-auto p-2 bg-zinc-800 rounded-3xl text-xs">
             <VenuesCarousel media={media} name={name} />
             <h3 className="font-alli font-thin text-3xl text-zinc-400 py-2">
               Your Booking Details:
@@ -52,7 +52,7 @@ export const BookingsCard = ({ data }) => {
             <div className="flex flex-wrap gap-1">
               <div className="flex items-center gap-5 bg-blackish rounded-full px-3 py-1 whitespace-nowrap overflow-x-scroll">
                 <IoHome size={18} className="text-holiblue" />
-                <p className="">{name}</p>
+                <p className="overflow-x-scroll">{name}</p>
               </div>
               <div className="flex items-center gap-5 bg-blackish rounded-full px-3 py-1 whitespace-nowrap overflow-x-scroll">
                 <BsPeople size={18} className="text-holiblue" />

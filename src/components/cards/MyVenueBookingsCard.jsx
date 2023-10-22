@@ -30,7 +30,7 @@ export const MyVenueBookingsCard = ({ booking }) => {
               <div>
                 <div className="flex items-center gap-5 border border-zinc-600 rounded-full px-3 py-1 whitespace-nowrap">
                   <PiHashStraightBold size={18} className="text-holipink" />
-                  <p className=" overflow-scroll">{id}</p>
+                  <p className="overflow-scroll">{id}</p>
                 </div>
               </div>
             </div>

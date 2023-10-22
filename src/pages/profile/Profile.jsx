@@ -7,7 +7,7 @@ export const Profile = () => {
   const { user } = useUser();
 
   return (
-    <div className="bg-black flex justify-center items-center h-[40vh]">
+    <div className="backdrop-blur-lg rounded-b-2xl flex justify-center items-center p-3">
       <div className="max-w-[80%] p-3">
         <div className="max-w-sm mx-auto flex flex-col gap-5">
           <div className="flex border-[2px] border-holipink rounded-full items-center">

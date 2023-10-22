@@ -42,7 +42,7 @@ export const VenueList = () => {
     <div>
       <div className="flex flex-col items-center">
         <SearchBar onSearch={setSearch} />
-        <div className="flex justify-center items-center max-w-md p-2 mx-auto z-40">
+        <div className="flex justify-center items-center max-w-4xl p-2 mx-auto z-40">
           {filteredVenues.length === 0 ? (
             <div>
               <h1 className="font-alli text-4xl text-holipink">
@@ -50,10 +50,12 @@ export const VenueList = () => {
               </h1>
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-3 mx-auto">
-              {filteredVenues.map((venue) => {
-                return <AllVenuesCard key={venue.id} venue={venue} />;
-              })}
+            <div className="container mx-auto md:max-w-3xl">
+              <div className="container grid grid-cols-1 gap-4 mx-auto xs:grid-cols-2 sm:gap-3 md:grid-cols-3 md:gap-5">
+                {filteredVenues.map((venue) => {
+                  return <AllVenuesCard key={venue.id} venue={venue} />;
+                })}
+              </div>
             </div>
           )}
         </div>

@@ -77,13 +77,15 @@ export function MyBookings() {
 
   console.log("LAST LOG BEFORE MOUNT:", bookingData)
   return (
-    <div>
-      {
-        bookingData.bookings.map((data) => {
-          console.log(data);
-          return <BookingsCard data={data} key={data.id} />;
-        })
-      }
+    <div className="max-w-3xl">
+      <div className="container mx-auto md:max-w-3xl">
+        <div className="container grid grid-cols-1 gap-4 mx-auto xs:grid-cols-2 sm:gap-3 md:grid-cols-3 md:gap-5">
+          {bookingData.bookings.map((data) => {
+            console.log(data);
+            return <BookingsCard data={data} key={data.id} />;
+          })}
+        </div>
+      </div>
     </div>
   );
 }
