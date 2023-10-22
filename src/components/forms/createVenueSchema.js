@@ -40,7 +40,7 @@ export const createVenueSchema = Yup.object().shape({
       "atLeastOneImage",
       "You must add at least one image",
       function (mediaArray) {
-        return mediaArray.some((media) => !!media);
+        return mediaArray.every((media) => !!media);
       }
     ),
   price: Yup.number()
