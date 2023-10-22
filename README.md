@@ -36,13 +36,13 @@ This was the entry point to our final exam at Noroff School of technology and di
    [[Url](https://github.com/VaNomad/holidazeApp)] 
    
 2. Install packages:
-   <input type="text" id="input2" value="npm i" readonly>
+   "npm i"
    
 3. To run locally:
-   <input type="text" id="input3" value="npm run dev" readonly>
+   "npm run dev"
 
 4. To build locally:
-    [[npm run build]] 
+   "npm run build" 
 
 
 ## Project overview
