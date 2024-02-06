@@ -63,7 +63,7 @@ export const SignUpForm = () => {
   return (
     <form
       onSubmit={handleSubmit(handleSignup)}
-      className="flex flex-col gap-4 w-full p-5"
+      className="flex flex-col gap-4 w-full text-black p-5"
     >
       <input
         className="rounded-full px-5 py-2 max-w-full text-sm"
